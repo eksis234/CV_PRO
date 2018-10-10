@@ -6,6 +6,8 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,15 +46,30 @@ public class SerbaGuna {
             }
         }
     
-    public void filterPass(KeyEvent c){
-            if(Character.isDigit(c.getKeyChar()) && Character.isAlphabetic(c.getKeyChar()) 
-                 ){
-                c.consume();
-               JOptionPane.showMessageDialog(null,"benar");
-            }else{
-                JOptionPane.showMessageDialog(null,"Inputan berupa huruf dan angka");
+    public void filterPass(String pass){
+        Pattern ptn = Pattern.compile("^([A-Z|0-9|a-z\\+_\\-]+)+[^\\w\\+_\\-]+$");
+        Matcher matcher = ptn.matcher(pass);
+        if(pass.length()>=8 && !pass.substring(0, 1).equals(" ")){
+            if(matcher.matches()){
+                JOptionPane.showMessageDialog(null, "Penulisan pass "+ pass + " benar" );
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Penulisan Pass "+ pass + " salah" );
+            }
+        }else {
+            JOptionPane.showMessageDialog(null, "Penulisan Pass minimal "+ pass + " salah.\nPassword terdiri dari huruf A-Z,0-9,a-z, dan karakter" );
         }
+    }
     
-    
+    public void cekEmail(String mail){                                    
+        Pattern ptn = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
+        Matcher matcher = ptn.matcher(mail);
+        if(matcher.matches()){
+            JOptionPane.showMessageDialog(null, "Penulisan email "+ mail + " benar" );
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Penulisan email "+ mail + " salah" );
+        }
+    }
+
 }

@@ -61,6 +61,9 @@ public class CountryView extends javax.swing.JInternalFrame {
         btnDropC = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtCountryName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtMail = new javax.swing.JTextField();
+        cmbMail = new javax.swing.JComboBox<>();
         cmbKategoriCountry = new javax.swing.JComboBox<>();
         txtFindCountry = new javax.swing.JTextField();
         btnFindC = new javax.swing.JButton();
@@ -74,7 +77,7 @@ public class CountryView extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 204)), "Countries Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel1.setText("Country Id       :");
+        jLabel1.setText("validasi pass dgn key enter");
 
         txtCountryId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +102,11 @@ public class CountryView extends javax.swing.JInternalFrame {
         });
 
         btnSaveC.setText("SAVE");
+        btnSaveC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSaveCMouseClicked(evt);
+            }
+        });
         btnSaveC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveCActionPerformed(evt);
@@ -112,13 +120,26 @@ public class CountryView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Country Name :");
+        jLabel3.setText("validasi pass dgn btn");
 
         txtCountryName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCountryNameKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCountryNameKeyTyped(evt);
             }
         });
+
+        jLabel4.setText("validasi email ");
+
+        txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMailKeyReleased(evt);
+            }
+        });
+
+        cmbMail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@yahoo.co.id", "@yahoo.com", "@mii.co.id" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,24 +147,32 @@ public class CountryView extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCountryId)
-                            .addComponent(cmbRegionId, 0, 180, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSaveC)
-                            .addComponent(btnDropC))
-                        .addGap(57, 57, 57))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCountryName, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtMail)
+                            .addComponent(txtCountryId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbRegionId, javax.swing.GroupLayout.Alignment.LEADING, 0, 180, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSaveC)
+                                    .addComponent(btnDropC))
+                                .addGap(57, 57, 57))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbMail, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,11 +183,17 @@ public class CountryView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addComponent(txtCountryId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSaveC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCountryName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(84, 84, 84)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
@@ -226,9 +261,9 @@ public class CountryView extends javax.swing.JInternalFrame {
                     .addComponent(txtFindCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFindC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -394,33 +429,58 @@ public class CountryView extends javax.swing.JInternalFrame {
      */
     private void txtCountryNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryNameKeyTyped
         // TODO add your handling code here:
-       sf.filterPass(evt);
+       //sf.filterPass(evt);
+       
     }//GEN-LAST:event_txtCountryNameKeyTyped
 
     private void txtCountryIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryIdKeyReleased
         // TODO add your handling code here:
          if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-             if (!txtCountryId.getText().equals("") ){
-                 sf.filterAngka(evt);
-             }
+                  sf.filterPass(txtCountryId.getText());
          }
     }//GEN-LAST:event_txtCountryIdKeyReleased
+
+    private void btnSaveCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveCMouseClicked
+        // TODO add your handling code here:
+//        sf.cekEmail(txtCountryName.getText());
+//          sf.filterPass(txtCountryName.getText());
+        String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();
+            String emainya = mailnya.concat(cmbMael);
+                  sf.cekEmail(emainya);
+    }//GEN-LAST:event_btnSaveCMouseClicked
+
+    private void txtCountryNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCountryNameKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtCountryNameKeyReleased
+
+    private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();
+            String emainya = mailnya.concat(cmbMael);
+                  sf.cekEmail(emainya);
+         }
+    }//GEN-LAST:event_txtMailKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDropC;
     private javax.swing.JButton btnFindC;
     private javax.swing.JButton btnSaveC;
     private javax.swing.JComboBox<String> cmbKategoriCountry;
+    private javax.swing.JComboBox<String> cmbMail;
     private javax.swing.JComboBox<String> cmbRegionId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCountry;
     private javax.swing.JTextField txtCountryId;
     private javax.swing.JTextField txtCountryName;
     private javax.swing.JTextField txtFindCountry;
+    private javax.swing.JTextField txtMail;
     // End of variables declaration//GEN-END:variables
  
      /**

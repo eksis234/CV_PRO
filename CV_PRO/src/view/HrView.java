@@ -68,6 +68,7 @@ public class HrView extends javax.swing.JFrame {
         jmProgramming = new javax.swing.JMenuItem();
         jmTools = new javax.swing.JMenuItem();
         jmPersonalData = new javax.swing.JMenuItem();
+        jmCountryId = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mniReportTabel = new javax.swing.JMenuItem();
 
@@ -163,6 +164,15 @@ public class HrView extends javax.swing.JFrame {
         jmPersonalData.setText("Personal Data");
         jmRegion.add(jmPersonalData);
 
+        jmCountryId.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jmCountryId.setText("Country Id");
+        jmCountryId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCountryIdActionPerformed(evt);
+            }
+        });
+        jmRegion.add(jmCountryId);
+
         jMenuBar1.add(jmRegion);
 
         jMenu2.setText("Report");
@@ -241,6 +251,13 @@ public class HrView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mniReportTabelActionPerformed
 
+    private void jmCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountryIdActionPerformed
+        // TODO add your handling code here:
+        CountryView countryView = new CountryView(sf);
+        countryView.show();
+        dpUtamaHr.add(countryView);
+    }//GEN-LAST:event_jmCountryIdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -298,6 +315,7 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jmAchievement;
     private javax.swing.JMenuItem jmBahasaAsing;
+    private javax.swing.JMenuItem jmCountryId;
     private javax.swing.JMenuItem jmEducation;
     private javax.swing.JMenuItem jmNetworking;
     private javax.swing.JMenuItem jmOperatingSystem;
