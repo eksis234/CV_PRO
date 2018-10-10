@@ -260,7 +260,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmBahasaAsingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBahasaAsingActionPerformed
         // TODO add your handling code here:
-        BahasaAsingView bahasaAsingView = new BahasaAsingView();
+        BahasaAsingView bahasaAsingView = new BahasaAsingView(sf);
         bahasaAsingView.show();
         dpUtamaHr.add(bahasaAsingView);
     }//GEN-LAST:event_jmBahasaAsingActionPerformed
@@ -287,7 +287,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmOperatingSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOperatingSystemActionPerformed
          // TODO add your handling code here:
-         OperatingSystemView operatingSystemView = new OperatingSystemView();
+         OperatingSystemView operatingSystemView = new OperatingSystemView(sf);
          operatingSystemView.show();
          dpUtamaHr.add(operatingSystemView);
     }//GEN-LAST:event_jmOperatingSystemActionPerformed
@@ -301,7 +301,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmToolsActionPerformed
          // TODO add your handling code here:
-         ToolsView toolsView = new ToolsView();
+         ToolsView toolsView = new ToolsView(sf);
          toolsView.show();
          dpUtamaHr.add(toolsView);
     }//GEN-LAST:event_jmToolsActionPerformed

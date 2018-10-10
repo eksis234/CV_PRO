@@ -78,7 +78,7 @@ public class FunctionDAO {
                         .uniqueResult();
             case 3:
                 return session.createCriteria(type)
-                        .add(Restrictions.eq(category, key))
+                        .add(Restrictions.ilike(category, "%"+key+"%"))
                         .list();
             case 4:
                 return session.createQuery("FROM " + type

@@ -47,7 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.username">system</property>
     <property name="hibernate.connection.password">admin</property>
     <property name="hibernate.connection.autocommit">true</property>
-    <property name="hibernate.default_schema">cvonline</property>
+    <property name="hibernate.default_schema">cv_online</property>
     <mapping class="model.Achievement"/>
     <mapping class="model.Achievementdetails"/>
     <mapping class="model.Education"/>

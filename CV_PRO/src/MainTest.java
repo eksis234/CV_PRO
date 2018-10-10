@@ -1,7 +1,7 @@
 
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
-import model.Achievement;
+import model.*;
 import tools.HibernateUtil;
 
 /*
@@ -21,10 +21,15 @@ public class MainTest {
      */
     public static void main(String[] args) {
         System.out.println("heloo");
-        InterfaceDAO iDAO = new GeneralDAO(HibernateUtil.getSessionFactory(), Achievement.class);
+//        InterfaceDAO iDAO = new GeneralDAO(HibernateUtil.getSessionFactory(), Achievement.class);
+//        for (Object object : iDAO.getAll()) {
+//            Achievement achievement = (Achievement) object;
+//            System.out.println(achievement.getAchievementname()+" - "+achievement.getIdachievement());
+//        }
+    InterfaceDAO iDAO = new GeneralDAO(HibernateUtil.getSessionFactory(), Tools.class);
         for (Object object : iDAO.getAll()) {
-            Achievement achievement = (Achievement) object;
-            System.out.println(achievement.getAchievementname()+" - "+achievement.getIdachievement());
+            Tools tools = (Tools) object;
+            System.out.println(tools.getIdtool()+" - "+tools.getToolname());
         }
         System.out.println("heloo");
     }

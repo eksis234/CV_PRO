@@ -5,17 +5,38 @@
  */
 package view;
 
+import controller.*;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import model.Tools;
+import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
+
 /**
  *
  * @author chochong
  */
 public class ToolsView extends javax.swing.JInternalFrame {
 
-    /**
+    private final ToolsController controller;
+    private final SerbaGuna sg;
+    private TableRowSorter<TableModel> rowSorter;
+     /**
      * Creates new form ToolsView
+     * @param factory untuk koneksi
      */
-    public ToolsView() {
+    public ToolsView(SessionFactory factory) {
         initComponents();
+        controller = new ToolsController(factory);
+        bindingTools(controller.getAll());
+        jtTools.setRowSorter(rowSorter);
+        sg = new SerbaGuna();
     }
 
     /**
@@ -42,11 +63,12 @@ public class ToolsView extends javax.swing.JInternalFrame {
         btnSaveTools = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Master Tools");
 
-        cmbKategoriTools.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " ", " " }));
+        cmbKategoriTools.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tools ID", "Tools Name" }));
 
         txtFindTools.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -63,15 +85,17 @@ public class ToolsView extends javax.swing.JInternalFrame {
 
         jtTools.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
             }
         ));
+        jtTools.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtToolsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtTools);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -200,60 +224,32 @@ public class ToolsView extends javax.swing.JInternalFrame {
 
     private void txtFindToolsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindToolsKeyReleased
         // TODO add your handling code here:
-        //                if (txtFindCountry.getText().equals("")) {
-            //                bindingCountries(controller.getAll());
-            //            }else if (!txtFindCountry.getText().equalsIgnoreCase("")){
-            //                btnFindC.setEnabled(true);
-            //            }
-        //        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            ///*use inisialisasi string categori*/
-            ////            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
-                ////            bindingCountries(controller.search("regionId", (txtFindCountry.getText())));
-                ////            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
-                ////            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
-                ////            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
-                ////            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
-                ////            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
-            ////            bindingCountries(controller.search("countryName", txtFindCountry.getText()));
-            ///*use array*/  //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
-            ///*use enum*/  bindingCountries(controller.searchCountry((String) cmbKategoriCountry.getSelectedItem(), txtFindCountry.getText()));
-            ///*use rowSorter*/
-            ////            String text = txtFindCountry.getText();
-            ////            if (text.trim().length() == 0) {
-                ////                rowSorter.setRowFilter(null);
-                ////            } else {
-                ////                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriCountry.getSelectedIndex() + 1));
-                ////            }
-            //        }
+        if (txtFindTools.getText().equals("")) {
+                bindingTools(controller.getAll());
+            }else if (!txtFindTools.getText().equalsIgnoreCase("")){
+                btnFindTools.setEnabled(true);
+            }
+            if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            String text = txtFindTools.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriTools.getSelectedIndex() + 1));
+            }
+        }
     }//GEN-LAST:event_txtFindToolsKeyReleased
 
     private void btnFindToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindToolsActionPerformed
         // TODO add your handling code here:
-        //        if (!txtFindCountry.getText().equalsIgnoreCase("")) {
-            /*use inisialisasi string categori*/
-            //            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
-                //            bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
-                //            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
-                //            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
-                //            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
-                //            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
-                //            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
-            //            bindingCountries(controller.search("countryName", txtFindCountry.getText()));
-
-            /*use array*/  //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
-            // /*use enum*/  bindingCountries(controller.searchCountry((String) cmbKategoriCountry.getSelectedItem(), txtFindCountry.getText()));
-
-            /*use rowSorter*/
-            //            String text = txtFindCountry.getText();
-            //            if (text.trim().length() == 0) {
-                //                rowSorter.setRowFilter(null);
-                //            } else {
-                //                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriCountry.getSelectedIndex() + 1));
-                //            }
-            //        JOptionPane.showMessageDialog(this,
-                //        pesan.find.getPesan(), "Search",
-                //        JOptionPane.INFORMATION_MESSAGE);
-            //        }
+                if (!txtFindTools.getText().equalsIgnoreCase("")) {
+                        String text = txtFindTools.getText();
+                        if (text.trim().length() == 0) {
+                                rowSorter.setRowFilter(null);
+                            } else {
+                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriTools.getSelectedIndex() + 1));
+                            JOptionPane.showMessageDialog(this,pesan.find.getPesan(), "Search",JOptionPane.INFORMATION_MESSAGE);
+                        }                 
+                    }
     }//GEN-LAST:event_btnFindToolsActionPerformed
 
     private void txtToolsIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToolsIdActionPerformed
@@ -262,11 +258,11 @@ public class ToolsView extends javax.swing.JInternalFrame {
 
     private void txtToolsIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToolsIdKeyReleased
         // TODO add your handling code here:
-        //        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            //            if (!txtCountryId.getText().equals("") ){
-                //                sf.filterAngka(evt);
-                //            }
-            //        }
+                if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+                        if (!txtToolsId.getText().equals("") ){
+                                sg.filterAngka(evt);
+                            }
+                    }
     }//GEN-LAST:event_txtToolsIdKeyReleased
 
     private void txtToolsIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToolsIdKeyTyped
@@ -281,43 +277,41 @@ public class ToolsView extends javax.swing.JInternalFrame {
 
     private void btnDropToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropToolsActionPerformed
         // TODO add your handling code here:
-        //        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
-        //        Country country = new Country();
-        //        country = new Country(txtCountryId.getText());
-        //        if (response == JOptionPane.YES_OPTION) {
-            //        controller.delete(country);
-            //        JOptionPane.showMessageDialog(this, inf.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            //        bindingCountries(controller.getAll());
-            //        cmbRegionId.setSelectedIndex(0);
-            //        }else if (response == JOptionPane.NO_OPTION) {
-            //            JOptionPane.showMessageDialog(this, inf.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            //        }
+                int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
+                if (response == JOptionPane.YES_OPTION) {
+                    controller.delete(txtToolsId.getText());
+                    JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    bindingTools(controller.getAll());
+                    reset();
+                    }else if (response == JOptionPane.NO_OPTION) {
+                        JOptionPane.showMessageDialog(this, pesan.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    }
     }//GEN-LAST:event_btnDropToolsActionPerformed
 
     private void btnSaveToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToolsActionPerformed
         // TODO add your handling code here:
-        //        String abcd = cmbRegionId.getSelectedItem()+"";
-        //        String subRegionId = abcd.substring(0,1);
-        //        Country country = new Country();
-        //        country = new Country(txtCountryId.getText().toUpperCase());
-        //        country.setCountryName(txtCountryName.getText());
-        //        Region region = new Region(new BigDecimal(subRegionId));
-        //        country.setRegionId(region);
-        //        boolean isUpdate = false;
-        //        if(!txtCountryId.isEnabled()){
-            //            isUpdate = true;
-            //        }
-        //        if (isUpdate) {
-            //            controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
-        //            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        //            bindingCountries(controller.getAll());}
-        //        else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
-        //            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
-        //            bindingCountries(controller.getAll());
-        //            txtCountryId.setEditable(true);
-        //         }
-        //cmbRegionId.setSelectedIndex(0);
+                boolean isUpdate = false;
+                if(!txtToolsId.isEnabled()){
+                        isUpdate = false;
+                    }
+                if (isUpdate) {
+                    controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                    bindingTools(controller.getAll());}
+                else {controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
+                    bindingTools(controller.getAll());
+                    txtToolsId.setEditable(true);
+                 }
     }//GEN-LAST:event_btnSaveToolsActionPerformed
+
+    private void jtToolsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtToolsMouseClicked
+        // TODO add your handling code here:
+        int row = jtTools.getSelectedRow();
+        txtToolsId.setText(jtTools.getValueAt(row, 1).toString());
+        txtToolsName.setText(jtTools.getValueAt(row, 2).toString());
+        edit();
+    }//GEN-LAST:event_jtToolsMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -335,4 +329,52 @@ public class ToolsView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtToolsId;
     private javax.swing.JTextField txtToolsName;
     // End of variables declaration//GEN-END:variables
+
+    
+       /**
+     * dok bindingCountries
+     * @param countrys berupa list<object>
+     */
+private void bindingTools(List<Object> tools) {
+    String [] header = {"No","Tools Id","Tools Name"};
+        String [][] data = new String[tools.size()][header.length];
+        int i = 0;
+        for (Object object : tools) {
+            Tools t  =  (Tools) object;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = t.getIdtool()+"";
+            data[i][2] = t.getToolname();
+            i++;
+        }
+        jtTools.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(jtTools.getModel());
+        reset();     
+    }
+    
+    /**
+     * dok reset
+     */
+    public  void reset(){
+        txtToolsId.setText(controller.getAutoId()+"");
+        txtToolsId.setEnabled(false);
+        txtToolsName.setText("");
+        btnDropTools.setEnabled(false);
+        btnSaveTools.setEnabled(true);
+        btnFindTools.setEnabled(false);
+        jtTools.setRowSorter(rowSorter);
+    }
+    
+    /**
+     * dok edit
+     */
+    private void edit(){
+        txtToolsId.setEnabled(false);
+        btnSaveTools.setEnabled(true);
+        btnDropTools.setEnabled(true);
+    }  
+    
+    
+    
+    
+    
 }
