@@ -30,6 +30,9 @@ public class OperatingSystemDetailView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetailOs = new javax.swing.JTable();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Detail Operating System");
 
         tblDetailOs.setModel(new javax.swing.table.DefaultTableModel(
