@@ -239,9 +239,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmAchievementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAchievementActionPerformed
         // TODO add your handling code here:
-//        LocationView locationView = new LocationView(sf);
-//        locationView.show();
-//        dpUtamaHr.add(locationView);
+        AchievementView achievementView = new AchievementView();
+        achievementView.show();
+        dpUtamaHr.add(achievementView);
     }//GEN-LAST:event_jmAchievementActionPerformed
 
     private void jmTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTrainingActionPerformed
