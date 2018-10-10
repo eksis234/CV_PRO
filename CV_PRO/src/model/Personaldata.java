@@ -95,6 +95,40 @@ public class Personaldata implements Serializable {
         this.idpersonal = idpersonal;
     }
 
+    public Personaldata(BigDecimal idpersonal, String name, Date dateofbirth, String nationality, String maritalstatus, String gender, String phonenumber, String email, String foto, List<Programmingdetails> programmingdetailsList, List<Networkingdetails> networkingdetailsList, List<Educationdetails> educationdetailsList, List<Achievementdetails> achievementdetailsList, List<Foreignlanguagedetails> foreignlanguagedetailsList, List<Trainingdetails> trainingdetailsList, List<Experiencedetails> experiencedetailsList, List<Osdetails> osdetailsList, List<Tooldetails> tooldetailsList, List<Organizationdetails> organizationdetailsList) {
+        this.idpersonal = idpersonal;
+        this.name = name;
+        this.dateofbirth = dateofbirth;
+        this.nationality = nationality;
+        this.maritalstatus = maritalstatus;
+        this.gender = gender;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.foto = foto;
+        this.programmingdetailsList = programmingdetailsList;
+        this.networkingdetailsList = networkingdetailsList;
+        this.educationdetailsList = educationdetailsList;
+        this.achievementdetailsList = achievementdetailsList;
+        this.foreignlanguagedetailsList = foreignlanguagedetailsList;
+        this.trainingdetailsList = trainingdetailsList;
+        this.experiencedetailsList = experiencedetailsList;
+        this.osdetailsList = osdetailsList;
+        this.tooldetailsList = tooldetailsList;
+        this.organizationdetailsList = organizationdetailsList;
+    }
+
+    public Personaldata(BigDecimal idpersonal, String name, Date dateofbirth, String nationality, String maritalstatus, String gender, String phonenumber, String email, String foto) {
+        this.idpersonal = idpersonal;
+        this.name = name;
+        this.dateofbirth = dateofbirth;
+        this.nationality = nationality;
+        this.maritalstatus = maritalstatus;
+        this.gender = gender;
+        this.phonenumber = phonenumber;
+        this.email = email;
+        this.foto = foto;
+    }
+
     public BigDecimal getIdpersonal() {
         return idpersonal;
     }

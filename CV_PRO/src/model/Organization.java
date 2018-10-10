@@ -66,6 +66,41 @@ public class Organization implements Serializable {
         this.idorganization = idorganization;
     }
 
+    public Organization(BigDecimal idorganization, String organizationname) {
+        this.idorganization = idorganization;
+        this.organizationname = organizationname;
+    }
+
+    public Organization(BigDecimal idorganization, String organizationname, String position) {
+        this.idorganization = idorganization;
+        this.organizationname = organizationname;
+        this.position = position;
+    }
+
+    public Organization(BigDecimal idorganization, String organizationname, String position, Date startdate) {
+        this.idorganization = idorganization;
+        this.organizationname = organizationname;
+        this.position = position;
+        this.startdate = startdate;
+    }
+
+    public Organization(BigDecimal idorganization, String organizationname, String position, Date startdate, Date enddate) {
+        this.idorganization = idorganization;
+        this.organizationname = organizationname;
+        this.position = position;
+        this.startdate = startdate;
+        this.enddate = enddate;
+    }
+
+    public Organization(BigDecimal idorganization, String organizationname, String position, Date startdate, Date enddate, List<Organizationdetails> organizationdetailsList) {
+        this.idorganization = idorganization;
+        this.organizationname = organizationname;
+        this.position = position;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.organizationdetailsList = organizationdetailsList;
+    }
+
     public BigDecimal getIdorganization() {
         return idorganization;
     }

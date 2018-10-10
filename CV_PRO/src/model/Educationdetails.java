@@ -51,6 +51,17 @@ public class Educationdetails implements Serializable {
         this.idedudetail = idedudetail;
     }
 
+    public Educationdetails(BigDecimal idedudetail, Education ideducation) {
+        this.idedudetail = idedudetail;
+        this.ideducation = ideducation;
+    }
+
+    public Educationdetails(BigDecimal idedudetail, Education ideducation, Personaldata idpersonal) {
+        this.idedudetail = idedudetail;
+        this.ideducation = ideducation;
+        this.idpersonal = idpersonal;
+    }
+    
     public BigDecimal getIdedudetail() {
         return idedudetail;
     }

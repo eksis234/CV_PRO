@@ -51,6 +51,17 @@ public class Experiencedetails implements Serializable {
         this.idexpdetail = idexpdetail;
     }
 
+    public Experiencedetails(BigDecimal idexpdetail, Personaldata idpersonal) {
+        this.idexpdetail = idexpdetail;
+        this.idpersonal = idpersonal;
+    }
+
+    public Experiencedetails(BigDecimal idexpdetail, Personaldata idpersonal, Workingexperience idworkingexperience) {
+        this.idexpdetail = idexpdetail;
+        this.idpersonal = idpersonal;
+        this.idworkingexperience = idworkingexperience;
+    }
+    
     public BigDecimal getIdexpdetail() {
         return idexpdetail;
     }

@@ -52,6 +52,17 @@ public class Foreignlanguage implements Serializable {
         this.idflang = idflang;
     }
 
+    public Foreignlanguage(BigDecimal idflang, String languagename) {
+        this.idflang = idflang;
+        this.languagename = languagename;
+    }
+
+    public Foreignlanguage(BigDecimal idflang, String languagename, List<Foreignlanguagedetails> foreignlanguagedetailsList) {
+        this.idflang = idflang;
+        this.languagename = languagename;
+        this.foreignlanguagedetailsList = foreignlanguagedetailsList;
+    }
+    
     public BigDecimal getIdflang() {
         return idflang;
     }

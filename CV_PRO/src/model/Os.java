@@ -52,6 +52,17 @@ public class Os implements Serializable {
         this.idos = idos;
     }
 
+    public Os(BigDecimal idos, String osname) {
+        this.idos = idos;
+        this.osname = osname;
+    }
+
+    public Os(BigDecimal idos, String osname, List<Osdetails> osdetailsList) {
+        this.idos = idos;
+        this.osname = osname;
+        this.osdetailsList = osdetailsList;
+    }
+
     public BigDecimal getIdos() {
         return idos;
     }

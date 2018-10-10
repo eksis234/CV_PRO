@@ -55,6 +55,17 @@ public class Tooldetails implements Serializable {
         return idtooldetail;
     }
 
+    public Tooldetails(BigDecimal idtooldetail, Personaldata idpersonal) {
+        this.idtooldetail = idtooldetail;
+        this.idpersonal = idpersonal;
+    }
+
+    public Tooldetails(BigDecimal idtooldetail, Personaldata idpersonal, Tools idtool) {
+        this.idtooldetail = idtooldetail;
+        this.idpersonal = idpersonal;
+        this.idtool = idtool;
+    }
+
     public void setIdtooldetail(BigDecimal idtooldetail) {
         this.idtooldetail = idtooldetail;
     }

@@ -68,6 +68,62 @@ public class Education implements Serializable {
         this.ideducation = ideducation;
     }
 
+    public Education(BigDecimal ideducation, String instansi) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+    }
+
+    public Education(BigDecimal ideducation, String instansi, String leveleducation) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+        this.leveleducation = leveleducation;
+    }
+
+    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+        this.leveleducation = leveleducation;
+        this.gpa = gpa;
+    }
+
+    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+        this.leveleducation = leveleducation;
+        this.gpa = gpa;
+        this.yearin = yearin;
+    }
+
+    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin, BigInteger graduation) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+        this.leveleducation = leveleducation;
+        this.gpa = gpa;
+        this.yearin = yearin;
+        this.graduation = graduation;
+    }
+
+    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin, BigInteger graduation, String major) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+        this.leveleducation = leveleducation;
+        this.gpa = gpa;
+        this.yearin = yearin;
+        this.graduation = graduation;
+        this.major = major;
+    }
+
+    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin, BigInteger graduation, String major, List<Educationdetails> educationdetailsList) {
+        this.ideducation = ideducation;
+        this.instansi = instansi;
+        this.leveleducation = leveleducation;
+        this.gpa = gpa;
+        this.yearin = yearin;
+        this.graduation = graduation;
+        this.major = major;
+        this.educationdetailsList = educationdetailsList;
+    }
+    
     public BigDecimal getIdeducation() {
         return ideducation;
     }
