@@ -1,7 +1,8 @@
 
+import controller.EducationController;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
-import model.Achievement;
+import model.*;
 import tools.HibernateUtil;
 
 /*
@@ -20,12 +21,6 @@ public class MainTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("heloo");
-        InterfaceDAO iDAO = new GeneralDAO(HibernateUtil.getSessionFactory(), Achievement.class);
-        for (Object object : iDAO.getAll()) {
-            Achievement achievement = (Achievement) object;
-            System.out.println(achievement.getAchievementname()+" - "+achievement.getIdachievement());
-        }
         System.out.println("heloo");
     }
     

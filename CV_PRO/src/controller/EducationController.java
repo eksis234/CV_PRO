@@ -26,7 +26,7 @@ public class EducationController {
         idao = new GeneralDAO(factory, Education.class);
     }
     
-    public Object getAll(){
+    public List<Object> getAll(){
         return idao.getAll();
     }
     
@@ -34,7 +34,7 @@ public class EducationController {
         return idao.getById(id);
     }
     
-     public Object search(String category, String key) {
+     public List<Object> search(String category, String key) {
         return idao.search(category, key);
     }
 
