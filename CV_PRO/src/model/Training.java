@@ -66,6 +66,41 @@ public class Training implements Serializable {
         this.idtraining = idtraining;
     }
 
+    public Training(BigDecimal idtraining, String trainingname) {
+        this.idtraining = idtraining;
+        this.trainingname = trainingname;
+    }
+
+    public Training(BigDecimal idtraining, String trainingname, String trainingorganization) {
+        this.idtraining = idtraining;
+        this.trainingname = trainingname;
+        this.trainingorganization = trainingorganization;
+    }
+
+    public Training(BigDecimal idtraining, String trainingname, String trainingorganization, Date startdate) {
+        this.idtraining = idtraining;
+        this.trainingname = trainingname;
+        this.trainingorganization = trainingorganization;
+        this.startdate = startdate;
+    }
+
+    public Training(BigDecimal idtraining, String trainingname, String trainingorganization, Date startdate, Date enddate) {
+        this.idtraining = idtraining;
+        this.trainingname = trainingname;
+        this.trainingorganization = trainingorganization;
+        this.startdate = startdate;
+        this.enddate = enddate;
+    }
+
+    public Training(BigDecimal idtraining, String trainingname, String trainingorganization, Date startdate, Date enddate, List<Trainingdetails> trainingdetailsList) {
+        this.idtraining = idtraining;
+        this.trainingname = trainingname;
+        this.trainingorganization = trainingorganization;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.trainingdetailsList = trainingdetailsList;
+    }
+    
     public BigDecimal getIdtraining() {
         return idtraining;
     }

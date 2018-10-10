@@ -52,6 +52,17 @@ public class Networking implements Serializable {
         this.idnetworking = idnetworking;
     }
 
+    public Networking(BigDecimal idnetworking, String networkingskill) {
+        this.idnetworking = idnetworking;
+        this.networkingskill = networkingskill;
+    }
+
+    public Networking(BigDecimal idnetworking, String networkingskill, List<Networkingdetails> networkingdetailsList) {
+        this.idnetworking = idnetworking;
+        this.networkingskill = networkingskill;
+        this.networkingdetailsList = networkingdetailsList;
+    }
+    
     public BigDecimal getIdnetworking() {
         return idnetworking;
     }

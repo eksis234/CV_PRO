@@ -51,6 +51,17 @@ public class Organizationdetails implements Serializable {
         this.idorgdetail = idorgdetail;
     }
 
+    public Organizationdetails(BigDecimal idorgdetail, Organization idorganization) {
+        this.idorgdetail = idorgdetail;
+        this.idorganization = idorganization;
+    }
+
+    public Organizationdetails(BigDecimal idorgdetail, Organization idorganization, Personaldata idpersonal) {
+        this.idorgdetail = idorgdetail;
+        this.idorganization = idorganization;
+        this.idpersonal = idpersonal;
+    }
+
     public BigDecimal getIdorgdetail() {
         return idorgdetail;
     }

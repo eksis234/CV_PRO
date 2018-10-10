@@ -51,6 +51,17 @@ public class Programmingdetails implements Serializable {
         this.idprogdetail = idprogdetail;
     }
 
+    public Programmingdetails(BigDecimal idprogdetail, Personaldata idpersonal) {
+        this.idprogdetail = idprogdetail;
+        this.idpersonal = idpersonal;
+    }
+
+    public Programmingdetails(BigDecimal idprogdetail, Personaldata idpersonal, Programming idprogramming) {
+        this.idprogdetail = idprogdetail;
+        this.idpersonal = idpersonal;
+        this.idprogramming = idprogramming;
+    }
+
     public BigDecimal getIdprogdetail() {
         return idprogdetail;
     }

@@ -51,6 +51,17 @@ public class Trainingdetails implements Serializable {
         this.idtrainingdetail = idtrainingdetail;
     }
 
+    public Trainingdetails(BigDecimal idtrainingdetail, Personaldata idpersonal) {
+        this.idtrainingdetail = idtrainingdetail;
+        this.idpersonal = idpersonal;
+    }
+
+    public Trainingdetails(BigDecimal idtrainingdetail, Personaldata idpersonal, Training idtraining) {
+        this.idtrainingdetail = idtrainingdetail;
+        this.idpersonal = idpersonal;
+        this.idtraining = idtraining;
+    }
+
     public BigDecimal getIdtrainingdetail() {
         return idtrainingdetail;
     }

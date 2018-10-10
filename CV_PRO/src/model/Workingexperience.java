@@ -73,6 +73,27 @@ public class Workingexperience implements Serializable {
         this.idworkingexperience = idworkingexperience;
     }
 
+    public Workingexperience(BigDecimal idworkingexperience, String jobtitle, String employer, String city, Date startdate, Date enddate, String description) {
+        this.idworkingexperience = idworkingexperience;
+        this.jobtitle = jobtitle;
+        this.employer = employer;
+        this.city = city;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.description = description;
+    }
+
+    public Workingexperience(BigDecimal idworkingexperience, String jobtitle, String employer, String city, Date startdate, Date enddate, String description, List<Experiencedetails> experiencedetailsList) {
+        this.idworkingexperience = idworkingexperience;
+        this.jobtitle = jobtitle;
+        this.employer = employer;
+        this.city = city;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.description = description;
+        this.experiencedetailsList = experiencedetailsList;
+    }
+
     public BigDecimal getIdworkingexperience() {
         return idworkingexperience;
     }
