@@ -225,9 +225,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOrganizationActionPerformed
         // TODO add your handling code here:
-//        RegionView regionView = new RegionView(sf);
-//        regionView.show();
-//        dpUtamaHr.add(regionView);
+        OrganizationView organizationView = new OrganizationView();
+        organizationView.show();
+        dpUtamaHr.add(organizationView);
     }//GEN-LAST:event_jmOrganizationActionPerformed
 
     private void jmNetworkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNetworkingActionPerformed
@@ -246,9 +246,9 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTrainingActionPerformed
         // TODO add your handling code here:
-//        JobView jobView = new JobView(sf);
-//        jobView.show();
-//        dpUtamaHr.add(jobView);
+        TrainingView trainingView = new TrainingView();
+        trainingView.show();
+        dpUtamaHr.add(trainingView);
     }//GEN-LAST:event_jmTrainingActionPerformed
 
     private void jmWorkingExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmWorkingExperienceActionPerformed
