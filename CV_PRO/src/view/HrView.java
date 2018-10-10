@@ -42,7 +42,6 @@ public class HrView extends javax.swing.JFrame {
     public HrView() {
         initComponents();
         this.sf = HibernateUtil.getSessionFactory();
-        
     }
 
     /**
@@ -54,22 +53,25 @@ public class HrView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem2 = new javax.swing.JMenuItem();
         dpUtamaHr = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmRegion = new javax.swing.JMenu();
-        jmRegions = new javax.swing.JMenuItem();
-        jmCountries = new javax.swing.JMenuItem();
-        jmLocations = new javax.swing.JMenuItem();
-        jmJobs = new javax.swing.JMenuItem();
-        jmDepartments = new javax.swing.JMenuItem();
-        jmEmployees = new javax.swing.JMenuItem();
+        jmOrganization = new javax.swing.JMenuItem();
+        jmNetworking = new javax.swing.JMenuItem();
+        jmAchievement = new javax.swing.JMenuItem();
+        jmTraining = new javax.swing.JMenuItem();
+        jmWorkingExperience = new javax.swing.JMenuItem();
+        jmBahasaAsing = new javax.swing.JMenuItem();
+        jmEducation = new javax.swing.JMenuItem();
+        jmOperatingSystem = new javax.swing.JMenuItem();
+        jmProgramming = new javax.swing.JMenuItem();
+        jmTools = new javax.swing.JMenuItem();
+        jmPersonalData = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        mniRegionReport = new javax.swing.JMenuItem();
-        mniCountryReport = new javax.swing.JMenuItem();
-        mniLocationReport = new javax.swing.JMenuItem();
-        mniJobReport = new javax.swing.JMenuItem();
-        mniDepartmentReport = new javax.swing.JMenuItem();
-        mniEmployeeReport = new javax.swing.JMenuItem();
+        mniReportTabel = new javax.swing.JMenuItem();
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HR VIEW .ORM");
@@ -87,111 +89,91 @@ public class HrView extends javax.swing.JFrame {
 
         jmRegion.setText("File");
 
-        jmRegions.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jmRegions.setText("Regions");
-        jmRegions.addActionListener(new java.awt.event.ActionListener() {
+        jmOrganization.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jmOrganization.setText("Organization");
+        jmOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmRegionsActionPerformed(evt);
+                jmOrganizationActionPerformed(evt);
             }
         });
-        jmRegion.add(jmRegions);
+        jmRegion.add(jmOrganization);
 
-        jmCountries.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jmCountries.setText("Countries");
-        jmCountries.addActionListener(new java.awt.event.ActionListener() {
+        jmNetworking.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmNetworking.setText("Networking");
+        jmNetworking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmCountriesActionPerformed(evt);
+                jmNetworkingActionPerformed(evt);
             }
         });
-        jmRegion.add(jmCountries);
+        jmRegion.add(jmNetworking);
 
-        jmLocations.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        jmLocations.setText("Locations");
-        jmLocations.addActionListener(new java.awt.event.ActionListener() {
+        jmAchievement.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jmAchievement.setText("Achievement");
+        jmAchievement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmLocationsActionPerformed(evt);
+                jmAchievementActionPerformed(evt);
             }
         });
-        jmRegion.add(jmLocations);
+        jmRegion.add(jmAchievement);
 
-        jmJobs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
-        jmJobs.setText("Jobs");
-        jmJobs.addActionListener(new java.awt.event.ActionListener() {
+        jmTraining.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jmTraining.setText("Training");
+        jmTraining.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmJobsActionPerformed(evt);
+                jmTrainingActionPerformed(evt);
             }
         });
-        jmRegion.add(jmJobs);
+        jmRegion.add(jmTraining);
 
-        jmDepartments.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jmDepartments.setText("Departments");
-        jmDepartments.addActionListener(new java.awt.event.ActionListener() {
+        jmWorkingExperience.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        jmWorkingExperience.setText("Working Experience");
+        jmWorkingExperience.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmDepartmentsActionPerformed(evt);
+                jmWorkingExperienceActionPerformed(evt);
             }
         });
-        jmRegion.add(jmDepartments);
+        jmRegion.add(jmWorkingExperience);
 
-        jmEmployees.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        jmEmployees.setText("Employees");
-        jmEmployees.addActionListener(new java.awt.event.ActionListener() {
+        jmBahasaAsing.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        jmBahasaAsing.setText("Bahasa Asing");
+        jmBahasaAsing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmEmployeesActionPerformed(evt);
+                jmBahasaAsingActionPerformed(evt);
             }
         });
-        jmRegion.add(jmEmployees);
+        jmRegion.add(jmBahasaAsing);
+
+        jmEducation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jmEducation.setText("Education");
+        jmRegion.add(jmEducation);
+
+        jmOperatingSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jmOperatingSystem.setText("Operating System");
+        jmRegion.add(jmOperatingSystem);
+
+        jmProgramming.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jmProgramming.setText("Programming");
+        jmRegion.add(jmProgramming);
+
+        jmTools.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        jmTools.setText("Tools");
+        jmRegion.add(jmTools);
+
+        jmPersonalData.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jmPersonalData.setText("Personal Data");
+        jmRegion.add(jmPersonalData);
 
         jMenuBar1.add(jmRegion);
 
         jMenu2.setText("Report");
 
-        mniRegionReport.setText("Region Report");
-        mniRegionReport.addActionListener(new java.awt.event.ActionListener() {
+        mniReportTabel.setText("Report Tabel");
+        mniReportTabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniRegionReportActionPerformed(evt);
+                mniReportTabelActionPerformed(evt);
             }
         });
-        jMenu2.add(mniRegionReport);
-
-        mniCountryReport.setText("Country Report");
-        mniCountryReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniCountryReportActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mniCountryReport);
-
-        mniLocationReport.setText("Location Report");
-        mniLocationReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniLocationReportActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mniLocationReport);
-
-        mniJobReport.setText("Job Report");
-        mniJobReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniJobReportActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mniJobReport);
-
-        mniDepartmentReport.setText("Department Report");
-        mniDepartmentReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniDepartmentReportActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mniDepartmentReport);
-
-        mniEmployeeReport.setText("Employee Report");
-        mniEmployeeReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniEmployeeReportActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mniEmployeeReport);
+        jMenu2.add(mniReportTabel);
 
         jMenuBar1.add(jMenu2);
 
@@ -211,131 +193,53 @@ public class HrView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmRegionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegionsActionPerformed
+    private void jmOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOrganizationActionPerformed
         // TODO add your handling code here:
 //        RegionView regionView = new RegionView(sf);
 //        regionView.show();
 //        dpUtamaHr.add(regionView);
-    }//GEN-LAST:event_jmRegionsActionPerformed
+    }//GEN-LAST:event_jmOrganizationActionPerformed
 
-    private void jmCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountriesActionPerformed
+    private void jmNetworkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNetworkingActionPerformed
         // TODO add your handling code here:
         CountryView countryView = new CountryView(sf);
         countryView.show();
         dpUtamaHr.add(countryView);
-    }//GEN-LAST:event_jmCountriesActionPerformed
+    }//GEN-LAST:event_jmNetworkingActionPerformed
 
-    private void jmLocationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocationsActionPerformed
+    private void jmAchievementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAchievementActionPerformed
         // TODO add your handling code here:
 //        LocationView locationView = new LocationView(sf);
 //        locationView.show();
 //        dpUtamaHr.add(locationView);
-    }//GEN-LAST:event_jmLocationsActionPerformed
+    }//GEN-LAST:event_jmAchievementActionPerformed
 
-    private void jmJobsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmJobsActionPerformed
+    private void jmTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTrainingActionPerformed
         // TODO add your handling code here:
 //        JobView jobView = new JobView(sf);
 //        jobView.show();
 //        dpUtamaHr.add(jobView);
-    }//GEN-LAST:event_jmJobsActionPerformed
+    }//GEN-LAST:event_jmTrainingActionPerformed
 
-    private void jmDepartmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmDepartmentsActionPerformed
+    private void jmWorkingExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmWorkingExperienceActionPerformed
         // TODO add your handling code here:
 //        DepartmentView departmentView = new DepartmentView(sf);
 //        departmentView.show();
 //        dpUtamaHr.add(departmentView);
-    }//GEN-LAST:event_jmDepartmentsActionPerformed
+    }//GEN-LAST:event_jmWorkingExperienceActionPerformed
 
-    private void jmEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmployeesActionPerformed
+    private void jmBahasaAsingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBahasaAsingActionPerformed
         // TODO add your handling code here:
         EmployeeView employeeView = new EmployeeView(sf);
         employeeView.show();
         dpUtamaHr.add(employeeView);
-    }//GEN-LAST:event_jmEmployeesActionPerformed
+    }//GEN-LAST:event_jmBahasaAsingActionPerformed
 
-    private void mniRegionReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRegionReportActionPerformed
+    private void mniReportTabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniReportTabelActionPerformed
         // TODO add your handling code here:
         String path = "E:\\E\\MII\\bootcamp\\GUI_HR_ORM\\build\\classes\\view\\report\\RegionReport.jrxml";
 
-    }//GEN-LAST:event_mniRegionReportActionPerformed
-
-    private void mniCountryReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniCountryReportActionPerformed
-        // TODO add your handling code here:
-        //String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
-//        String path = "E:\\E\\MII\\bootcamp\\GUI_HR_ORM\\build\\classes\\view\\report\\CountryReport.jrxml";
-//        Connection connection = null;
-//        try {
-//            connection = sf.getSessionFactoryOptions().getServiceRegistry().
-//                    getService(ConnectionProvider.class).getConnection();
-//            JasperDesign jasperDesign = JRXmlLoader.load(path);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
-//            JRViewer viewer = new JRViewer(jasperPrint);
-//            dpUtamaHr.setLayout(new BorderLayout());
-//            dpUtamaHr.add(viewer);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }//GEN-LAST:event_mniCountryReportActionPerformed
-
-    private void mniLocationReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniLocationReportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mniLocationReportActionPerformed
-
-    private void mniJobReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniJobReportActionPerformed
-        // TODO add your handling code here:
-//        String path = "E:\\E\\MII\\bootcamp\\GUI_HR_ORM\\build\\classes\\view\\report\\JobReport.jrxml";
-//        Connection connection = null;
-//        try {
-//            connection = sf.getSessionFactoryOptions().getServiceRegistry().
-//                    getService(ConnectionProvider.class).getConnection();
-//            JasperDesign jasperDesign = JRXmlLoader.load(path);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
-//            JRViewer viewer = new JRViewer(jasperPrint);
-//            dpUtamaHr.setLayout(new BorderLayout());
-//            dpUtamaHr.add(viewer);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }//GEN-LAST:event_mniJobReportActionPerformed
-
-    private void mniDepartmentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDepartmentReportActionPerformed
-        // TODO add your handling code here:
-//        String path = "E:\\E\\MII\\bootcamp\\GUI_HR_ORM\\build\\classes\\view\\report\\DepartmentReport.jrxml"; 
-//        Connection connection = null;
-//        try {
-//            connection = sf.getSessionFactoryOptions().getServiceRegistry().
-//                    getService(ConnectionProvider.class).getConnection();
-//            JasperDesign jasperDesign = JRXmlLoader.load(path);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
-//            JRViewer viewer = new JRViewer(jasperPrint);
-//            dpUtamaHr.setLayout(new BorderLayout());
-//            dpUtamaHr.add(viewer);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }//GEN-LAST:event_mniDepartmentReportActionPerformed
-
-    private void mniEmployeeReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmployeeReportActionPerformed
-        // TODO add your handling code here:
-//        //String path = "F:\\GitHub\\Re-clone\\GUI_HR_ORM\\src\\view\\report\\EmployeeReport.jrxml";
-//        String path = "E:\\E\\MII\\bootcamp\\GUI_HR_ORM\\build\\classes\\view\\report\\EmployeeReport.jrxml";
-//        Connection connection = null;
-//        try {
-//            connection = sf.getSessionFactoryOptions().getServiceRegistry().
-//                    getService(ConnectionProvider.class).getConnection();
-//            JasperDesign jasperDesign = JRXmlLoader.load(path);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
-//            JRViewer viewer = new JRViewer(jasperPrint);
-//            dpUtamaHr.setLayout(new BorderLayout());
-//            dpUtamaHr.add(viewer);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-    }//GEN-LAST:event_mniEmployeeReportActionPerformed
+    }//GEN-LAST:event_mniReportTabelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,18 +295,19 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane dpUtamaHr;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jmCountries;
-    private javax.swing.JMenuItem jmDepartments;
-    private javax.swing.JMenuItem jmEmployees;
-    private javax.swing.JMenuItem jmJobs;
-    private javax.swing.JMenuItem jmLocations;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jmAchievement;
+    private javax.swing.JMenuItem jmBahasaAsing;
+    private javax.swing.JMenuItem jmEducation;
+    private javax.swing.JMenuItem jmNetworking;
+    private javax.swing.JMenuItem jmOperatingSystem;
+    private javax.swing.JMenuItem jmOrganization;
+    private javax.swing.JMenuItem jmPersonalData;
+    private javax.swing.JMenuItem jmProgramming;
     private javax.swing.JMenu jmRegion;
-    private javax.swing.JMenuItem jmRegions;
-    private javax.swing.JMenuItem mniCountryReport;
-    private javax.swing.JMenuItem mniDepartmentReport;
-    private javax.swing.JMenuItem mniEmployeeReport;
-    private javax.swing.JMenuItem mniJobReport;
-    private javax.swing.JMenuItem mniLocationReport;
-    private javax.swing.JMenuItem mniRegionReport;
+    private javax.swing.JMenuItem jmTools;
+    private javax.swing.JMenuItem jmTraining;
+    private javax.swing.JMenuItem jmWorkingExperience;
+    private javax.swing.JMenuItem mniReportTabel;
     // End of variables declaration//GEN-END:variables
 }
