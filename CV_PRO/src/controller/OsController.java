@@ -9,54 +9,55 @@ import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import java.math.BigDecimal;
 import java.util.List;
-import model.Tools;
+import model.*;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Lenovo
  */
-public class ToolsController {
+public class OsController {
     private final InterfaceDAO dAO;
 
-    public ToolsController(SessionFactory factory) {
-    this.dAO = new GeneralDAO(factory, Tools.class);
+    public OsController(SessionFactory factory) {
+        this.dAO = new GeneralDAO(factory, Os.class);
     }
+    
     /**
      * Method untuk melakukan penyimpanan data baru atau update data
-     * @param idtool  dengan tipe data String
-     * @param toolname  dengan tipe data String
+     * @param idos   dengan tipe data String
+     * @param osname  dengan tipe data String
      * @return iDAO mengembalikan nilai boolean
      */
-    public boolean saveOrUpdate(String idtool, String toolname){
-        Tools tools = new Tools(new BigDecimal(idtool), toolname);
-        return dAO.saveOrUpdate(tools);
+    public boolean saveOrUpdate(String idos, String osname){
+        Os os = new Os(new BigDecimal(idos), osname);
+        return dAO.saveOrUpdate(os);
     }
     /**
      * Method untuk melakukan penghapusan data Region
      * @param idtool dengan tipe data String
      * @return iDAO mengembalikan nilai boolean
      */
-    public boolean delete(String idtool){
-        Tools tools = new Tools(new BigDecimal(idtool));
-        return dAO.delete(tools);
+    public boolean delete(String idos){
+        Os os = new Os(new BigDecimal(idos));
+        return dAO.delete(os);
     }
     /**
      * Method untuk menampilkan data Region berdasarkan IDnya
-     * @param idtool  dengan tipe data String
+     * @param idos  dengan tipe data String
      * @return iDAO mengembalikan nilai objek
      */
-    public Tools getById (String idtool){
-        return (Tools) dAO.getById(idtool);
+    public Os getById (String idos){
+        return (Os) dAO.getById(idos);
     }
     
     /**
      * dok get by name
-     * @param toolname  berupa string
+     * @param osname  berupa string
      * @return get by name
      */
-    public Tools getByName (String toolname){
-        return (Tools) dAO.getByName(toolname);
+    public Os getByName (String osname){
+        return (Os) dAO.getByName(osname);
     }
     /**
      * Method untuk mengambil semua data yang ada pada tabel Region
@@ -79,9 +80,8 @@ public class ToolsController {
      * @return iDAO mengembalikan nilai object
      */
     public Object getAutoId(){
-        Tools tools =  (Tools) dAO.getLastId();
+       Os os =  (Os) dAO.getLastId();
         BigDecimal one = new BigDecimal("1");
-        return tools.getIdtool().add(one);
+        return os.getIdos().add(one);
     }
-    
 }
