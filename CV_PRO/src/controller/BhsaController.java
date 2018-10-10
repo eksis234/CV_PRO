@@ -9,54 +9,55 @@ import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import java.math.BigDecimal;
 import java.util.List;
-import model.Tools;
+import model.*;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Lenovo
  */
-public class ToolsController {
+public class BhsaController {
     private final InterfaceDAO dAO;
 
-    public ToolsController(SessionFactory factory) {
-    this.dAO = new GeneralDAO(factory, Tools.class);
+    public BhsaController(SessionFactory factory) {
+        this.dAO = new GeneralDAO(factory, Foreignlanguage.class);
     }
+    
     /**
      * Method untuk melakukan penyimpanan data baru atau update data
-     * @param idtool  dengan tipe data String
-     * @param toolname  dengan tipe data String
+     * @param idflang    dengan tipe data String
+     * @param languagename   dengan tipe data String
      * @return iDAO mengembalikan nilai boolean
      */
-    public boolean saveOrUpdate(String idtool, String toolname){
-        Tools tools = new Tools(new BigDecimal(idtool), toolname);
-        return dAO.saveOrUpdate(tools);
+    public boolean saveOrUpdate(String idflang, String languagename){
+        Foreignlanguage fl = new Foreignlanguage(new BigDecimal(idflang), languagename);
+        return dAO.saveOrUpdate(fl);
     }
     /**
      * Method untuk melakukan penghapusan data Region
-     * @param idtool dengan tipe data String
+     * @param idflang  dengan tipe data String
      * @return iDAO mengembalikan nilai boolean
      */
-    public boolean delete(String idtool){
-        Tools tools = new Tools(new BigDecimal(idtool));
-        return dAO.delete(tools);
+    public boolean delete(String idflang){
+        Foreignlanguage fl = new Foreignlanguage(new BigDecimal(idflang));
+        return dAO.delete(fl);
     }
     /**
      * Method untuk menampilkan data Region berdasarkan IDnya
-     * @param idtool  dengan tipe data String
+     * @param idflang   dengan tipe data String
      * @return iDAO mengembalikan nilai objek
      */
-    public Tools getById (String idtool){
-        return (Tools) dAO.getById(idtool);
+    public Foreignlanguage getById (String idflang){
+        return (Foreignlanguage) dAO.getById(idflang);
     }
     
     /**
      * dok get by name
-     * @param toolname  berupa string
+     * @param languagename   berupa string
      * @return get by name
      */
-    public Tools getByName (String toolname){
-        return (Tools) dAO.getByName(toolname);
+    public Foreignlanguage getByName (String languagename){
+        return (Foreignlanguage) dAO.getByName(languagename);
     }
     /**
      * Method untuk mengambil semua data yang ada pada tabel Region
@@ -79,9 +80,8 @@ public class ToolsController {
      * @return iDAO mengembalikan nilai object
      */
     public Object getAutoId(){
-        Tools tools =  (Tools) dAO.getLastId();
+       Foreignlanguage fl =  (Foreignlanguage) dAO.getLastId();
         BigDecimal one = new BigDecimal("1");
-        return tools.getIdtool().add(one);
+        return fl.getIdflang().add(one);
     }
-    
 }
