@@ -127,7 +127,7 @@ public class HrView extends javax.swing.JFrame {
         jmRegion.add(jmTraining);
 
         jmWorkingExperience.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
-        jmWorkingExperience.setText("Working Experience");
+        jmWorkingExperience.setText("Pengalaman Kerja");
         jmWorkingExperience.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmWorkingExperienceActionPerformed(evt);
@@ -146,18 +146,38 @@ public class HrView extends javax.swing.JFrame {
 
         jmEducation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jmEducation.setText("Education");
+        jmEducation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmEducationActionPerformed(evt);
+            }
+        });
         jmRegion.add(jmEducation);
 
         jmOperatingSystem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jmOperatingSystem.setText("Operating System");
+        jmOperatingSystem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmOperatingSystemActionPerformed(evt);
+            }
+        });
         jmRegion.add(jmOperatingSystem);
 
         jmProgramming.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jmProgramming.setText("Programming");
+        jmProgramming.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProgrammingActionPerformed(evt);
+            }
+        });
         jmRegion.add(jmProgramming);
 
         jmTools.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jmTools.setText("Tools");
+        jmTools.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmToolsActionPerformed(evt);
+            }
+        });
         jmRegion.add(jmTools);
 
         jmPersonalData.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
@@ -232,17 +252,17 @@ public class HrView extends javax.swing.JFrame {
     }//GEN-LAST:event_jmTrainingActionPerformed
 
     private void jmWorkingExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmWorkingExperienceActionPerformed
-        // TODO add your handling code here:
-//        DepartmentView departmentView = new DepartmentView(sf);
-//        departmentView.show();
-//        dpUtamaHr.add(departmentView);
+         // TODO add your handling code here:
+        PengalamanKerjaView pengalamanKerjaView = new PengalamanKerjaView();
+        pengalamanKerjaView.show();
+        dpUtamaHr.add(pengalamanKerjaView);
     }//GEN-LAST:event_jmWorkingExperienceActionPerformed
 
     private void jmBahasaAsingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBahasaAsingActionPerformed
         // TODO add your handling code here:
-        EmployeeView employeeView = new EmployeeView(sf);
-        employeeView.show();
-        dpUtamaHr.add(employeeView);
+        BahasaAsingView bahasaAsingView = new BahasaAsingView();
+        bahasaAsingView.show();
+        dpUtamaHr.add(bahasaAsingView);
     }//GEN-LAST:event_jmBahasaAsingActionPerformed
 
     private void mniReportTabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniReportTabelActionPerformed
@@ -257,6 +277,34 @@ public class HrView extends javax.swing.JFrame {
         countryView.show();
         dpUtamaHr.add(countryView);
     }//GEN-LAST:event_jmCountryIdActionPerformed
+
+    private void jmEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEducationActionPerformed
+         // TODO add your handling code here:
+         EducationView educationView = new EducationView();
+         educationView.show();
+         dpUtamaHr.add(educationView);
+    }//GEN-LAST:event_jmEducationActionPerformed
+
+    private void jmOperatingSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOperatingSystemActionPerformed
+         // TODO add your handling code here:
+         OperatingSystemView operatingSystemView = new OperatingSystemView();
+         operatingSystemView.show();
+         dpUtamaHr.add(operatingSystemView);
+    }//GEN-LAST:event_jmOperatingSystemActionPerformed
+
+    private void jmProgrammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProgrammingActionPerformed
+         // TODO add your handling code here:
+         ProgrammingView programmingView = new ProgrammingView();
+         programmingView.show();
+         dpUtamaHr.add(programmingView);
+    }//GEN-LAST:event_jmProgrammingActionPerformed
+
+    private void jmToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmToolsActionPerformed
+         // TODO add your handling code here:
+         ToolsView toolsView = new ToolsView();
+         toolsView.show();
+         dpUtamaHr.add(toolsView);
+    }//GEN-LAST:event_jmToolsActionPerformed
 
     /**
      * @param args the command line arguments

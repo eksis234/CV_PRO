@@ -42,6 +42,9 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         btnSave = new javax.swing.JButton();
         cmbKategori = new javax.swing.JComboBox<>();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Operating System");
 
         btnSearch.setText("Find");

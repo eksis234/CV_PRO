@@ -30,6 +30,9 @@ public class BahasaAsingDetailView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetailBahasaAsing = new javax.swing.JTable();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Detail Bahasa Asing");
 
         tblDetailBahasaAsing.setModel(new javax.swing.table.DefaultTableModel(
