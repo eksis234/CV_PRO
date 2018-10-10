@@ -40,34 +40,34 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
-        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
-        <property name="hibernate.connection.username">system</property>
-        <property name="hibernate.connection.password">admin</property>
-        <property name="hibernate.connection.autocommit">true</property>
-        <property name="hibernate.default_schema">cv_online</property>
-        <mapping class="model.Achievement"/>
-        <mapping class="model.Achievementdetails"/>
-        <mapping class="model.Education"/>
-        <mapping class="model.Educationdetails"/>
-        <mapping class="model.Experiencedetails"/>
-        <mapping class="model.Foreignlanguage"/>
-        <mapping class="model.Foreignlanguagedetails"/>
-        <mapping class="model.Networking"/>
-        <mapping class="model.Networkingdetails"/>
-        <mapping class="model.Organization"/>
-        <mapping class="model.Organizationdetails"/>
-        <mapping class="model.Os"/>
-        <mapping class="model.Osdetails"/>
-        <mapping class="model.Personaldata"/>
-        <mapping class="model.Programming"/>
-        <mapping class="model.Programmingdetails"/>
-        <mapping class="model.Tooldetails"/>
-        <mapping class="model.Tools"/>
-        <mapping class="model.Training"/>
-        <mapping class="model.Trainingdetails"/>
-        <mapping class="model.Workingexperience"/>
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="hibernate.connection.username">system</property>
+    <property name="hibernate.connection.password">admin</property>
+    <property name="hibernate.connection.autocommit">true</property>
+    <property name="hibernate.default_schema">cvonline</property>
+    <mapping class="model.Achievement"/>
+    <mapping class="model.Achievementdetails"/>
+    <mapping class="model.Education"/>
+    <mapping class="model.Educationdetails"/>
+    <mapping class="model.Experiencedetails"/>
+    <mapping class="model.Foreignlanguage"/>
+    <mapping class="model.Foreignlanguagedetails"/>
+    <mapping class="model.Networking"/>
+    <mapping class="model.Networkingdetails"/>
+    <mapping class="model.Organization"/>
+    <mapping class="model.Organizationdetails"/>
+    <mapping class="model.Os"/>
+    <mapping class="model.Osdetails"/>
+    <mapping class="model.Personaldata"/>
+    <mapping class="model.Programming"/>
+    <mapping class="model.Programmingdetails"/>
+    <mapping class="model.Tooldetails"/>
+    <mapping class="model.Tools"/>
+    <mapping class="model.Training"/>
+    <mapping class="model.Trainingdetails"/>
+    <mapping class="model.Workingexperience"/>
+  </session-factory>
 </hibernate-configuration>
