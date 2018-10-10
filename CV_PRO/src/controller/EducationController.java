@@ -10,6 +10,7 @@ import daos.InterfaceDAO;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 import model.*;
 import org.hibernate.SessionFactory;
 
@@ -37,8 +38,9 @@ public class EducationController {
         return idao.search(category, key);
     }
 
-    public Object saveOrUpdate(String idEducation, String instansi, String LevelEducation, String gpa, String yearIn, String graduation, String major) {
-        Education education = new Education(BigDecimal.ZERO, instansi, LevelEducation, new Double(gpa), new BigInteger(gpa), BigInteger.TEN, major);
+    public boolean saveOrUpdate(String idEducation, String instansi, String LevelEducation, String gpa, String yearIn, String graduation, String major) {
+        List<Educationdetails> educationDetails = (List<Educationdetails>) new Educationdetails(new BigDecimal(idEducation));
+        Education education = new Education(new BigDecimal(idEducation), instansi, LevelEducation, new Double(gpa), new BigInteger(gpa), new BigInteger(yearIn), major, educationDetails);
         return idao.saveOrUpdate(education);
     }
 }
