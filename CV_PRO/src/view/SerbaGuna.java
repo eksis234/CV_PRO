@@ -57,7 +57,7 @@ public class SerbaGuna {
                 JOptionPane.showMessageDialog(null, "Penulisan Pass "+ pass + " salah" );
             }
         }else {
-            JOptionPane.showMessageDialog(null, "Penulisan Pass minimal "+ pass + " salah.\nPassword terdiri dari huruf A-Z,0-9,a-z, dan karakter" );
+            JOptionPane.showMessageDialog(null, "Penulisan Pass minimal "+ pass + " salah.\nPassword terdiri dari (A-Z or 0-9 or a-z) dan karakter" );
         }
     }
     

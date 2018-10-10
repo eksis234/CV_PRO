@@ -51,6 +51,17 @@ public class Tools implements Serializable {
         this.idtool = idtool;
     }
 
+    public Tools(BigDecimal idtool, String toolname, List<Tooldetails> tooldetailsList) {
+        this.idtool = idtool;
+        this.toolname = toolname;
+        this.tooldetailsList = tooldetailsList;
+    }
+
+    public Tools(BigDecimal idtool, String toolname) {
+        this.idtool = idtool;
+        this.toolname = toolname;
+    }
+    
     public BigDecimal getIdtool() {
         return idtool;
     }

@@ -55,6 +55,32 @@ public class Achievement implements Serializable {
     public Achievement() {
     }
 
+    public Achievement(BigDecimal idachievement, String achievementname) {
+        this.idachievement = idachievement;
+        this.achievementname = achievementname;
+    }
+
+    public Achievement(BigDecimal idachievement, String achievementname, String eventname) {
+        this.idachievement = idachievement;
+        this.achievementname = achievementname;
+        this.eventname = eventname;
+    }
+
+    public Achievement(BigDecimal idachievement, String achievementname, String eventname, BigInteger year) {
+        this.idachievement = idachievement;
+        this.achievementname = achievementname;
+        this.eventname = eventname;
+        this.year = year;
+    }
+    
+    public Achievement(BigDecimal idachievement, String achievementname, String eventname, BigInteger year, List<Achievementdetails> achievementdetailsList) {
+        this.idachievement = idachievement;
+        this.achievementname = achievementname;
+        this.eventname = eventname;
+        this.year = year;
+        this.achievementdetailsList = achievementdetailsList;
+    }
+    
     public Achievement(BigDecimal idachievement) {
         this.idachievement = idachievement;
     }
