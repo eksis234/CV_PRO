@@ -248,7 +248,7 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
                     bindingOs(controller.getAll());
                     reset();
                     }else if (response == JOptionPane.NO_OPTION) {
-                        JOptionPane.showMessageDialog(this, pesan.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
                     }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

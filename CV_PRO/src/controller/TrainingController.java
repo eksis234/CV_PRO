@@ -9,7 +9,9 @@ import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import model.Training;
+import model.Trainingdetails;
 import org.hibernate.SessionFactory;
 
 /**
@@ -26,7 +28,7 @@ public class TrainingController {
         idao = new GeneralDAO(factory, Training.class);
     }
 
-    public Object getAll() {
+    public List<Object> getAll() {
         return idao.getAll();
     }
 
@@ -34,12 +36,13 @@ public class TrainingController {
         return idao.getById(id);
     }
 
-    public Object search(String category, String key) {
+    public List<Object> search(String category, String key) {
         return idao.search(category, key);
     }
 
-    public Object saveOrUpdate(String trainingName, String trainingOrganization, String startDate, String endDate) {
-        Training training = new Training(BigDecimal.TEN, trainingName, trainingOrganization, new Date(startDate), new Date(endDate));
+    public boolean saveOrUpdate(String trainingId, String trainingName, String trainingOrganization, String startDate, String endDate) {
+        List<Trainingdetails> trainingdetailsList = (List<Trainingdetails>) new Trainingdetails(new BigDecimal(trainingId));
+        Training training = new Training(new BigDecimal(trainingId), trainingName, trainingOrganization, new Date(startDate), new Date(endDate), trainingdetailsList);
         return idao.saveOrUpdate(training);
     }
 

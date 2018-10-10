@@ -232,14 +232,14 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmNetworkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNetworkingActionPerformed
         // TODO add your handling code here:
-        CountryView countryView = new CountryView(sf);
-        countryView.show();
-        dpUtamaHr.add(countryView);
+        NetworkingView networkingView = new NetworkingView(sf);
+        networkingView.show();
+        dpUtamaHr.add(networkingView);
     }//GEN-LAST:event_jmNetworkingActionPerformed
 
     private void jmAchievementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAchievementActionPerformed
         // TODO add your handling code here:
-        AchievementView achievementView = new AchievementView();
+        AchievementView achievementView = new AchievementView(sf);
         achievementView.show();
         dpUtamaHr.add(achievementView);
     }//GEN-LAST:event_jmAchievementActionPerformed

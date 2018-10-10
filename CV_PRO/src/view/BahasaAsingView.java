@@ -237,7 +237,7 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
                     bindingBhsa(controller.getAll());
                     reset();
                     }else if (response == JOptionPane.NO_OPTION) {
-                        JOptionPane.showMessageDialog(this, pesan.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
                     }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

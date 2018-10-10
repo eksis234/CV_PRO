@@ -5,6 +5,14 @@
  */
 package view;
 
+import controller.AchievementController;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Achievement;
+import org.hibernate.SessionFactory;
+
 /**
  *
  * @author X453MA
@@ -12,12 +20,18 @@ package view;
 public class AchievementView extends javax.swing.JInternalFrame {
 
     private SerbaGuna sg;
+    private AchievementController controller;
+    private String[] cmbItem = {"idachievement", "achievementname", "eventname", "year"};
+    
     /**
      * Creates new form OrganisasiView
      */
-    public AchievementView() {
+    public AchievementView(SessionFactory sessionFactory) {
         initComponents();
         sg = new SerbaGuna();
+        controller = new AchievementController(sessionFactory);
+        bindingAchievement(controller.getAll());
+        
     }
 
     /**
@@ -40,12 +54,17 @@ public class AchievementView extends javax.swing.JInternalFrame {
         btnDrop = new javax.swing.JButton();
         txtYear = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtEventName = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tblAchievement = new javax.swing.JTable();
+        cmbKategori = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
+
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Achievement");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Achievement Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -64,12 +83,22 @@ public class AchievementView extends javax.swing.JInternalFrame {
         Year.setText("Year");
 
         btnSave.setText("SAVE");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnDrop.setText("DROP");
+        btnDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDropActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtEventName.setColumns(20);
+        txtEventName.setRows(5);
+        jScrollPane1.setViewportView(txtEventName);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,24 +115,23 @@ public class AchievementView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Year)))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtAchievementName, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(txtAchievementId)
-                    .addComponent(txtYear))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtAchievementName, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(txtYear)
+                    .addComponent(txtAchievementId))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSave)
-                        .addGap(64, 64, 64)
-                        .addComponent(btnDrop)
-                        .addGap(26, 26, 26))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDrop))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,16 +148,19 @@ public class AchievementView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(txtAchievementName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDrop)
-                    .addComponent(btnSave)
-                    .addComponent(Year)
-                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Year)
+                            .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDrop)
+                        .addComponent(btnSave))))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAchievement.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -137,13 +168,27 @@ public class AchievementView extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tblAchievement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAchievementMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblAchievement);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Achievement", "Nama Achievement", "Nama Event", "Tahun" }));
 
         btnSearch.setText("SEARCH");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("jTextField1");
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,9 +202,9 @@ public class AchievementView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSearch)
                 .addContainerGap())
@@ -170,8 +215,8 @@ public class AchievementView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -187,24 +232,119 @@ public class AchievementView extends javax.swing.JInternalFrame {
         sg.filterHuruf(evt);
     }//GEN-LAST:event_txtAchievementIdKeyTyped
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        controller.saveOrUpdate(txtAchievementId.getText(), txtAchievementName.getText(), txtEventName.getText(), txtYear.getText());
+        if(!txtAchievementId.isEnabled()){
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingAchievement(controller.getAll());
+        reset();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
+        // TODO add your handling code here:
+        int messageBox = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
+        if(messageBox == JOptionPane.YES_OPTION){
+            controller.delete(txtAchievementId.getText());
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.delete.getPesan());
+            bindingAchievement(controller.getAll());
+            reset();
+        }
+        if(messageBox == JOptionPane.NO_OPTION){
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.cancel.getPesan());
+        }
+    }//GEN-LAST:event_btnDropActionPerformed
+
+    private void tblAchievementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAchievementMouseClicked
+        // TODO add your handling code here:
+        int row = tblAchievement.getSelectedRow();
+        txtAchievementId.setText(tblAchievement.getValueAt(row, 1).toString());
+        txtAchievementName.setText(tblAchievement.getValueAt(row, 2).toString());
+        txtEventName.setText(tblAchievement.getValueAt(row, 3).toString());
+        txtYear.setText(tblAchievement.getValueAt(row, 4).toString());
+        edit();
+    }//GEN-LAST:event_tblAchievementMouseClicked
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if(!txtSearch.getText().equalsIgnoreCase("")){
+                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
+                    bindingAchievement(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
+            }
+        }
+        if (txtSearch.getText().equals("")) {
+            bindingAchievement(controller.getAll());
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        if(!txtSearch.getText().equalsIgnoreCase("")){
+                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
+                    bindingAchievement(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
+            }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Year;
     private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbKategori;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblAchievement;
     private javax.swing.JTextField txtAchievementId;
     private javax.swing.JTextField txtAchievementName;
+    private javax.swing.JTextArea txtEventName;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtYear;
     // End of variables declaration//GEN-END:variables
+
+    private void bindingAchievement(List<Object> achievement) {
+        String[] header = {"No", "ID Achievement", "Nama Achievement", "Nama Event", "Tahun"};
+        String[][] data = new String[achievement.size()][header.length];
+        int i = 0;
+        for (Object object : achievement) {
+            Achievement ach = (Achievement) object;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = ach.getIdachievement() + "";
+            data[i][2] = ach.getAchievementname() + "";
+            data[i][3] = ach.getEventname() + "";
+            data[i][4] = ach.getYear() + "";
+            i++;
+        }
+        tblAchievement.setModel(new DefaultTableModel(data, header));
+        reset();
+        
+    }    
+    private void edit() {
+        txtAchievementId.setEnabled(false);
+        btnDrop.setEnabled(true);
+    }
+    
+    private void reset() {
+        txtAchievementId.setText(controller.getAutoId()+"");
+        txtAchievementId.setEnabled(true);
+        txtAchievementName.setText("");
+        txtEventName.setText("");
+        txtYear.setText("");
+        btnDrop.setEnabled(false);
+        txtAchievementId.setEditable(false);
+    }
+        
+        
+        
+        
+
 }

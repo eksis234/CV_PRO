@@ -1,4 +1,5 @@
 
+import controller.EducationController;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import model.*;
