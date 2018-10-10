@@ -77,9 +77,16 @@ public class FunctionDAO {
                         .add(Restrictions.eq(category, key))
                         .uniqueResult();
             case 3:
-                return session.createCriteria(type)
+                if(key.equals(key.toString())){
+                    return session.createCriteria(type)
+                        .add(Restrictions.like(category, "%"+key+"%").ignoreCase())
+                        .list();
+                }else{
+                    return session.createCriteria(type)
                         .add(Restrictions.eq(category, key))
                         .list();
+                }
+                
             case 4:
                 return session.createQuery("FROM " + type
                         .getSimpleName() + " ORDER BY 1 DESC").list().get(0);

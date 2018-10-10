@@ -5,18 +5,31 @@
  */
 package view;
 
+import controller.NetworkingController;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Networking;
+import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
+
 /**
  *
  * @author X453MA
  */
 public class NetworkingView extends javax.swing.JInternalFrame {
     private SerbaGuna sg;
+    private NetworkingController controller;
+    private String[] cmbItem = {"idnetworking","networkingskill"};
     /**
      * Creates new form OrganisasiView
      */
-    public NetworkingView() {
+    public NetworkingView(SessionFactory sessionFactory) {
         initComponents();
         sg = new SerbaGuna();
+        controller = new NetworkingController(sessionFactory);
+        bindingNetworking(controller.getAll());
     }
 
     /**
@@ -36,10 +49,15 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         btnSave = new javax.swing.JButton();
         btnDrop = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tblNetworking = new javax.swing.JTable();
+        cmbKategori = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
+
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Networking");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Networking Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -54,8 +72,18 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         });
 
         btnSave.setText("SAVE");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnDrop.setText("DROP");
+        btnDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDropActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,9 +103,9 @@ public class NetworkingView extends javax.swing.JInternalFrame {
                     .addComponent(txtNetworkingId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSave)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDrop)
-                .addGap(32, 32, 32))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,14 +120,14 @@ public class NetworkingView extends javax.swing.JInternalFrame {
                     .addComponent(txtNetworkingSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(25, 68, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnDrop))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDrop)
+                    .addComponent(btnSave))
+                .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNetworking.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -107,13 +135,27 @@ public class NetworkingView extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tblNetworking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNetworkingMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblNetworking);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Networking", "Networking Skill" }));
 
         btnSearch.setText("SEARCH");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("jTextField1");
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,11 +167,11 @@ public class NetworkingView extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSearch)
                 .addContainerGap())
@@ -137,11 +179,11 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -157,19 +199,105 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         sg.filterHuruf(evt);
     }//GEN-LAST:event_txtNetworkingIdKeyTyped
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        controller.saveOrUpdate(txtNetworkingId.getText(), txtNetworkingSkill.getText());
+        if(!txtNetworkingId.isEnabled()){
+            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+           
+        }
+        else{
+            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingNetworking(controller.getAll());
+        reset();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void tblNetworkingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNetworkingMouseClicked
+        // TODO add your handling code here:
+        int row = tblNetworking.getSelectedRow();
+        txtNetworkingId.setText(tblNetworking.getValueAt(row, 1).toString());
+        txtNetworkingSkill.setText(tblNetworking.getValueAt(row, 2).toString());
+        edit();
+    }//GEN-LAST:event_tblNetworkingMouseClicked
+
+    private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
+        // TODO add your handling code here:
+        int messageBox = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
+        if(messageBox == JOptionPane.YES_OPTION){
+            controller.delete(txtNetworkingId.getText());
+            JOptionPane.showMessageDialog(this, pesan.delete.getPesan());
+            bindingNetworking(controller.getAll());
+            reset();
+        }
+        if(messageBox == JOptionPane.NO_OPTION){
+            JOptionPane.showMessageDialog(this, pesan.cancel.getPesan());
+        }
+    }//GEN-LAST:event_btnDropActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if(!txtSearch.getText().equalsIgnoreCase("")){
+                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
+                    bindingNetworking(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
+            }
+        }
+        if (txtSearch.getText().equals("")) {
+            bindingNetworking(controller.getAll());
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        if(!txtSearch.getText().equalsIgnoreCase("")){
+                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
+                    bindingNetworking(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
+            }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbKategori;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblNetworking;
     private javax.swing.JTextField txtNetworkingId;
     private javax.swing.JTextField txtNetworkingSkill;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void bindingNetworking(List<Object> networking) {
+        String[] header = {"No", "ID Networking", "Networking Skill"};
+        String[][] data = new String[networking.size()][header.length];
+        int i = 0;
+        for (Object object : networking) {
+            Networking net = (Networking) object;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = net.getIdnetworking() + "";
+            data[i][2] = net.getNetworkingskill() + "";
+            i++;
+        }
+        tblNetworking.setModel(new DefaultTableModel(data, header));
+        reset();
+    }
+    
+    private void edit() {
+        txtNetworkingId.setEnabled(false);
+        btnDrop.setEnabled(true);
+    }
+    
+    private void reset() {
+        txtNetworkingId.setText(controller.getAutoId()+"");
+        txtNetworkingId.setEnabled(true);
+        txtNetworkingSkill.setText("");
+        btnDrop.setEnabled(false);
+        txtNetworkingId.setEditable(false);
+    }
+    
 }
