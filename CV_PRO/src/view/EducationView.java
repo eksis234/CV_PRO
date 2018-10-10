@@ -10,12 +10,13 @@ package view;
  * @author Martin
  */
 public class EducationView extends javax.swing.JInternalFrame {
-
+    private SerbaGuna sg;
     /**
      * Creates new form EducationView
      */
     public EducationView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -75,6 +76,12 @@ public class EducationView extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jLabel1.setText("ID Edukasi :");
+
+        txtIdEdukasi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEdukasiKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Instansi :");
 
@@ -205,6 +212,11 @@ public class EducationView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtIdEdukasiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEdukasiKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtIdEdukasiKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,11 +11,13 @@ package view;
  */
 public class PengalamanKerjaView extends javax.swing.JInternalFrame {
 
+    private SerbaGuna sg;
     /**
      * Creates new form PengalamanKerja
      */
     public PengalamanKerjaView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -77,6 +79,11 @@ public class PengalamanKerjaView extends javax.swing.JInternalFrame {
         txtIdPengalaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdPengalamanActionPerformed(evt);
+            }
+        });
+        txtIdPengalaman.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdPengalamanKeyTyped(evt);
             }
         });
 
@@ -222,6 +229,11 @@ public class PengalamanKerjaView extends javax.swing.JInternalFrame {
     private void txtPekerjaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPekerjaanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPekerjaanActionPerformed
+
+    private void txtIdPengalamanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdPengalamanKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtIdPengalamanKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

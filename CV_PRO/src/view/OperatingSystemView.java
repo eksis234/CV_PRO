@@ -10,12 +10,14 @@ package view;
  * @author Martin
  */
 public class OperatingSystemView extends javax.swing.JInternalFrame {
-
+    
+    private SerbaGuna sg;
     /**
      * Creates new form OperatingSystemView
      */
     public OperatingSystemView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -66,6 +68,11 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         txtIdOs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdOsActionPerformed(evt);
+            }
+        });
+        txtIdOs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdOsKeyTyped(evt);
             }
         });
 
@@ -151,6 +158,11 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
     private void txtIdOsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdOsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdOsActionPerformed
+
+    private void txtIdOsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdOsKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtIdOsKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

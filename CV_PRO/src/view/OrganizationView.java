@@ -11,11 +11,13 @@ package view;
  */
 public class OrganizationView extends javax.swing.JInternalFrame {
 
+    private SerbaGuna sg;
     /**
      * Creates new form OrganisasiView
      */
     public OrganizationView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -53,6 +55,12 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         jLabel2.setText("Organization Name");
 
         jLabel3.setText("Position");
+
+        txtOrganizationId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtOrganizationIdKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Start Date");
 
@@ -186,6 +194,11 @@ public class OrganizationView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtOrganizationIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrganizationIdKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtOrganizationIdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

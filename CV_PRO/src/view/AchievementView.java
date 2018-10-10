@@ -11,11 +11,13 @@ package view;
  */
 public class AchievementView extends javax.swing.JInternalFrame {
 
+    private SerbaGuna sg;
     /**
      * Creates new form OrganisasiView
      */
     public AchievementView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -50,6 +52,12 @@ public class AchievementView extends javax.swing.JInternalFrame {
         jLabel1.setText("Achievement ID");
 
         jLabel2.setText("Achievement Name");
+
+        txtAchievementId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAchievementIdKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Event Name");
 
@@ -173,6 +181,11 @@ public class AchievementView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtAchievementIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAchievementIdKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtAchievementIdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

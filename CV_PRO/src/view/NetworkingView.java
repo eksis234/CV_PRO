@@ -10,12 +10,13 @@ package view;
  * @author X453MA
  */
 public class NetworkingView extends javax.swing.JInternalFrame {
-
+    private SerbaGuna sg;
     /**
      * Creates new form OrganisasiView
      */
     public NetworkingView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -45,6 +46,12 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         jLabel1.setText("Networking ID");
 
         jLabel2.setText("Networking Skill");
+
+        txtNetworkingId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNetworkingIdKeyTyped(evt);
+            }
+        });
 
         btnSave.setText("SAVE");
 
@@ -144,6 +151,11 @@ public class NetworkingView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNetworkingIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNetworkingIdKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtNetworkingIdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

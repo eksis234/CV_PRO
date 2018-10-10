@@ -10,12 +10,13 @@ package view;
  * @author Martin
  */
 public class BahasaAsingView extends javax.swing.JInternalFrame {
-
+    private SerbaGuna sg;
     /**
      * Creates new form BahasaAsingView
      */
     public BahasaAsingView() {
         initComponents();
+        sg = new SerbaGuna();
     }
 
     /**
@@ -58,6 +59,12 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
         jLabel1.setText("ID Bahasa :");
+
+        txtIdBahasa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdBahasaKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Nama Bahasa :");
 
@@ -141,6 +148,11 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtIdBahasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBahasaKeyTyped
+        // TODO add your handling code here:
+        sg.filterHuruf(evt);
+    }//GEN-LAST:event_txtIdBahasaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

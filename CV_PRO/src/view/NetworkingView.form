@@ -133,6 +133,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNetworkingId">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNetworkingIdKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNetworkingSkill">
         </Component>
