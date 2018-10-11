@@ -19,4 +19,5 @@ public interface InterfaceDAO {
     public Object getById(Object id);
     public Object getByName(Object name);
     public Object getLastId();
+    public List<Object> getDataNonExpired(String category);
 }

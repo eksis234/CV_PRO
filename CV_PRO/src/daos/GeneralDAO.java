@@ -14,13 +14,14 @@ import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
  *
  * @author Lenovo
  */
-public class GeneralDAO implements InterfaceDAO{
+public class GeneralDAO implements InterfaceDAO {
+
     private final FunctionDAO gdao;
     private final Class type;
     private SessionFactory sf;
     private Connection c;
-    
-    public GeneralDAO(SessionFactory sessionFactory, Class type)  {
+
+    public GeneralDAO(SessionFactory sessionFactory, Class type) {
         this.gdao = new FunctionDAO(sessionFactory);
         this.type = type;
         this.sf = sessionFactory;
@@ -48,33 +49,38 @@ public class GeneralDAO implements InterfaceDAO{
 
     @Override
     public Object getById(Object id) {
-        return gdao.execute(2, null, type, type.getSimpleName().toLowerCase()+"Id", id);
+        return gdao.execute(2, null, type, type.getSimpleName().toLowerCase() + "Id", id);
     }
-    
+
     @Override
-    public Object getLastId(){
+    public Object getLastId() {
         return gdao.execute(4, null, type, null, null);
     }
 
     @Override
     public Object getByName(Object name) {
-        return gdao.execute(5, null, type, type.getSimpleName().toLowerCase()+"Name", name);
+        return gdao.execute(5, null, type, type.getSimpleName().toLowerCase() + "Name", name);
     }
-    
-    public int addRegion1(String regionName) throws SQLException{
+
+    @Override
+    public List<Object> getDataNonExpired(String category) {
+        return (List<Object>) gdao.execute(7, null, type, category, null);
+    }
+
+    public int addRegion1(String regionName) throws SQLException {
         Connection con = sf.getSessionFactoryOptions().getServiceRegistry().
                 getService(ConnectionProvider.class).getConnection();
 
-        CallableStatement callableStatement = 
-                con.prepareCall("{call hr.addRegions1(?,?)}");
+        CallableStatement callableStatement
+                = con.prepareCall("{call hr.addRegions1(?,?)}");
         callableStatement.setString(1, regionName);
         callableStatement.registerOutParameter(2, Types.INTEGER);
         callableStatement.execute();
-        
+
         return callableStatement.getInt(2);
     }
-	
-	public boolean addRegion2(String regionName) throws SQLException {
+
+    public boolean addRegion2(String regionName) throws SQLException {
         boolean hasil = true;
         Connection con = sf.getSessionFactoryOptions().getServiceRegistry().
                 getService(ConnectionProvider.class).getConnection();
@@ -84,12 +90,13 @@ public class GeneralDAO implements InterfaceDAO{
         hasil = callableStatement.execute();
         return hasil;
     }
-        public int jmlRegions() throws SQLException{
+
+    public int jmlRegions() throws SQLException {
         this.c = sf.getSessionFactoryOptions()
                 .getServiceRegistry().getService(ConnectionProvider.class)
                 .getConnection();
         CallableStatement cs = c.prepareCall("{call hr.updateUser(?,?,?,?)}");
-            cs.execute();
-            return cs.getInt(5);
-        }
+        cs.execute();
+        return cs.getInt(5);
+    }
 }

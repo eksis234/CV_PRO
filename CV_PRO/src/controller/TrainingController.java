@@ -35,6 +35,10 @@ public class TrainingController {
      * Fungsi untuk mendapatkan semua data Education
      * @return semua data Education
      */
+    public List<Object> getDatas() {
+        return idao.getDataNonExpired("enddate");
+    }
+    
     public List<Object> getAll() {
         return idao.getAll();
     }
