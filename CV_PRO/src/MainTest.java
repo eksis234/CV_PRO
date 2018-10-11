@@ -1,5 +1,6 @@
 
 import controller.EducationController;
+import controller.PengalamankerjaController;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import model.*;
@@ -27,12 +28,16 @@ public class MainTest {
 //            Achievement achievement = (Achievement) object;
 //            System.out.println(achievement.getAchievementname()+" - "+achievement.getIdachievement());
 //        }
-    InterfaceDAO iDAO = new GeneralDAO(HibernateUtil.getSessionFactory(), Tools.class);
+    InterfaceDAO iDAO = new GeneralDAO(HibernateUtil.getSessionFactory(), Workingexperience.class);
+//    Workingexperience w = new Workingexperience();
+//    PengalamankerjaController pc = new PengalamankerjaController(HibernateUtil.getSessionFactory());
+//    w = (Workingexperience) pc.getById("1");
+    
         for (Object object : iDAO.getAll()) {
-            Tools tools = (Tools) object;
-            System.out.println(tools.getIdtool()+" - "+tools.getToolname());
+            Workingexperience w = (Workingexperience) object;
+            System.out.println(w.getIdworkingexperience()+" - "+w.getEmployer());
         }
-        System.out.println("heloo");
+//        System.out.println(w.getIdworkingexperience()+" - "+w.getEmployer());
     }
     
 }

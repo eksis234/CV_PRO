@@ -93,6 +93,8 @@ public class Workingexperience implements Serializable {
         this.description = description;
         this.experiencedetailsList = experiencedetailsList;
     }
+    
+    
 
     public BigDecimal getIdworkingexperience() {
         return idworkingexperience;
