@@ -10,7 +10,7 @@ import daos.InterfaceDAO;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import model.Workingexperience;
+import model.*;
 import org.hibernate.SessionFactory;
 
 /**
@@ -18,14 +18,16 @@ import org.hibernate.SessionFactory;
  * @author chochong
  */
 public class PengalamankerjaController {
-    private InterfaceDAO idao;
+    private final InterfaceDAO idao;
+    private final SessionFactory factory;
     
     /**
      * constructor dari kelas PengalamanKerjaController 
      * @param sessionFactory bertipe sessiion factory
      */
     public PengalamankerjaController(SessionFactory sessionFactory) {
-        this.idao = new GeneralDAO(sessionFactory, Workingexperience.class);
+        this.factory = sessionFactory;
+        idao = new GeneralDAO(sessionFactory, Workingexperience.class);
     }
    
     /**
