@@ -1,29 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5779f1e7-d0cc-4316-92b0-76103e0e2ab1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     FOREIGNLANGUAGE."IDFLANG" AS FOREIGNLANGUAGE_IDFLANG,
+     FOREIGNLANGUAGE."LANGUAGENAME" AS FOREIGNLANGUAGE_LANGUAGENAME
+FROM
+     "CV_ONLINE"."FOREIGNLANGUAGE" FOREIGNLANGUAGE]]>
+	</queryString>
+	<field name="FOREIGNLANGUAGE_IDFLANG" class="java.math.BigDecimal"/>
+	<field name="FOREIGNLANGUAGE_LANGUAGENAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="0" width="79" height="69" uuid="31c46db8-fa8c-49d2-8bb2-6e5a30181330"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\src\\report\\metrodata.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="450" y="0" width="92" height="79" uuid="0a6527f2-8f66-4047-9f20-73ca308d7134"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\src\\report\\mii.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="107" y="10" width="332" height="69" uuid="ca55b07d-b0a9-4bae-aa7a-34258c44ba5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LANGUAGE REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="319" y="0" width="100" height="20" uuid="f02df361-cd01-482b-bb2c-82c01f308bc5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Language Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="0" width="100" height="20" uuid="43418b43-7dfc-496b-b5b3-bb0a22db4426"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Language ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="0" width="100" height="20" uuid="81fdaad0-43a4-4df0-8b90-1e03f6721816"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="219" y="1" width="100" height="20" uuid="aa7e9f7f-6d2d-43c0-8959-454e0fc50977"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FOREIGNLANGUAGE_IDFLANG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="100" height="20" uuid="6ea1c6be-bfca-4ce7-ae5e-03608907c104"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FOREIGNLANGUAGE_LANGUAGENAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="1" width="100" height="20" uuid="a497b24e-7b83-44f8-abce-f233a9b2a0a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

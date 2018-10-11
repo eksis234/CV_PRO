@@ -40,7 +40,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -162,10 +162,11 @@
                       <Component id="txtToolsId" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                  <Component id="btnDropTools" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSaveTools" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnDropTools" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSaveTools" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,13 +177,13 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlProgrammingId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtToolsId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSaveTools" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlProgrammingName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtToolsName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDropTools" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSaveTools" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>

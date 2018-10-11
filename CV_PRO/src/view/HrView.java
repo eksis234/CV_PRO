@@ -24,6 +24,7 @@ import javax.swing.JInternalFrame;
 //import net.sf.jasperreports.view.JRViewer;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
+import report.ReportView;
 import tools.HibernateUtil;
 import view.SerbaGuna;
 
@@ -70,7 +71,9 @@ public class HrView extends javax.swing.JFrame {
         jmPersonalData = new javax.swing.JMenuItem();
         jmCountryId = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        mniReportTabel = new javax.swing.JMenuItem();
+        mniReportTabelTools = new javax.swing.JMenuItem();
+        OsReport = new javax.swing.JMenuItem();
+        BahasaReport = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -197,13 +200,29 @@ public class HrView extends javax.swing.JFrame {
 
         jMenu2.setText("Report");
 
-        mniReportTabel.setText("Report Tabel");
-        mniReportTabel.addActionListener(new java.awt.event.ActionListener() {
+        mniReportTabelTools.setText("Tools Report");
+        mniReportTabelTools.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniReportTabelActionPerformed(evt);
+                mniReportTabelToolsActionPerformed(evt);
             }
         });
-        jMenu2.add(mniReportTabel);
+        jMenu2.add(mniReportTabelTools);
+
+        OsReport.setText("OS Report");
+        OsReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OsReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(OsReport);
+
+        BahasaReport.setText("Language Report");
+        BahasaReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BahasaReportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(BahasaReport);
 
         jMenuBar1.add(jMenu2);
 
@@ -265,11 +284,10 @@ public class HrView extends javax.swing.JFrame {
         dpUtamaHr.add(bahasaAsingView);
     }//GEN-LAST:event_jmBahasaAsingActionPerformed
 
-    private void mniReportTabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniReportTabelActionPerformed
+    private void mniReportTabelToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniReportTabelToolsActionPerformed
         // TODO add your handling code here:
-        String path = "E:\\E\\MII\\bootcamp\\GUI_HR_ORM\\build\\classes\\view\\report\\RegionReport.jrxml";
-
-    }//GEN-LAST:event_mniReportTabelActionPerformed
+        this.showReport("ToolsReport.jrxml");
+    }//GEN-LAST:event_mniReportTabelToolsActionPerformed
 
     private void jmCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountryIdActionPerformed
         // TODO add your handling code here:
@@ -306,6 +324,22 @@ public class HrView extends javax.swing.JFrame {
          dpUtamaHr.add(toolsView);
     }//GEN-LAST:event_jmToolsActionPerformed
 
+    private void OsReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OsReportActionPerformed
+        // TODO add your handling code here:
+         this.showReport("OSReport.jrxml");
+    }//GEN-LAST:event_OsReportActionPerformed
+
+    private void BahasaReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BahasaReportActionPerformed
+        // TODO add your handling code here:
+         this.showReport("BahasaReport.jrxml");
+    }//GEN-LAST:event_BahasaReportActionPerformed
+
+    private void showReport(String path){
+        ReportView reportView = new ReportView(sf, "src\\report\\"+path+"");
+        reportView.show();
+        dpUtamaHr.add(reportView);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -357,6 +391,8 @@ public class HrView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BahasaReport;
+    private javax.swing.JMenuItem OsReport;
     private javax.swing.JDesktopPane dpUtamaHr;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -374,6 +410,6 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmTools;
     private javax.swing.JMenuItem jmTraining;
     private javax.swing.JMenuItem jmWorkingExperience;
-    private javax.swing.JMenuItem mniReportTabel;
+    private javax.swing.JMenuItem mniReportTabelTools;
     // End of variables declaration//GEN-END:variables
 }
