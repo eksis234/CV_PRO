@@ -6,8 +6,10 @@
 package view;
 
 import controller.EducationController;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Education;
@@ -24,7 +26,7 @@ public class EducationView extends javax.swing.JInternalFrame {
     private String[] cmb = {"ideducation", "instansi", "leveleducation", "gpa", "yearin", "graduation", "major"};
 
     /**
-     * Creates new form EducationView
+     * Konstruktor default kelas EducationView berparameter
      */
     public EducationView(SessionFactory factory) {
         initComponents();
@@ -73,6 +75,12 @@ public class EducationView extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Edukasi");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         btnSearch.setText("Find");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +99,16 @@ public class EducationView extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblEducation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEducationMouseClicked(evt);
+            }
+        });
+        tblEducation.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblEducationKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblEducation);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -116,6 +134,11 @@ public class EducationView extends javax.swing.JInternalFrame {
         jLabel7.setText("Jurusan :");
 
         btnDelete.setText("Drop");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -243,38 +266,102 @@ public class EducationView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method ketika txtIdEdukasi diketikkan
+     * @param evt - KeyEvent
+     */
     private void txtIdEdukasiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEdukasiKeyTyped
         // TODO add your handling code here:
         sg.filterHuruf(evt);
     }//GEN-LAST:event_txtIdEdukasiKeyTyped
-
+    
+    /**
+     * Method ketika button Save ditekan
+     * @param evt - ActionEvent
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         controller.saveOrUpdate(controller.getAutoId().toString(), txtInstansi.getText(), txtTingkatEdukasi.getText(), txtIpk.getText(), txtAngkatan.getText(), txtTahunLulus.getText(), txtJurusan.getText());
+        if (!txtIdEdukasi.isEnabled()) {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save, "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingEducation(controller.getAll());
+        reset();
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
+    
+    /**
+     * Method ketika button Search ditekan
+     * @param evt - ActionEvent
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-//        if(cmbKategori.getSelectedItem().equals("ID Edukasi")){
-//            bindingEducation(controller.search("ideducation", new BigDecimal(txtSearch.getText())));
-//        } else if(cmbKategori.getSelectedItem().equals("Instansi")){
-//            bindingEducation(controller.search("instansi", txtSearch.getText()));
-//        }else if(cmbKategori.getSelectedItem().equals("Tingkat Pendidikan")){
-//            bindingEducation(controller.search("leveleducation", txtSearch.getText()));
-//        } else if(cmbKategori.getSelectedItem().equals("IPK")){
-//            bindingEducation(controller.search("gpa", txtSearch.getText()));
-//        } else if(cmbKategori.getSelectedItem().equals("Angkatan")){
-//            bindingEducation(controller.search("yearin", txtSearch.getText()));
-//        } else if(cmbKategori.getSelectedItem().equals("Tahun Lulus")){
-//            bindingEducation(controller.search("graduation", txtSearch.getText()));
-//        } else {
-//            bindingEducation(controller.search("major", txtSearch.getText()));
-//        }
-            if(!txtSearch.getText().equals("")){
+        if (!txtSearch.getText().equals("")) {
+            bindingEducation(controller.search(cmb[cmbKategori.getSelectedIndex()], txtSearch.getText()));
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+    
+    /**
+     * Method ketika baris pada tblEducation dipilih
+     * @param evt - MouseEvent
+     */
+    private void tblEducationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEducationMouseClicked
+        // TODO add your handling code here:
+        int row = tblEducation.getSelectedRow();
+        txtIdEdukasi.setText(tblEducation.getValueAt(row, 1).toString());
+        txtInstansi.setText(tblEducation.getValueAt(row, 2).toString());
+        txtTingkatEdukasi.setText(tblEducation.getValueAt(row, 3).toString());
+        txtIpk.setText(tblEducation.getValueAt(row, 4).toString());
+        txtAngkatan.setText(tblEducation.getValueAt(row, 5).toString());
+        txtTahunLulus.setText(tblEducation.getValueAt(row, 6).toString());
+        txtJurusan.setText(tblEducation.getValueAt(row, 7).toString());
+        edit();
+    }//GEN-LAST:event_tblEducationMouseClicked
+    
+    /**
+     * Method ketika tblEducation tidak diketik
+     * @param evt - KeyEvent
+     */
+    private void tblEducationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblEducationKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblEducationKeyReleased
+    
+    /**
+     * Method ketika button Drop ditekan
+     * @param evt - AtionEvent
+     */
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int messageBox = JOptionPane.showConfirmDialog(this, "Are you sure want to delete this data ?", "Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (messageBox == JOptionPane.YES_OPTION) {
+            controller.delete(txtIdEdukasi.getText());
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.delete.getPesan());
+            bindingEducation(controller.getAll());
+            reset();
+        }
+        if (messageBox == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.cancel.getPesan());
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+    
+/**
+     * Method ketika kursor tidak pada textfield txtSearch
+     * @param evt - KeyEvent
+     */
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!txtSearch.getText().equalsIgnoreCase("")) {
+                System.out.println(cmb[cmbKategori.getSelectedIndex()] + " - " + txtSearch.getText());
                 bindingEducation(controller.search(cmb[cmbKategori.getSelectedIndex()], txtSearch.getText()));
             }
-    }//GEN-LAST:event_btnSearchActionPerformed
+        }
+        if (txtSearch.getText().equals("")) {
+            bindingEducation(controller.getAll());
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -303,6 +390,11 @@ public class EducationView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTahunLulus;
     private javax.swing.JTextField txtTingkatEdukasi;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     * Method untuk memanggil isi dari tblTraining
+     * @param object 
+     */
     public void bindingEducation(List<Object> object) {
         String[] header = {"No.", "ID Edukasi", "Instansi", "Tingkat Edukasi", "IPK", "Angkatan", "Tahun Lulus", "Jurusan"};
         String[][] data = new String[object.size()][header.length];
@@ -322,10 +414,13 @@ public class EducationView extends javax.swing.JInternalFrame {
         tblEducation.setModel(new DefaultTableModel(data, header));
         reset();
     }
-
+    
+    /**
+     * Method untuk mengembalikan button dan textfield seperti keadaan awal
+     */
     public void reset() {
         txtIdEdukasi.setText(controller.getAutoId() + " ");
-        txtIdEdukasi.setEnabled(true);
+        txtIdEdukasi.setEnabled(false);
         txtInstansi.setEnabled(true);
         txtTingkatEdukasi.setEnabled(true);
         txtIpk.setEnabled(true);
@@ -337,7 +432,10 @@ public class EducationView extends javax.swing.JInternalFrame {
         btnSave.setEnabled(true);
         btnSearch.setEnabled(true);
     }
-
+    
+    /**
+     * Method ketika proses edit
+     */
     public void edit() {
         txtIdEdukasi.setEnabled(false);
     }
