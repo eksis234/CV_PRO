@@ -5,6 +5,16 @@
  */
 package view;
 
+import controller.TrainingController;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.*;
+import org.hibernate.SessionFactory;
+import org.jdesktop.swingx.JXDatePicker;
+
 /**
  *
  * @author chochong
@@ -14,8 +24,21 @@ public class TrainingView extends javax.swing.JInternalFrame {
     /**
      * Creates new form TrainingView
      */
-    public TrainingView() {
+    //private SessionFactory factory;
+    private final SerbaGuna sg;
+    private TrainingController controller;
+    private String[] cmb = {"idtraining", "trainingname", "trainingorganization", "startdate", "enddate"};
+    
+    /**
+     * Konstruktor default kelas TrainingView berparameter
+     * @param factory - SessionFactory
+     */
+    public TrainingView(SessionFactory factory) {
         initComponents();
+        controller = new TrainingController(factory);
+        sg = new SerbaGuna();
+        bindingTraining(controller.getAll());
+        reset();
     }
 
     /**
@@ -28,40 +51,40 @@ public class TrainingView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cmbKategoriCountry = new javax.swing.JComboBox<>();
-        txtFindCountry = new javax.swing.JTextField();
+        cmbKategoriTraining = new javax.swing.JComboBox<>();
+        txtFindTraining = new javax.swing.JTextField();
         btnFindC = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTraining = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        txtProgrammingid = new javax.swing.JTextField();
-        txtProgrammingName = new javax.swing.JTextField();
-        jlProgrammingId = new javax.swing.JLabel();
+        txtTrainingId = new javax.swing.JTextField();
+        txtTrainingName = new javax.swing.JTextField();
+        jlTrainingId = new javax.swing.JLabel();
         jlProgrammingName = new javax.swing.JLabel();
         btnDropC = new javax.swing.JButton();
         btnSaveC = new javax.swing.JButton();
         jlProgrammingName1 = new javax.swing.JLabel();
         jlProgrammingName2 = new javax.swing.JLabel();
         jlProgrammingName3 = new javax.swing.JLabel();
-        txtProgrammingName1 = new javax.swing.JTextField();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
+        txtOrganization = new javax.swing.JTextField();
+        dateStart = new org.jdesktop.swingx.JXDatePicker();
+        dateEnd = new org.jdesktop.swingx.JXDatePicker();
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Master Training");
 
-        cmbKategoriCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " ", " " }));
-        cmbKategoriCountry.addActionListener(new java.awt.event.ActionListener() {
+        cmbKategoriTraining.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Training", "Nama Training", "Penyelenggara", "Tanggal Mulai", "Tanggal Selesai" }));
+        cmbKategoriTraining.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKategoriCountryActionPerformed(evt);
+                cmbKategoriTrainingActionPerformed(evt);
             }
         });
 
-        txtFindCountry.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFindTraining.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindCountryKeyReleased(evt);
+                txtFindTrainingKeyReleased(evt);
             }
         });
 
@@ -72,7 +95,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTraining.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -83,7 +106,12 @@ public class TrainingView extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblTraining.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTrainingMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblTraining);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,21 +119,24 @@ public class TrainingView extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmbKategoriCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbKategoriTraining, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFindCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFindTraining, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFindC)
                 .addGap(25, 25, 25))
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbKategoriCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFindCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKategoriTraining, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFindTraining, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFindC))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
@@ -114,29 +145,29 @@ public class TrainingView extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
         jPanel2.setToolTipText("Detail");
 
-        txtProgrammingid.addActionListener(new java.awt.event.ActionListener() {
+        txtTrainingId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProgrammingidActionPerformed(evt);
+                txtTrainingIdActionPerformed(evt);
             }
         });
-        txtProgrammingid.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTrainingId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtProgrammingidKeyReleased(evt);
+                txtTrainingIdKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProgrammingidKeyTyped(evt);
+                txtTrainingIdKeyTyped(evt);
             }
         });
 
-        txtProgrammingName.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTrainingName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProgrammingNameKeyTyped(evt);
+                txtTrainingNameKeyTyped(evt);
             }
         });
 
-        jlProgrammingId.setText("Id Training       :");
+        jlTrainingId.setText("Training ID");
 
-        jlProgrammingName.setText("Name Training :");
+        jlProgrammingName.setText("Training Name");
 
         btnDropC.setText("DROP");
         btnDropC.addActionListener(new java.awt.event.ActionListener() {
@@ -152,15 +183,15 @@ public class TrainingView extends javax.swing.JInternalFrame {
             }
         });
 
-        jlProgrammingName1.setText("Nama Penyelenggara :");
+        jlProgrammingName1.setText("Penyelenggara");
 
-        jlProgrammingName2.setText("Tanggal Mulai :");
+        jlProgrammingName2.setText("Tanggal Mulai");
 
-        jlProgrammingName3.setText("Tanggal Selesai :");
+        jlProgrammingName3.setText("Tanggal Selesai");
 
-        txtProgrammingName1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProgrammingName1KeyTyped(evt);
+                txtOrganizationKeyTyped(evt);
             }
         });
 
@@ -169,51 +200,68 @@ public class TrainingView extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlProgrammingName3)
-                    .addComponent(jlProgrammingName2)
-                    .addComponent(jlProgrammingName1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlProgrammingName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlProgrammingId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jlTrainingId, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jlProgrammingName1)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlProgrammingName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtTrainingId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(txtTrainingName, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtOrganization, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtProgrammingName, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(txtProgrammingid)
-                    .addComponent(txtProgrammingName1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(58, 58, 58)
-                .addComponent(btnDropC)
-                .addGap(46, 46, 46)
-                .addComponent(btnSaveC)
-                .addGap(43, 43, 43))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jlProgrammingName2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dateStart, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jlProgrammingName3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnDropC)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSaveC)
+                                .addGap(32, 32, 32))
+                            .addComponent(dateEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlProgrammingId)
-                    .addComponent(txtProgrammingid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlTrainingId)
+                    .addComponent(txtTrainingId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlProgrammingName2)
+                    .addComponent(dateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProgrammingName)
-                    .addComponent(txtProgrammingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlProgrammingName1)
-                    .addComponent(txtProgrammingName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDropC)
-                    .addComponent(btnSaveC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlProgrammingName2)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTrainingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlProgrammingName3)
-                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlProgrammingName1)
+                            .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDropC)
+                            .addComponent(btnSaveC))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -238,156 +286,186 @@ public class TrainingView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtFindCountryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindCountryKeyReleased
-        // TODO add your handling code here:
-        //                if (txtFindCountry.getText().equals("")) {
-            //                bindingCountries(controller.getAll());
-            //            }else if (!txtFindCountry.getText().equalsIgnoreCase("")){
-            //                btnFindC.setEnabled(true);
-            //            }
-        //        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            ///*use inisialisasi string categori*/
-            ////            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
-                ////            bindingCountries(controller.search("regionId", (txtFindCountry.getText())));
-                ////            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
-                ////            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
-                ////            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
-                ////            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
-                ////            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
-            ////            bindingCountries(controller.search("countryName", txtFindCountry.getText()));
-            ///*use array*/  //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
-            ///*use enum*/  bindingCountries(controller.searchCountry((String) cmbKategoriCountry.getSelectedItem(), txtFindCountry.getText()));
-            ///*use rowSorter*/
-            ////            String text = txtFindCountry.getText();
-            ////            if (text.trim().length() == 0) {
-                ////                rowSorter.setRowFilter(null);
-                ////            } else {
-                ////                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriCountry.getSelectedIndex() + 1));
-                ////            }
-            //        }
-    }//GEN-LAST:event_txtFindCountryKeyReleased
-
+    /**
+     * Method ketika kursor tidak pada textfield txtFindtraining
+     * @param evt - KeyEvent
+     */
+    private void txtFindTrainingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindTrainingKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!txtFindTraining.getText().equalsIgnoreCase("")) {
+                bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+            }
+        }
+        if (txtFindTraining.getText().equals("")) {
+            bindingTraining(controller.getAll());
+        }
+    }//GEN-LAST:event_txtFindTrainingKeyReleased
+    
+    /**
+     * Method ketika button Find ditekan
+     * @param evt - KeyEvent
+     */
     private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
-        // TODO add your handling code here:
-        //        if (!txtFindCountry.getText().equalsIgnoreCase("")) {
-            /*use inisialisasi string categori*/
-            //            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
-                //            bindingCountries(controller.search("regionId", new BigDecimal(txtFindCountry.getText())));
-                //            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
-                //            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
-                //            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
-                //            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
-                //            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
-            //            bindingCountries(controller.search("countryName", txtFindCountry.getText()));
-
-            /*use array*/  //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
-            // /*use enum*/  bindingCountries(controller.searchCountry((String) cmbKategoriCountry.getSelectedItem(), txtFindCountry.getText()));
-
-            /*use rowSorter*/
-            //            String text = txtFindCountry.getText();
-            //            if (text.trim().length() == 0) {
-                //                rowSorter.setRowFilter(null);
-                //            } else {
-                //                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriCountry.getSelectedIndex() + 1));
-                //            }
-            //        JOptionPane.showMessageDialog(this,
-                //        pesan.find.getPesan(), "Search",
-                //        JOptionPane.INFORMATION_MESSAGE);
-            //        }
+        if (!txtFindTraining.equals("")){
+            bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+        }
     }//GEN-LAST:event_btnFindCActionPerformed
-
-    private void txtProgrammingidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgrammingidActionPerformed
+    
+    /**
+     * Method ketika txtTraining ditekan
+     * @param evt - KeyEvent
+     */
+    private void txtTrainingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrainingIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProgrammingidActionPerformed
-
-    private void txtProgrammingidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProgrammingidKeyReleased
+    }//GEN-LAST:event_txtTrainingIdActionPerformed
+    
+    /**
+     * Method ketika txtTraining tidak ditekan
+     * @param evt - KeyEvent
+     */
+    private void txtTrainingIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingIdKeyReleased
         // TODO add your handling code here:
-        //        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            //            if (!txtCountryId.getText().equals("") ){
-                //                sf.filterAngka(evt);
-                //            }
-            //        }
-    }//GEN-LAST:event_txtProgrammingidKeyReleased
-
-    private void txtProgrammingidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProgrammingidKeyTyped
+    }//GEN-LAST:event_txtTrainingIdKeyReleased
+    
+    /**
+     * Method ketikda txtTraining diketik
+     * @param evt - KeyEvent
+     */
+    private void txtTrainingIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingIdKeyTyped
         // TODO add your handling code here:
         //        ss.filterAngka(evt);
-    }//GEN-LAST:event_txtProgrammingidKeyTyped
-
-    private void txtProgrammingNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProgrammingNameKeyTyped
+    }//GEN-LAST:event_txtTrainingIdKeyTyped
+    
+    /**
+     * Method ketika txtTrainingName diketik
+     * @param evt - KeyEvent
+     */
+    private void txtTrainingNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingNameKeyTyped
         // TODO add your handling code here:
         //        sf.filterPass(evt);
-    }//GEN-LAST:event_txtProgrammingNameKeyTyped
-
+    }//GEN-LAST:event_txtTrainingNameKeyTyped
+    
+    /**
+     * Method ketika button Drop ditekan
+     * @param evt - AtionEvent
+     */
     private void btnDropCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCActionPerformed
         // TODO add your handling code here:
-        //        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
-        //        Country country = new Country();
-        //        country = new Country(txtCountryId.getText());
-        //        if (response == JOptionPane.YES_OPTION) {
-            //        controller.delete(country);
-            //        JOptionPane.showMessageDialog(this, inf.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            //        bindingCountries(controller.getAll());
-            //        cmbRegionId.setSelectedIndex(0);
-            //        }else if (response == JOptionPane.NO_OPTION) {
-            //            JOptionPane.showMessageDialog(this, inf.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            //        }
+        int messageBox = JOptionPane.showConfirmDialog(this, "Are you sure want to delete this data ?", "Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (messageBox == JOptionPane.YES_OPTION) {
+            controller.delete(txtTrainingId.getText());
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.delete.getPesan());
+            bindingTraining(controller.getAll());
+            reset();
+        }
+        if (messageBox == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.cancel.getPesan());
+        }
     }//GEN-LAST:event_btnDropCActionPerformed
-
+    
+    /**
+     * Method ketika button Save ditekan
+     * @param evt - ActionEvent
+     */
     private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
         // TODO add your handling code here:
-        //        String abcd = cmbRegionId.getSelectedItem()+"";
-        //        String subRegionId = abcd.substring(0,1);
-        //        Country country = new Country();
-        //        country = new Country(txtCountryId.getText().toUpperCase());
-        //        country.setCountryName(txtCountryName.getText());
-        //        Region region = new Region(new BigDecimal(subRegionId));
-        //        country.setRegionId(region);
-        //        boolean isUpdate = false;
-        //        if(!txtCountryId.isEnabled()){
-            //            isUpdate = true;
-            //        }
-        //        if (isUpdate) {
-            //            controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
-        //            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        //            bindingCountries(controller.getAll());}
-        //        else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
-        //            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
-        //            bindingCountries(controller.getAll());
-        //            txtCountryId.setEditable(true);
-        //         }
-        //cmbRegionId.setSelectedIndex(0);
+        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateStart));
+        if (!txtTrainingId.isEnabled()) {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save, "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingTraining(controller.getAll());
+        reset();
     }//GEN-LAST:event_btnSaveCActionPerformed
-
-    private void txtProgrammingName1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProgrammingName1KeyTyped
+    
+    /**
+     * Method ketika txtOrganization diketik
+     * @param evt - KeyEvent
+     */
+    private void txtOrganizationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrganizationKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProgrammingName1KeyTyped
-
-    private void cmbKategoriCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriCountryActionPerformed
+    }//GEN-LAST:event_txtOrganizationKeyTyped
+    
+    /**
+     * Methid ketika cmKategori dipilih
+     * @param evt - ActionEvent
+     */
+    private void cmbKategoriTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriTrainingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKategoriCountryActionPerformed
+    }//GEN-LAST:event_cmbKategoriTrainingActionPerformed
+    /**
+     * Method ketika baris pada tblTraining dipilih
+     * @param evt - MouseEvent
+     */
+    private void tblTrainingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTrainingMouseClicked
+        // TODO add your handling code here:
+        int row = tblTraining.getSelectedRow();
+        txtTrainingId.setText(tblTraining.getValueAt(row, 1).toString());
+        txtTrainingName.setText(tblTraining.getValueAt(row, 2).toString());
+        txtOrganization.setText(tblTraining.getValueAt(row, 3).toString());
+        edit();
+    }//GEN-LAST:event_tblTrainingMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDropC;
     private javax.swing.JButton btnFindC;
     private javax.swing.JButton btnSaveC;
-    private javax.swing.JComboBox<String> cmbKategoriCountry;
+    private javax.swing.JComboBox<String> cmbKategoriTraining;
+    private org.jdesktop.swingx.JXDatePicker dateEnd;
+    private org.jdesktop.swingx.JXDatePicker dateStart;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
-    private javax.swing.JLabel jlProgrammingId;
     private javax.swing.JLabel jlProgrammingName;
     private javax.swing.JLabel jlProgrammingName1;
     private javax.swing.JLabel jlProgrammingName2;
     private javax.swing.JLabel jlProgrammingName3;
-    private javax.swing.JTextField txtFindCountry;
-    private javax.swing.JTextField txtProgrammingName;
-    private javax.swing.JTextField txtProgrammingName1;
-    private javax.swing.JTextField txtProgrammingid;
+    private javax.swing.JLabel jlTrainingId;
+    private javax.swing.JTable tblTraining;
+    private javax.swing.JTextField txtFindTraining;
+    private javax.swing.JTextField txtOrganization;
+    private javax.swing.JTextField txtTrainingId;
+    private javax.swing.JTextField txtTrainingName;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     * Method untuk memanggil isi dari tblTraining
+     * @param object 
+     */
+    public void bindingTraining(List<Object> object) {
+        String[] header = {"No.", "Training ID", "Training Name", "Training Organization", "Start Date", "End Date"};
+        String[][] data = new String[object.size()][header.length];
+        int i = 0;
+        for (Object obj : object) {
+            Training training = (Training) obj;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = training.getIdtraining() + "";
+            data[i][2] = training.getTrainingname() + "";
+            data[i][3] = training.getTrainingorganization() + "";
+            data[i][4] = training.getStartdate() + "";
+            data[i][5] = training.getEnddate() + "";
+            i++;
+        }
+        tblTraining.setModel(new DefaultTableModel(data, header));
+        reset();
+    }
+    
+    /**
+     * Method untuk mengembalikan button dan textfield seperti keadaan awal
+     */
+    public void reset(){
+        txtTrainingId.setText(controller.getAutoId().toString());
+        txtTrainingId.setEnabled(false);
+        txtTrainingName.setEnabled(true);
+        txtOrganization.setEnabled(true);
+    }
+    
+    /**
+     * Method ketika proses edit
+     */
+    public void edit(){
+        txtTrainingId.setEnabled(false);
+    }
 }
