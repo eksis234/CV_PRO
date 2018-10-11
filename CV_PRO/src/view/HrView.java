@@ -246,7 +246,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTrainingActionPerformed
         // TODO add your handling code here:
-        TrainingView trainingView = new TrainingView();
+        TrainingView trainingView = new TrainingView(sf);
         trainingView.show();
         dpUtamaHr.add(trainingView);
     }//GEN-LAST:event_jmTrainingActionPerformed
@@ -280,7 +280,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEducationActionPerformed
          // TODO add your handling code here:
-         EducationView educationView = new EducationView();
+         EducationView educationView = new EducationView(sf);
          educationView.show();
          dpUtamaHr.add(educationView);
     }//GEN-LAST:event_jmEducationActionPerformed

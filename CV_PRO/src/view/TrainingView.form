@@ -52,14 +52,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="cmbKategoriCountry" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="cmbKategoriTraining" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFindCountry" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="txtFindTraining" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnFindC" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -67,8 +71,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbKategoriCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFindCountry" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbKategoriTraining" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFindTraining" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnFindC" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -78,27 +82,29 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="cmbKategoriCountry">
+        <Component class="javax.swing.JComboBox" name="cmbKategoriTraining">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value=" "/>
-                <StringItem index="2" value=" "/>
+              <StringArray count="5">
+                <StringItem index="0" value="ID Training"/>
+                <StringItem index="1" value="Nama Training"/>
+                <StringItem index="2" value="Penyelenggara"/>
+                <StringItem index="3" value="Tanggal Mulai"/>
+                <StringItem index="4" value="Tanggal Selesai"/>
               </StringArray>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKategoriCountryActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKategoriTrainingActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="TrainingView_cmbKategoriCountry"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFindCountry">
+        <Component class="javax.swing.JTextField" name="txtFindTraining">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindCountryKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindTrainingKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFindC">
@@ -116,7 +122,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tblTraining">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
@@ -149,27 +155,51 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlProgrammingName3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlProgrammingName2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlProgrammingName1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jlProgrammingName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jlProgrammingId" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="jlTrainingId" pref="62" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jlProgrammingName1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jlProgrammingName" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="txtTrainingId" alignment="0" pref="151" max="32767" attributes="0"/>
+                      <Component id="txtTrainingName" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtOrganization" alignment="0" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtProgrammingName" alignment="0" pref="158" max="32767" attributes="0"/>
-                      <Component id="txtProgrammingid" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtProgrammingName1" alignment="0" pref="158" max="32767" attributes="0"/>
-                      <Component id="jXDatePicker1" max="32767" attributes="0"/>
-                      <Component id="jXDatePicker2" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jlProgrammingName2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="dateStart" pref="184" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jlProgrammingName3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="btnDropC" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnSaveC" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="dateEnd" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                  <Component id="btnDropC" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="btnSaveC" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,30 +208,33 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlProgrammingId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtProgrammingid" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlTrainingId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTrainingId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlProgrammingName2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dateStart" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlProgrammingName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtProgrammingName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlProgrammingName1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtProgrammingName1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnDropC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSaveC" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jlProgrammingName2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jXDatePicker1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtTrainingName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlProgrammingName3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jXDatePicker2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dateEnd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jlProgrammingName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtOrganization" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnDropC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSaveC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -209,26 +242,26 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtProgrammingid">
+        <Component class="javax.swing.JTextField" name="txtTrainingId">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProgrammingidActionPerformed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingidKeyReleased"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingidKeyTyped"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTrainingIdActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTrainingIdKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTrainingIdKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtProgrammingName">
+        <Component class="javax.swing.JTextField" name="txtTrainingName">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingNameKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTrainingNameKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlProgrammingId">
+        <Component class="javax.swing.JLabel" name="jlTrainingId">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Id Training       :"/>
+            <Property name="text" type="java.lang.String" value="Training ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlProgrammingName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Name Training :"/>
+            <Property name="text" type="java.lang.String" value="Training Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnDropC">
@@ -249,27 +282,27 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jlProgrammingName1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nama Penyelenggara :"/>
+            <Property name="text" type="java.lang.String" value="Penyelenggara"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlProgrammingName2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tanggal Mulai :"/>
+            <Property name="text" type="java.lang.String" value="Tanggal Mulai"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlProgrammingName3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tanggal Selesai :"/>
+            <Property name="text" type="java.lang.String" value="Tanggal Selesai"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtProgrammingName1">
+        <Component class="javax.swing.JTextField" name="txtOrganization">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingName1KeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtOrganizationKeyTyped"/>
           </Events>
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker1">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="dateStart">
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker2">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="dateEnd">
         </Component>
       </SubComponents>
     </Container>
