@@ -5,17 +5,35 @@
  */
 package view;
 
+import controller.*;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import model.Foreignlanguage;
+import model.Os;
+import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
+
 /**
  *
  * @author Martin
  */
 public class BahasaAsingView extends javax.swing.JInternalFrame {
-    private SerbaGuna sg;
+    private final BhsaController controller;
+    private TableRowSorter<TableModel> rowSorter;
+    private final SerbaGuna sg;
     /**
      * Creates new form BahasaAsingView
      */
-    public BahasaAsingView() {
+    public BahasaAsingView(SessionFactory factory) {
         initComponents();
+        controller = new BhsaController(factory);
+        bindingBhsa(controller.getAll());
+        tblBahasaAsing.setRowSorter(rowSorter);
         sg = new SerbaGuna();
     }
 
@@ -41,6 +59,10 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
         btnSearch = new javax.swing.JButton();
         cmbKategori = new javax.swing.JComboBox<>();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Bahasa Asing");
 
         tblBahasaAsing.setModel(new javax.swing.table.DefaultTableModel(
@@ -54,6 +76,11 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblBahasaAsing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBahasaAsingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBahasaAsing);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -69,8 +96,18 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
         jLabel2.setText("Nama Bahasa :");
 
         btnDelete.setText("Drop");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,7 +146,20 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
                     .addComponent(btnSave)))
         );
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         btnSearch.setText("Find");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Language", "Name Language" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +204,73 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
         sg.filterHuruf(evt);
     }//GEN-LAST:event_txtIdBahasaKeyTyped
 
+    private void tblBahasaAsingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBahasaAsingMouseClicked
+        // TODO add your handling code here:
+        int row = tblBahasaAsing.getSelectedRow();
+        txtIdBahasa.setText(tblBahasaAsing.getValueAt(row, 1).toString());
+        txtNamaBahasa.setText(tblBahasaAsing.getValueAt(row, 2).toString());
+        edit();
+    }//GEN-LAST:event_tblBahasaAsingMouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        boolean isUpdate = false;
+                if(!txtIdBahasa.isEnabled()){
+                if (isUpdate=true) {
+                    controller.saveOrUpdate(txtIdBahasa.getText(), txtNamaBahasa.getText());
+                    JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                    bindingBhsa(controller.getAll());}
+                else {controller.saveOrUpdate(txtIdBahasa.getText(), txtNamaBahasa.getText());
+                    JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
+                    bindingBhsa(controller.getAll());
+                    txtIdBahasa.setEditable(true);
+                 }
+                }//bugggg
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
+                if (response == JOptionPane.YES_OPTION) {
+                    controller.delete(txtIdBahasa.getText());
+                    JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    bindingBhsa(controller.getAll());
+                    reset();
+                    }else if (response == JOptionPane.NO_OPTION) {
+                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if (txtSearch.getText().equals("")) {
+                bindingBhsa(controller.getAll());
+            }else if (!txtSearch.getText().equalsIgnoreCase("")){
+                btnSearch.setEnabled(true);
+            }
+            if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+            }
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        if (!txtSearch.getText().equalsIgnoreCase("")) {
+                        String text = txtSearch.getText();
+                        if (text.trim().length() == 0) {
+                                rowSorter.setRowFilter(null);
+                            } else {
+                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+                            JOptionPane.showMessageDialog(this,pesan.find.getPesan(), "Search",JOptionPane.INFORMATION_MESSAGE);
+                        }                 
+                    }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -169,4 +286,46 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNamaBahasa;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+       /**
+     * dok bindingCountries
+     * @param countrys berupa list<object>
+     */
+private void bindingBhsa(List<Object> Bhasa) {
+    String [] header = {"No","Id Language","Language Name"};
+        String [][] data = new String[Bhasa.size()][header.length];
+        int i = 0;
+        for (Object object : Bhasa) {
+            Foreignlanguage f =  (Foreignlanguage) object;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = f.getIdflang()+"";
+            data[i][2] = f.getLanguagename();
+            i++;
+        }
+        tblBahasaAsing.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(tblBahasaAsing.getModel());
+        reset();     
+    }
+    
+    /**
+     * dok reset
+     */
+    public  void reset(){
+        txtIdBahasa.setText(controller.getAutoId()+"");
+        txtIdBahasa.setEnabled(false);
+        txtNamaBahasa.setText("");
+        btnDelete.setEnabled(false);
+        btnSave.setEnabled(true);
+        btnSearch.setEnabled(false);
+        tblBahasaAsing.setRowSorter(rowSorter);
+    }
+    
+    /**
+     * dok edit
+     */
+    private void edit(){
+        txtIdBahasa.setEnabled(false);
+        btnSave.setEnabled(true);
+        btnDelete.setEnabled(true);
+    }
 }

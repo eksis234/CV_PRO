@@ -5,20 +5,39 @@
  */
 package view;
 
+import controller.OsController;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import model.Os;
+import model.Tools;
+import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
+
 /**
  *
  * @author Martin
  */
 public class OperatingSystemView extends javax.swing.JInternalFrame {
-    
-    private SerbaGuna sg;
+    private OsController controller;
+    private TableRowSorter<TableModel> rowSorter;
+    private final SerbaGuna sg;
     /**
      * Creates new form OperatingSystemView
      */
-    public OperatingSystemView() {
+    public OperatingSystemView(SessionFactory factory) {
         initComponents();
+        controller = new OsController(factory);
+        bindingOs(controller.getAll());
+        tblOperatingSystem.setRowSorter(rowSorter);
         sg = new SerbaGuna();
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,11 +62,23 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         cmbKategori = new javax.swing.JComboBox<>();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Operating System");
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
         btnSearch.setText("Find");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         tblOperatingSystem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,6 +91,11 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblOperatingSystem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOperatingSystemMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblOperatingSystem);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detail", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -80,8 +116,18 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         });
 
         btnDelete.setText("Drop");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,6 +165,8 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
                     .addComponent(btnDelete)
                     .addComponent(btnSave)))
         );
+
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OS ID", "OS NAME" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,6 +215,73 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         sg.filterHuruf(evt);
     }//GEN-LAST:event_txtIdOsKeyTyped
 
+    private void tblOperatingSystemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOperatingSystemMouseClicked
+        // TODO add your handling code here:
+        int row = tblOperatingSystem.getSelectedRow();
+        txtIdOs.setText(tblOperatingSystem.getValueAt(row, 1).toString());
+        txtNamaOs.setText(tblOperatingSystem.getValueAt(row, 2).toString());
+        edit();
+    }//GEN-LAST:event_tblOperatingSystemMouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        boolean isUpdate = false;
+                if(!txtIdOs.isEnabled()){
+                if (isUpdate=true) {
+                    controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                    bindingOs(controller.getAll());}
+                else {controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
+                    bindingOs(controller.getAll());
+                    txtIdOs.setEditable(true);
+                 }
+                }//bugggg
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
+                if (response == JOptionPane.YES_OPTION) {
+                    controller.delete(txtIdOs.getText());
+                    JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    bindingOs(controller.getAll());
+                    reset();
+                    }else if (response == JOptionPane.NO_OPTION) {
+                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                    }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        if (txtSearch.getText().equals("")) {
+                bindingOs(controller.getAll());
+            }else if (!txtSearch.getText().equalsIgnoreCase("")){
+                btnSearch.setEnabled(true);
+            }
+            if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+            }
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        if (!txtSearch.getText().equalsIgnoreCase("")) {
+                        String text = txtSearch.getText();
+                        if (text.trim().length() == 0) {
+                                rowSorter.setRowFilter(null);
+                            } else {
+                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+                            JOptionPane.showMessageDialog(this,pesan.find.getPesan(), "Search",JOptionPane.INFORMATION_MESSAGE);
+                        }                 
+                    }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -182,4 +297,47 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNamaOs;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+       /**
+     * dok bindingCountries
+     * @param countrys berupa list<object>
+     */
+private void bindingOs(List<Object> Os) {
+    String [] header = {"No","OS Id","OS Name"};
+        String [][] data = new String[Os.size()][header.length];
+        int i = 0;
+        for (Object object : Os) {
+            Os os  =  (Os) object;
+            data[i][0] = (i + 1) + "";
+            data[i][1] = os.getIdos()+"";
+            data[i][2] = os.getOsname();
+            i++;
+        }
+        tblOperatingSystem.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(tblOperatingSystem.getModel());
+        reset();     
+    }
+    
+    /**
+     * dok reset
+     */
+    public  void reset(){
+        txtIdOs.setText(controller.getAutoId()+"");
+        txtIdOs.setEnabled(false);
+        txtNamaOs.setText("");
+        btnDelete.setEnabled(false);
+        btnSave.setEnabled(true);
+        btnSearch.setEnabled(false);
+        tblOperatingSystem.setRowSorter(rowSorter);
+    }
+    
+    /**
+     * dok edit
+     */
+    private void edit(){
+        txtIdOs.setEnabled(false);
+        btnSave.setEnabled(true);
+        btnDelete.setEnabled(true);
+    } 
+    
 }
