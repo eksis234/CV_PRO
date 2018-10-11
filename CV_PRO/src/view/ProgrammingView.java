@@ -224,6 +224,11 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Untuk melakukan pencarian dari kategori dengan menekan tombol enter dan menampilkan seluruh data saat
+     * textfield search dikosongkan
+     * @param evt (KeyEvent)
+     */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -241,6 +246,10 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    /**
+     * Melakukan pencarian dengan menggunakan button find
+     * @param evt (ActionEvent)
+     */
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         if (!txtSearch.getText().equals("")) {
             String text = txtSearch.getText();
@@ -268,6 +277,10 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProgrammingNameKeyTyped
 
+    /**
+     * Untuk menghapus data dengan menggunakan button drop
+     * @param evt (ActionEvent)
+     */
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         int messageBox = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
         if(messageBox == JOptionPane.YES_OPTION){
@@ -281,6 +294,10 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnDropActionPerformed
 
+    /**
+     * Untuk menyimpan dan memperbaharui data dengan menggunakan button save
+     * @param evt (ActionEvent)
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         controller.saveOrUpdate(txtProgrammingId.getText(), txtProgrammingName.getText());
         if (btnDrop.isEnabled()) {
@@ -292,6 +309,10 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    /**
+     * Mengambil data dari baris yang di klik oleh mouse
+     * @param evt (MouseEvent)
+     */
     private void tblProgrammingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProgrammingMouseClicked
          // TODO add your handling code here:
         int row = tblProgramming.getSelectedRow();
@@ -317,6 +338,10 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Untuk menampilkan seluruh data ke dalam tabel
+     * @param programmings (List<Object>) data yang akan dimasukan ke tabel
+     */
     private void bindingProgramming(List<Object> programmings) {
         String[] header = {"No", "ID Programming", "Programming Skill"};
         String[][] data = new String[programmings.size()][header.length];
@@ -333,6 +358,10 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         reset();
     }
 
+    /**
+     * Menampilkan ID terakhir di textfield programmingId dan mengaktifkan serta menghilangkan kemampuan meng-edit 
+     * textfield tersebut, menonaktifkan button drop, mengosongkan textfield programmingName
+     */
     public void reset() {
         txtProgrammingId.setText(controller.getAutoId() + "");
         txtProgrammingId.setEnabled(true);
@@ -342,6 +371,9 @@ public class ProgrammingView extends javax.swing.JInternalFrame {
         txtProgrammingName.setText("");
     }
 
+    /**
+     * menonaktifkan texfield programmingId dan button drop
+     */
     public void edit() {
         txtProgrammingId.setEnabled(false);
         btnDrop.setEnabled(true);

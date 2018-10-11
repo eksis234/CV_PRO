@@ -70,6 +70,7 @@ public class HrView extends javax.swing.JFrame {
         jmTools = new javax.swing.JMenuItem();
         jmPersonalData = new javax.swing.JMenuItem();
         jmCountryId = new javax.swing.JMenuItem();
+        miPersonalData = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mniReportTabelTools = new javax.swing.JMenuItem();
         OsReport = new javax.swing.JMenuItem();
@@ -195,6 +196,14 @@ public class HrView extends javax.swing.JFrame {
             }
         });
         jmRegion.add(jmCountryId);
+
+        miPersonalData.setText("Personal Data");
+        miPersonalData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPersonalDataActionPerformed(evt);
+            }
+        });
+        jmRegion.add(miPersonalData);
 
         jMenuBar1.add(jmRegion);
 
@@ -334,6 +343,13 @@ public class HrView extends javax.swing.JFrame {
          this.showReport("BahasaReport.jrxml");
     }//GEN-LAST:event_BahasaReportActionPerformed
 
+    private void miPersonalDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPersonalDataActionPerformed
+        // TODO add your handling code here:
+        PersonalDataView personalDataView = new PersonalDataView(sf);
+         personalDataView.show();
+         dpUtamaHr.add(personalDataView);
+    }//GEN-LAST:event_miPersonalDataActionPerformed
+
     private void showReport(String path){
         ReportView reportView = new ReportView(sf, "src\\report\\"+path+"");
         reportView.show();
@@ -410,6 +426,7 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmTools;
     private javax.swing.JMenuItem jmTraining;
     private javax.swing.JMenuItem jmWorkingExperience;
+    private javax.swing.JMenuItem miPersonalData;
     private javax.swing.JMenuItem mniReportTabelTools;
     // End of variables declaration//GEN-END:variables
 }

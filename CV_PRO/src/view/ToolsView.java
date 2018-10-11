@@ -247,7 +247,6 @@ public class ToolsView extends javax.swing.JInternalFrame {
                                 rowSorter.setRowFilter(null);
                             } else {
                                 rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriTools.getSelectedIndex() + 1));
-                            JOptionPane.showMessageDialog(this,pesan.find.getPesan(), "Search",JOptionPane.INFORMATION_MESSAGE);
                         }                 
                     }
     }//GEN-LAST:event_btnFindToolsActionPerformed

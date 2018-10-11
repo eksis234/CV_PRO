@@ -22,7 +22,9 @@ import org.jdesktop.swingx.JXDatePicker;
  */
 public class SerbaGuna {
     
- 
+ /**
+  * Enumerasi untuk menyimpan isi pesan
+  */
     public enum pesan{
       save("Berhasil Disimpan"), update("Berhasil Diperbaharui"), 
       delete("Berhasil Dihapus"), cancel("Batal Dihapus"),
@@ -38,6 +40,10 @@ public class SerbaGuna {
       }
     }
     
+    /**
+     * Method untuk menyaring input agar tidak dapat memasukan huruf
+     * @param a (KeyEvent)
+     */
     public void filterHuruf(KeyEvent a){
             if(Character.isAlphabetic(a.getKeyChar())){
                 a.consume();
@@ -45,6 +51,10 @@ public class SerbaGuna {
             }
         }
 
+    /**
+     * Method untuk menyaring input agar tidak dapat memasukan angka
+     * @param b (KeyEvent)
+     */
     public void filterAngka(KeyEvent b){
             if(Character.isDigit(b.getKeyChar())){
                 b.consume();
@@ -52,6 +62,10 @@ public class SerbaGuna {
             }
         }
     
+    /**
+     * Method untuk mengecek input password apakah berisi minimal sebuah huruf besar, huruf kecil, karakter, dan angka
+     * @param pass (String) input password
+     */
     public void filterPass(String pass){
 //        Pattern ptn = Pattern.compile("^([A-Z|0-9|a-z\\+_\\-]+)+[^\\w\\+_\\-]+$");
         Pattern ptn = Pattern.compile("^([A-Z|a-z\\+_\\-]+)([0-9\\+_\\-]+)([!-~\\+_\\-]+)([^\\w\\+_\\-]+)$");
@@ -68,6 +82,10 @@ public class SerbaGuna {
         }
     }
     
+    /**
+     * Method untuk mengecek apakah input email mengandung simbol "@"
+     * @param mail 
+     */
     public void cekEmail(String mail){                                    
         Pattern ptn = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher matcher = ptn.matcher(mail);
@@ -91,6 +109,13 @@ public class SerbaGuna {
         return result;
     }
     
+    /**
+     * Method untuk merubah format date
+     * @param date (String) tanggal data
+     * @param picker (JXDatePicker)
+     * @param type (Class) class view yang digunakan
+     * @return mengembalikan nilai date yang telah diubah formatnya
+     */
     public String pickDate(String date, JXDatePicker picker, Class type){
         Date dateHolder;
         date = date.substring(0, 10);

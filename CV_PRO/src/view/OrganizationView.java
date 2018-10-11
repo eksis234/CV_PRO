@@ -76,6 +76,7 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Organization");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Organization Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -243,6 +244,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Menyaring huruf dalam input
+     * @param evt (KeyEvent)
+     */
     private void txtOrganizationIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrganizationIdKeyTyped
         // TODO add your handling code here:
         sg.filterHuruf(evt);
@@ -252,10 +257,13 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 
+    /**
+     * Mengambil data dari baris yang di klik oleh mouse
+     * @param evt (MouseEvent)
+     */
     private void tblOrganizationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrganizationMouseClicked
         // TODO add your handling code here:
         int row = tblOrganization.getSelectedRow();
-        
 //        Date startDate;
 //        String sdate = tblOrganization.getValueAt(row, 4).toString();
 //        sdate = sdate.substring(0, 10);
@@ -276,9 +284,8 @@ public class OrganizationView extends javax.swing.JInternalFrame {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(OrganizationView.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
-        String startDate = tblOrganization.getValueAt(row, 4).toString();
-        String endDate = tblOrganization.getValueAt(row, 5).toString();
+        String startDate = tblOrganization.getValueAt(row, 4).toString().substring(0, 10);
+        String endDate = tblOrganization.getValueAt(row, 5).toString().substring(0,10);
         txtOrganizationId.setText(tblOrganization.getValueAt(row, 1).toString());
         txtOrganizationName.setText(tblOrganization.getValueAt(row, 2).toString());
         txtPosistion.setText(tblOrganization.getValueAt(row, 3).toString());
@@ -287,6 +294,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         edit();
     }//GEN-LAST:event_tblOrganizationMouseClicked
 
+    /**
+     * Menyimpan data saat menekan button save
+     * @param evt (ActionEvent)
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         controller.saveOrUpdate(txtOrganizationId.getText(), txtOrganizationName.getText(), txtPosistion.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateEnd));
@@ -299,6 +310,11 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    /**
+     * Untuk melakukan pencarian dari kategori dengan menekan tombol enter dan menampilkan seluruh data saat
+     * textfield search dikosongkan
+     * @param evt (KeyEvent)
+     */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -316,6 +332,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    /**
+     * Melakukan pencarian dengan menggunakan button search
+     * @param evt (ActionEvent)
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if (!txtSearch.getText().equals("")) {
@@ -328,6 +348,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    /**
+     * Untuk menghapus data dengan menggunakan button drop
+     * @param evt (ActionEvent)
+     */
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         // TODO add your handling code here:
         int messageBox = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
@@ -363,6 +387,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Untuk menampilkan seluruh data ke dalam tabel
+     * @param organizations (List<Object>) data yang akan dimasukan ke tabel
+     */
     private void bindingOrganization(List<Object> organizations) {
         String[] header = {"No", "ID Organisasi", "Nama Organisasi", "Posisi", "Tanggal Mulai", "Tanggal Selesai"};
         String[][] data = new String[organizations.size()][header.length];
@@ -373,8 +401,8 @@ public class OrganizationView extends javax.swing.JInternalFrame {
             data[i][1] = organization.getIdorganization().toString();
             data[i][2] = organization.getOrganizationname();
             data[i][3] = organization.getPosition();
-            data[i][4] = organization.getStartdate().toString();
-            data[i][5] = organization.getEnddate().toString();
+            data[i][4] = organization.getStartdate().toString().substring(0, 10);
+            data[i][5] = organization.getEnddate().toString().substring(0, 10);
             i++;
         }
         tblOrganization.setModel(new DefaultTableModel(data, header));
@@ -382,6 +410,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         reset();
     }
 
+    /**
+     * Menampilkan ID terakhir di textfield organizationId dan mengaktifkan serta menghilangkan kemampuan meng-edit 
+     * textfield tersebut, menonaktifkan button drop, mengosongkan textfield organizationName,position,dateStart,dan dateEnd
+     */
     public void reset() {
         txtOrganizationId.setText(controller.getAutoId() + "");
         txtOrganizationId.setEnabled(true);
@@ -389,8 +421,14 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         btnDrop.setEnabled(false);
         txtOrganizationId.setEditable(false);
         txtOrganizationName.setText("");
+        txtPosistion.setText("");
+        dateStart.setDate(null);
+        dateEnd.setDate(null);
     }
 
+    /**
+     * menonaktifkan texfield organizationId dan button drop
+     */
     public void edit() {
         txtOrganizationId.setEnabled(false);
         btnDrop.setEnabled(true);
