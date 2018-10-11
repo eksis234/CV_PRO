@@ -48,8 +48,7 @@ public class PengalamankerjaControllerTest {
         System.out.println("===================================================");
         System.out.println("saveOrUpdate");
         String idpk = "1";
-        String jobtitle = "";
-        String employer = "";
+        String namaPerusahaan = "";
         String city = "";
         Date startdate = null;
         Date enddate = null;
@@ -68,7 +67,7 @@ public class PengalamankerjaControllerTest {
                         idpk = "1b";
                         break;
                 }
-                boolean result = instance.saveOrUpdate(idpk, jobtitle, employer, city, startdate, enddate, description);
+                boolean result = instance.saveOrUpdate(idpk, namaPerusahaan, city);
                 assertTrue(result);
                 System.out.println("berhasil simpan karena id = " + idpk);
             } catch (Exception e) {

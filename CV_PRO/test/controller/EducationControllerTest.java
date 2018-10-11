@@ -107,7 +107,7 @@ public class EducationControllerTest {
                         idEducation = "1b";
                         break;
                 }
-                boolean result = instance.saveOrUpdate(idEducation, instansi, LevelEducation, gpa, yearIn, graduation, major);
+                boolean result = instance.saveOrUpdate(idEducation, instansi, LevelEducation);
                 assertTrue(result);
                 System.out.println("berhasil simpan karena ID = " + idEducation);
             } catch (Exception e) {
