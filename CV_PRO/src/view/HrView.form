@@ -150,12 +150,28 @@
             <Property name="text" type="java.lang.String" value="Report"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mniReportTabel">
+            <MenuItem class="javax.swing.JMenuItem" name="mniReportTabelTools">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Report Tabel"/>
+                <Property name="text" type="java.lang.String" value="Tools Report"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniReportTabelActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniReportTabelToolsActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="OsReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="OS Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OsReportActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="BahasaReport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Language Report"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BahasaReportActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

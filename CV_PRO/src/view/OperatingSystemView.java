@@ -225,18 +225,15 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        boolean isUpdate = false;
-                if(!txtIdOs.isEnabled()){
-                if (isUpdate=true) {
-                    controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
-                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-                    bindingOs(controller.getAll());}
-                else {controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
-                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
-                    bindingOs(controller.getAll());
-                    txtIdOs.setEditable(true);
-                 }
-                }//bugggg
+        controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
+        if(!txtIdOs.isEnabled()){
+            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingOs(controller.getAll());
+        reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -323,7 +320,7 @@ private void bindingOs(List<Object> Os) {
      */
     public  void reset(){
         txtIdOs.setText(controller.getAutoId()+"");
-        txtIdOs.setEnabled(false);
+        txtIdOs.setEnabled(true);
         txtNamaOs.setText("");
         btnDelete.setEnabled(false);
         btnSave.setEnabled(true);

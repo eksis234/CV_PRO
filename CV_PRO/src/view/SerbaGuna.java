@@ -19,7 +19,7 @@ public class SerbaGuna {
  
     public enum pesan{
       save("Berhasil Disimpan"), update("Berhasil Diperbaharui"), 
-      delete("Berhassil Dihapus"), cancel("Batal Dihapus"),
+      delete("Berhasil Dihapus"), cancel("Batal Dihapus"),
       find("Berhasil Ditemukan");  
         
       private String isine;
@@ -48,7 +48,7 @@ public class SerbaGuna {
     
     public void filterPass(String pass){
 //        Pattern ptn = Pattern.compile("^([A-Z|0-9|a-z\\+_\\-]+)+[^\\w\\+_\\-]+$");
-        Pattern ptn = Pattern.compile("^([!-~\\+_\\-]+)+([!-~\\+_\\-]+)$");
+        Pattern ptn = Pattern.compile("^([A-Z|a-z\\+_\\-]+)([0-9\\+_\\-]+)([!-~\\+_\\-]+)([^\\w\\+_\\-]+)$");
         Matcher matcher = ptn.matcher(pass);
         if(pass.length()>=8 && !pass.substring(0, 1).equals(" ")){
             if(matcher.matches()){
