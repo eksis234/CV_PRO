@@ -21,14 +21,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "NETWORKINGDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Networkingdetails.findAll", query = "SELECT n FROM Networkingdetails n")
-    , @NamedQuery(name = "Networkingdetails.findByIdnetdetail", query = "SELECT n FROM Networkingdetails n WHERE n.idnetdetail = :idnetdetail")})
+    , @NamedQuery(name = "Networkingdetails.findByIdnetdetail", query = "SELECT n FROM Networkingdetails n WHERE n.idnetdetail = :idnetdetail")
+    , @NamedQuery(name = "Networkingdetails.findByStatus", query = "SELECT n FROM Networkingdetails n WHERE n.status = :status")})
 public class Networkingdetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +38,8 @@ public class Networkingdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDNETDETAIL")
     private BigDecimal idnetdetail;
+    @Column(name = "STATUS")
+    private String status;
     @JoinColumn(name = "IDNETWORKING", referencedColumnName = "IDNETWORKING")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Networking idnetworking;
@@ -51,23 +54,20 @@ public class Networkingdetails implements Serializable {
         this.idnetdetail = idnetdetail;
     }
 
-    public Networkingdetails(BigDecimal idnetdetail, Networking idnetworking) {
-        this.idnetdetail = idnetdetail;
-        this.idnetworking = idnetworking;
-    }
-
-    public Networkingdetails(BigDecimal idnetdetail, Networking idnetworking, Personaldata idpersonal) {
-        this.idnetdetail = idnetdetail;
-        this.idnetworking = idnetworking;
-        this.idpersonal = idpersonal;
-    }
-    
     public BigDecimal getIdnetdetail() {
         return idnetdetail;
     }
 
     public void setIdnetdetail(BigDecimal idnetdetail) {
         this.idnetdetail = idnetdetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Networking getIdnetworking() {

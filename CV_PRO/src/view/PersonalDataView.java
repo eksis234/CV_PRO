@@ -31,19 +31,14 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
         controller.loadCmbTools(cmbBhsaProg, "bhsProg");
         controller.loadCmbTools(cmbEduLevel, "edul");
         controller.loadCmbTools(cmbEventPenghargaan, "eventPh");
-        controller.loadCmbTools(cmbYearIn, "GPA");
-        controller.loadCmbTools(cmbGPA, "lulus");
-        controller.loadCmbTools(cmbGraduation, "yearin");
-        controller.loadCmbTools(cmbMajor, "major");
         controller.loadCmbTools(cmbInstansi, "insta");
         controller.loadCmbTools(cmbJabatan, "jbatn");
         controller.loadCmbTools(cmbNamaOraginsasi, "naOr");
         controller.loadCmbTools(cmbNetworking, "network");
         controller.loadCmbTools(cmbNmPerusahaan, "namaPr");
-        controller.loadCmbTools(cmbJabatanPeru, "jabatan");
+        controller.loadCmbTools(cmbJabatanPeru, "city");
         controller.loadCmbTools(cmbNamaPenghaargaan, "nmPenghargaan");
         controller.loadCmbTools(cmbEventPenghargaan, "evPenghargaan");
-        controller.loadCmbTools(cmbThPenghargaan, "thPenghargaan");
         controller.loadCmbTools(cmbNameTrain, "nmTrain");
         controller.loadCmbTools(cmbLembgTraining, "lgTrain");
         sg = new SerbaGuna();
@@ -116,10 +111,6 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         cmbInstansi = new javax.swing.JComboBox<>();
         cmbEduLevel = new javax.swing.JComboBox<>();
-        cmbMajor = new javax.swing.JComboBox<>();
-        cmbYearIn = new javax.swing.JComboBox<>();
-        cmbGraduation = new javax.swing.JComboBox<>();
-        cmbGPA = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtInstansi = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -136,7 +127,6 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
         jLabel43 = new javax.swing.JLabel();
         cmbNamaPenghaargaan = new javax.swing.JComboBox<>();
         cmbEventPenghargaan = new javax.swing.JComboBox<>();
-        cmbThPenghargaan = new javax.swing.JComboBox<>();
         txtTahunAchiv = new javax.swing.JTextField();
         cmbNameTrain = new javax.swing.JComboBox<>();
         cmbLembgTraining = new javax.swing.JComboBox<>();
@@ -164,6 +154,8 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
         jScrollPane13 = new javax.swing.JScrollPane();
         txtNetworking = new javax.swing.JTextArea();
         jLabel48 = new javax.swing.JLabel();
+        txtYearIn = new javax.swing.JTextField();
+        txtGraduation = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
         txtIdPersonal = new javax.swing.JTextField();
 
@@ -203,7 +195,7 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Nama Organisasi");
 
-        jLabel17.setText("Posisi  atau Jabatan");
+        jLabel17.setText("City Organisasi");
 
         jLabel18.setText("Bulan & Tahun Mulai");
 
@@ -542,18 +534,20 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel13))
                                 .addGap(22, 22, 22))
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbYearIn, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbGraduation, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbInstansi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbEduLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbMajor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cmbGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtGPA, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbInstansi, 0, 207, Short.MAX_VALUE)
+                                    .addComponent(cmbEduLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtYearIn)
+                                    .addComponent(txtGPA)
+                                    .addComponent(txtGraduation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,16 +576,13 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
                                         .addComponent(cmbTools, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cmbNetworking, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cmbBhsaProg, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jXDatePicker6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jXDatePicker6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                                         .addComponent(jXDatePicker5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cmbLembgTraining, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cmbNameTrain, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                            .addComponent(cmbThPenghargaan, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtTahunAchiv, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
                                         .addComponent(cmbEventPenghargaan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmbNamaPenghaargaan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(cmbNamaPenghaargaan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtTahunAchiv))
                                     .addComponent(cmbNamaOS, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel32))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -622,25 +613,24 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel12)
-                                    .addComponent(cmbMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
-                                    .addComponent(cmbGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbYearIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtYearIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(9, 9, 9)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel15)
-                                    .addComponent(cmbGraduation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtGraduation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -657,8 +647,7 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30)
-                            .addComponent(txtTahunAchiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbThPenghargaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTahunAchiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel31)
@@ -813,14 +802,11 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cmbBhsaProg;
     private javax.swing.JComboBox<String> cmbEduLevel;
     private javax.swing.JComboBox<String> cmbEventPenghargaan;
-    private javax.swing.JComboBox<String> cmbGPA;
-    private javax.swing.JComboBox<String> cmbGraduation;
     private javax.swing.JComboBox<String> cmbInstansi;
     private javax.swing.JComboBox<String> cmbJabatan;
     private javax.swing.JComboBox<String> cmbJabatanPeru;
     private javax.swing.JComboBox<String> cmbLembgTraining;
     private javax.swing.JComboBox<String> cmbMail;
-    private javax.swing.JComboBox<String> cmbMajor;
     private javax.swing.JComboBox<String> cmbNamaOS;
     private javax.swing.JComboBox<String> cmbNamaOraginsasi;
     private javax.swing.JComboBox<String> cmbNamaPenghaargaan;
@@ -829,9 +815,7 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cmbNetworking;
     private javax.swing.JComboBox<String> cmbNmPerusahaan;
     private javax.swing.JComboBox<String> cmbSex;
-    private javax.swing.JComboBox<String> cmbThPenghargaan;
     private javax.swing.JComboBox<String> cmbTools;
-    private javax.swing.JComboBox<String> cmbYearIn;
     private org.jdesktop.swingx.JXDatePicker dateBirth;
     private org.jdesktop.swingx.JXDatePicker dateOrgAk;
     private org.jdesktop.swingx.JXDatePicker dateOrgAw;
@@ -895,6 +879,7 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtEduLevel;
     private javax.swing.JTextArea txtEventPenghar;
     private javax.swing.JTextField txtGPA;
+    private javax.swing.JTextField txtGraduation;
     private javax.swing.JTextField txtIdPersonal;
     private javax.swing.JTextArea txtInstansi;
     private javax.swing.JTextArea txtJabatanOrg;
@@ -912,6 +897,7 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPhoto;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTahunAchiv;
+    private javax.swing.JTextField txtYearIn;
     // End of variables declaration//GEN-END:variables
 
     public  void reset(){

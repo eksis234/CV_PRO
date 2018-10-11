@@ -35,7 +35,7 @@ public class MainTest {
     
         for (Object object : iDAO.getAll()) {
             Workingexperience w = (Workingexperience) object;
-            System.out.println(w.getIdworkingexperience()+" - "+w.getEmployer());
+            System.out.println(w.getIdworkingexperience()+" - "+w.getNamaperusahaan());
         }
 //        System.out.println(w.getIdworkingexperience()+" - "+w.getEmployer());
     }

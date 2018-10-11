@@ -64,14 +64,10 @@ public class EducationController {
      * @param idEducation - education ID
      * @param instansi - nama instansi
      * @param LevelEducation - level pendidikan
-     * @param gpa - ipk
-     * @param yearIn - tahun masuk
-     * @param graduation - tahun lulus
-     * @param major - jurusan
      * @return boolean berhasil/tidak proses dieksekusi
      */
-    public boolean saveOrUpdate(String idEducation, String instansi, String LevelEducation, String gpa, String yearIn, String graduation, String major) {
-        Education education = new Education(new BigDecimal(idEducation), instansi, LevelEducation, new Double(gpa), new BigInteger(yearIn), new BigInteger(graduation), major);
+    public boolean saveOrUpdate(String idEducation, String instansi, String LevelEducation) {
+        Education education = new Education(new BigDecimal(idEducation), instansi, LevelEducation);
         return idao.saveOrUpdate(education);
     }
     

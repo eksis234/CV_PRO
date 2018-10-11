@@ -151,46 +151,11 @@ public class PersonalController {
                         cmb.addItem(ach.getEventname());
                     });     break;
                 }
-            case "GPA":
-                {
-                    List<Object> objects = (List<Object>) ec.getAll();
-                    objects.stream().map((object) -> (Education) object).forEachOrdered((ed) -> {
-                        cmb.addItem(ed.getGpa());
-                    });     break;
-                }
-            case "lulus":
-                {
-                    List<Object> objects = (List<Object>) ec.getAll();
-                    objects.stream().map((object) -> (Education) object).forEachOrdered((ed) -> {
-                        cmb.addItem(ed.getGraduation());
-                    });     break;
-                }
-            case "yearin":
-                {
-                    List<Object> objects = (List<Object>) ec.getAll();
-                    objects.stream().map((object) -> (Education) object).forEachOrdered((ed) -> {
-                        cmb.addItem(ed.getYearin());
-                    });     break;
-                }
-            case "major":
-                {
-                    List<Object> objects = (List<Object>) ec.getAll();
-                    objects.stream().map((object) -> (Education) object).forEachOrdered((ed) -> {
-                        cmb.addItem(ed.getMajor());
-                    });     break;
-                }
             case "insta":
                 {
                     List<Object> objects = (List<Object>) ec.getAll();
                     objects.stream().map((object) -> (Education) object).forEachOrdered((ed) -> {
                         cmb.addItem(ed.getInstansi());
-                    });     break;
-                }
-            case "jbatn":
-                {
-                    List<Object> objects = (List<Object>) oc1.getAll();
-                    objects.stream().map((object) -> (Organization) object).forEachOrdered((or1) -> {
-                        cmb.addItem(or1.getPosition());
                     });     break;
                 }
             case "naOr":
@@ -211,14 +176,14 @@ public class PersonalController {
                 {
                     List<Object> objects = (List<Object>) pc1.getAll();
                     objects.stream().map((object) -> (Workingexperience) object).forEachOrdered((prsh) -> {
-                        cmb.addItem(prsh.getEmployer());
+                        cmb.addItem(prsh.getNamaperusahaan());
                     });     break;
                 }
-            case "jabatan":
+            case "city":
                 {
                     List<Object> objects = (List<Object>) pc1.getAll();
                     objects.stream().map((object) -> (Workingexperience) object).forEachOrdered((prsh) -> {
-                        cmb.addItem(prsh.getJobtitle());
+                        cmb.addItem(prsh.getCity());
                     });     break;
                 }
             case "nmPenghargaan":

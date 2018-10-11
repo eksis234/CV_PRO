@@ -61,12 +61,6 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         txtOrganizationName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnDrop = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtPosistion = new javax.swing.JTextField();
-        dateStart = new org.jdesktop.swingx.JXDatePicker();
-        dateEnd = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblOrganization = new javax.swing.JTable();
         cmbKategori = new javax.swing.JComboBox<>();
@@ -76,6 +70,7 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Organization");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Organization Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -103,12 +98,6 @@ public class OrganizationView extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Position :");
-
-        jLabel4.setText("Tanggal Mulai :");
-
-        jLabel5.setText("Tanggal Selesai :");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,28 +106,15 @@ public class OrganizationView extends javax.swing.JInternalFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel2))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPosistion, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(txtOrganizationName)
+                    .addComponent(txtOrganizationName, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(txtOrganizationId))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDrop))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateStart, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(dateEnd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(btnSave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDrop))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,14 +122,7 @@ public class OrganizationView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(dateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSave)
                             .addComponent(btnDrop)))
@@ -165,11 +134,7 @@ public class OrganizationView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtOrganizationName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtPosistion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(42, Short.MAX_VALUE))))
         );
 
         tblOrganization.setModel(new javax.swing.table.DefaultTableModel(
@@ -214,7 +179,7 @@ public class OrganizationView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,13 +201,17 @@ public class OrganizationView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Menyaring huruf dalam input
+     * @param evt (KeyEvent)
+     */
     private void txtOrganizationIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrganizationIdKeyTyped
         // TODO add your handling code here:
         sg.filterHuruf(evt);
@@ -252,57 +221,50 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 
+    /**
+     * Mengambil data dari baris yang di klik oleh mouse
+     * @param evt (MouseEvent)
+     */
     private void tblOrganizationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrganizationMouseClicked
         // TODO add your handling code here:
         int row = tblOrganization.getSelectedRow();
-        
-//        Date startDate;
-//        String sdate = tblOrganization.getValueAt(row, 4).toString();
-//        sdate = sdate.substring(0, 10);
-//        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-//        try {
-//            startDate = formater.parse(sdate);
-//            dateStart.setDate(startDate);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(OrganizationView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
-//        Date endDate;
-//        String edate = tblOrganization.getValueAt(row, 5).toString();
-//        sdate = edate.substring(0, 10);
-//        try {
-//            endDate = formater.parse(sdate);
-//            dateEnd.setDate(endDate);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(OrganizationView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
-        String startDate = tblOrganization.getValueAt(row, 4).toString();
-        String endDate = tblOrganization.getValueAt(row, 5).toString();
         txtOrganizationId.setText(tblOrganization.getValueAt(row, 1).toString());
         txtOrganizationName.setText(tblOrganization.getValueAt(row, 2).toString());
-        txtPosistion.setText(tblOrganization.getValueAt(row, 3).toString());
-        sg.pickDate(startDate, dateStart, OrganizationView.class);
-        sg.pickDate(endDate, dateEnd, OrganizationView.class);
         edit();
     }//GEN-LAST:event_tblOrganizationMouseClicked
 
+    /**
+     * Menyimpan data saat menekan button save
+     * @param evt (ActionEvent)
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(txtOrganizationId.getText(), txtOrganizationName.getText(), txtPosistion.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateEnd));
-        if (btnDrop.isEnabled()) {
-            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtOrganizationName.getText().equals("")){
+            if(!txtOrganizationName.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtOrganizationId.getText(), txtOrganizationName.getText());
+                if(!txtOrganizationId.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingOrganization(controller.getAll());
+                reset();
+            }
         }
-        bindingOrganization((List<Object>) controller.getAll());
-        reset();
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    /**
+     * Untuk melakukan pencarian dari kategori dengan menekan tombol enter dan menampilkan seluruh data saat
+     * textfield search dikosongkan
+     * @param evt (KeyEvent)
+     */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!txtSearch.getText().equals("")) {
+        if (!txtSearch.getText().equals("")) {
+            btnSearch.setEnabled(true);
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                 String text = txtSearch.getText();
                 if (text.trim().length() == 0) {
                     rowSorter.setRowFilter(null);
@@ -316,6 +278,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    /**
+     * Melakukan pencarian dengan menggunakan button search
+     * @param evt (ActionEvent)
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if (!txtSearch.getText().equals("")) {
@@ -328,6 +294,10 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    /**
+     * Untuk menghapus data dengan menggunakan button drop
+     * @param evt (ActionEvent)
+     */
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropActionPerformed
         // TODO add your handling code here:
         int messageBox = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ?", "Delete", JOptionPane.YES_NO_OPTION ,JOptionPane.WARNING_MESSAGE);
@@ -347,24 +317,22 @@ public class OrganizationView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbKategori;
-    private org.jdesktop.swingx.JXDatePicker dateEnd;
-    private org.jdesktop.swingx.JXDatePicker dateStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblOrganization;
     private javax.swing.JTextField txtOrganizationId;
     private javax.swing.JTextField txtOrganizationName;
-    private javax.swing.JTextField txtPosistion;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Untuk menampilkan seluruh data ke dalam tabel
+     * @param organizations (List<Object>) data yang akan dimasukan ke tabel
+     */
     private void bindingOrganization(List<Object> organizations) {
-        String[] header = {"No", "ID Organisasi", "Nama Organisasi", "Posisi", "Tanggal Mulai", "Tanggal Selesai"};
+        String[] header = {"No", "ID Organisasi", "Nama Organisasi"};
         String[][] data = new String[organizations.size()][header.length];
         int i = 0;
         for (Object object : organizations) {
@@ -372,9 +340,6 @@ public class OrganizationView extends javax.swing.JInternalFrame {
             data[i][0] = (i + 1) + "";
             data[i][1] = organization.getIdorganization().toString();
             data[i][2] = organization.getOrganizationname();
-            data[i][3] = organization.getPosition();
-            data[i][4] = organization.getStartdate().toString();
-            data[i][5] = organization.getEnddate().toString();
             i++;
         }
         tblOrganization.setModel(new DefaultTableModel(data, header));
@@ -382,15 +347,23 @@ public class OrganizationView extends javax.swing.JInternalFrame {
         reset();
     }
 
+    /**
+     * Menampilkan ID terakhir di textfield organizationId dan mengaktifkan serta menghilangkan kemampuan meng-edit 
+     * textfield tersebut, menonaktifkan button drop dan search, mengosongkan textfield organizationName,position,dateStart,dan dateEnd
+     */
     public void reset() {
         txtOrganizationId.setText(controller.getAutoId() + "");
         txtOrganizationId.setEnabled(true);
         tblOrganization.setRowSorter(rowSorter);
         btnDrop.setEnabled(false);
+        btnSearch.setEnabled(false);
         txtOrganizationId.setEditable(false);
         txtOrganizationName.setText("");
     }
 
+    /**
+     * menonaktifkan texfield organizationId dan mengaktifkan button drop
+     */
     public void edit() {
         txtOrganizationId.setEnabled(false);
         btnDrop.setEnabled(true);

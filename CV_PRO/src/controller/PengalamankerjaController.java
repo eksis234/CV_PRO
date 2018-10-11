@@ -33,27 +33,25 @@ public class PengalamankerjaController {
     /**
      * method saveOrUppdate dari kelas PengalamankerjaController, digunakan untuk menyimpan data pengalaman kerja 
      * @param idpk bertipe string 
-     * @param jobtitle bertipe string
-     * @param employer bertipe string
-     * @param city bertupe string
-     * @param startdate bertipe date
-     * @param enddate bertipe date
-     * @param description bertipe string
+     * @param namaPerusahaan bertipe string
+     * @param city bertipe string
      * @return mengembalikan nilai true or false
      */
-    public boolean saveOrUpdate(String idpk, String jobtitle, String employer, String city, Date startdate, Date enddate, String description){
-        Workingexperience workingexperience = new Workingexperience(new BigDecimal(""+idpk+""), jobtitle, employer, city, startdate, enddate, description);
+    public boolean saveOrUpdate(String idpk, String namaPerusahaan, String city){
+        Workingexperience workingexperience = new Workingexperience(new BigDecimal(idpk), namaPerusahaan, city);
         return idao.saveOrUpdate(workingexperience);
     }
+    
     /**
      * Method untuk melakukan penghapusan data pengalaman pekerjaan
      * @param idpk dengan tipe data String
      * @return idao mengembalikan nilai boolean
      */
     public boolean delete(String idpk){
-        Workingexperience workingexperience = new Workingexperience(new BigDecimal(""+idpk+""));
+        Workingexperience workingexperience = new Workingexperience(new BigDecimal(idpk));
         return idao.delete(workingexperience);
     }
+    
     /**
      * Method untuk menampilkan data pengalamankerja berdasarkan IDnya
      * @param idpk  dengan tipe data String

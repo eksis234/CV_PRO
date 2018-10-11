@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "EDUCATION")
@@ -33,11 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Education.findAll", query = "SELECT e FROM Education e")
     , @NamedQuery(name = "Education.findByIdeducation", query = "SELECT e FROM Education e WHERE e.ideducation = :ideducation")
     , @NamedQuery(name = "Education.findByInstansi", query = "SELECT e FROM Education e WHERE e.instansi = :instansi")
-    , @NamedQuery(name = "Education.findByLeveleducation", query = "SELECT e FROM Education e WHERE e.leveleducation = :leveleducation")
-    , @NamedQuery(name = "Education.findByGpa", query = "SELECT e FROM Education e WHERE e.gpa = :gpa")
-    , @NamedQuery(name = "Education.findByYearin", query = "SELECT e FROM Education e WHERE e.yearin = :yearin")
-    , @NamedQuery(name = "Education.findByGraduation", query = "SELECT e FROM Education e WHERE e.graduation = :graduation")
-    , @NamedQuery(name = "Education.findByMajor", query = "SELECT e FROM Education e WHERE e.major = :major")})
+    , @NamedQuery(name = "Education.findByLeveleducation", query = "SELECT e FROM Education e WHERE e.leveleducation = :leveleducation")})
 public class Education implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,14 +45,6 @@ public class Education implements Serializable {
     private String instansi;
     @Column(name = "LEVELEDUCATION")
     private String leveleducation;
-    @Column(name = "GPA")
-    private Double gpa;
-    @Column(name = "YEARIN")
-    private BigInteger yearin;
-    @Column(name = "GRADUATION")
-    private BigInteger graduation;
-    @Column(name = "MAJOR")
-    private String major;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ideducation", fetch = FetchType.LAZY)
     private List<Educationdetails> educationdetailsList;
 
@@ -68,62 +55,12 @@ public class Education implements Serializable {
         this.ideducation = ideducation;
     }
 
-    public Education(BigDecimal ideducation, String instansi) {
-        this.ideducation = ideducation;
-        this.instansi = instansi;
-    }
-
     public Education(BigDecimal ideducation, String instansi, String leveleducation) {
         this.ideducation = ideducation;
         this.instansi = instansi;
         this.leveleducation = leveleducation;
     }
 
-    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa) {
-        this.ideducation = ideducation;
-        this.instansi = instansi;
-        this.leveleducation = leveleducation;
-        this.gpa = gpa;
-    }
-
-    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin) {
-        this.ideducation = ideducation;
-        this.instansi = instansi;
-        this.leveleducation = leveleducation;
-        this.gpa = gpa;
-        this.yearin = yearin;
-    }
-
-    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin, BigInteger graduation) {
-        this.ideducation = ideducation;
-        this.instansi = instansi;
-        this.leveleducation = leveleducation;
-        this.gpa = gpa;
-        this.yearin = yearin;
-        this.graduation = graduation;
-    }
-
-    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin, BigInteger graduation, String major) {
-        this.ideducation = ideducation;
-        this.instansi = instansi;
-        this.leveleducation = leveleducation;
-        this.gpa = gpa;
-        this.yearin = yearin;
-        this.graduation = graduation;
-        this.major = major;
-    }
-
-    public Education(BigDecimal ideducation, String instansi, String leveleducation, Double gpa, BigInteger yearin, BigInteger graduation, String major, List<Educationdetails> educationdetailsList) {
-        this.ideducation = ideducation;
-        this.instansi = instansi;
-        this.leveleducation = leveleducation;
-        this.gpa = gpa;
-        this.yearin = yearin;
-        this.graduation = graduation;
-        this.major = major;
-        this.educationdetailsList = educationdetailsList;
-    }
-    
     public BigDecimal getIdeducation() {
         return ideducation;
     }
@@ -146,38 +83,6 @@ public class Education implements Serializable {
 
     public void setLeveleducation(String leveleducation) {
         this.leveleducation = leveleducation;
-    }
-
-    public Double getGpa() {
-        return gpa;
-    }
-
-    public void setGpa(Double gpa) {
-        this.gpa = gpa;
-    }
-
-    public BigInteger getYearin() {
-        return yearin;
-    }
-
-    public void setYearin(BigInteger yearin) {
-        this.yearin = yearin;
-    }
-
-    public BigInteger getGraduation() {
-        return graduation;
-    }
-
-    public void setGraduation(BigInteger graduation) {
-        this.graduation = graduation;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
     }
 
     @XmlTransient

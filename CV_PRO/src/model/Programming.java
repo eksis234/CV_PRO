@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "PROGRAMMING")
@@ -55,12 +55,6 @@ public class Programming implements Serializable {
     public Programming(BigDecimal idprogramming, String programminglanguage) {
         this.idprogramming = idprogramming;
         this.programminglanguage = programminglanguage;
-    }
-
-    public Programming(BigDecimal idprogramming, String programminglanguage, List<Programmingdetails> programmingdetailsList) {
-        this.idprogramming = idprogramming;
-        this.programminglanguage = programminglanguage;
-        this.programmingdetailsList = programmingdetailsList;
     }
 
     public BigDecimal getIdprogramming() {

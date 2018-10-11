@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "NETWORKING")
@@ -57,12 +57,6 @@ public class Networking implements Serializable {
         this.networkingskill = networkingskill;
     }
 
-    public Networking(BigDecimal idnetworking, String networkingskill, List<Networkingdetails> networkingdetailsList) {
-        this.idnetworking = idnetworking;
-        this.networkingskill = networkingskill;
-        this.networkingdetailsList = networkingdetailsList;
-    }
-    
     public BigDecimal getIdnetworking() {
         return idnetworking;
     }

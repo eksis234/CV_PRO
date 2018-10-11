@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,18 +18,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "EXPERIENCEDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Experiencedetails.findAll", query = "SELECT e FROM Experiencedetails e")
-    , @NamedQuery(name = "Experiencedetails.findByIdexpdetail", query = "SELECT e FROM Experiencedetails e WHERE e.idexpdetail = :idexpdetail")})
+    , @NamedQuery(name = "Experiencedetails.findByIdexpdetail", query = "SELECT e FROM Experiencedetails e WHERE e.idexpdetail = :idexpdetail")
+    , @NamedQuery(name = "Experiencedetails.findByStatus", query = "SELECT e FROM Experiencedetails e WHERE e.status = :status")
+    , @NamedQuery(name = "Experiencedetails.findByJobtitle", query = "SELECT e FROM Experiencedetails e WHERE e.jobtitle = :jobtitle")
+    , @NamedQuery(name = "Experiencedetails.findByStartdate", query = "SELECT e FROM Experiencedetails e WHERE e.startdate = :startdate")
+    , @NamedQuery(name = "Experiencedetails.findByEnddate", query = "SELECT e FROM Experiencedetails e WHERE e.enddate = :enddate")
+    , @NamedQuery(name = "Experiencedetails.findByDetails", query = "SELECT e FROM Experiencedetails e WHERE e.details = :details")})
 public class Experiencedetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +45,18 @@ public class Experiencedetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDEXPDETAIL")
     private BigDecimal idexpdetail;
+    @Column(name = "STATUS")
+    private String status;
+    @Column(name = "JOBTITLE")
+    private String jobtitle;
+    @Column(name = "STARTDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startdate;
+    @Column(name = "ENDDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date enddate;
+    @Column(name = "DETAILS")
+    private String details;
     @JoinColumn(name = "IDPERSONAL", referencedColumnName = "IDPERSONAL")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Personaldata idpersonal;
@@ -51,23 +71,52 @@ public class Experiencedetails implements Serializable {
         this.idexpdetail = idexpdetail;
     }
 
-    public Experiencedetails(BigDecimal idexpdetail, Personaldata idpersonal) {
-        this.idexpdetail = idexpdetail;
-        this.idpersonal = idpersonal;
-    }
-
-    public Experiencedetails(BigDecimal idexpdetail, Personaldata idpersonal, Workingexperience idworkingexperience) {
-        this.idexpdetail = idexpdetail;
-        this.idpersonal = idpersonal;
-        this.idworkingexperience = idworkingexperience;
-    }
-    
     public BigDecimal getIdexpdetail() {
         return idexpdetail;
     }
 
     public void setIdexpdetail(BigDecimal idexpdetail) {
         this.idexpdetail = idexpdetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getJobtitle() {
+        return jobtitle;
+    }
+
+    public void setJobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
+    }
+
+    public Date getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
+
+    public Date getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public Personaldata getIdpersonal() {

@@ -37,8 +37,8 @@ public class OrganizationController {
      * @param enddate bertipe date
      * @return mengembalikan nilai true or false
      */
-    public boolean saveOrUpdate(String idorganisai, String organisainame, String posisi, String dateStart, String dateEnd){
-        Organization organization = new Organization(new BigDecimal(""+idorganisai+""), organisainame, posisi, new Date(dateStart), new Date(dateEnd));
+    public boolean saveOrUpdate(String idorganisai, String organisainame){
+        Organization organization = new Organization(new BigDecimal(""+idorganisai+""), organisainame);
         return idao.saveOrUpdate(organization);
     }
     /**
@@ -47,7 +47,7 @@ public class OrganizationController {
      * @return iDAO mengembalikan nilai boolean
      */
     public boolean delete(String idorganisai){
-        Organization organization = new Organization(new BigDecimal(""+idorganisai+""));
+        Organization organization = new Organization(new BigDecimal(idorganisai));
         return idao.delete(organization);
     }
     /**

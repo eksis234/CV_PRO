@@ -47,7 +47,7 @@ Contributor(s):
     <property name="hibernate.connection.username">system</property>
     <property name="hibernate.connection.password">admin</property>
     <property name="hibernate.connection.autocommit">true</property>
-    <property name="hibernate.default_schema">cv_online</property>
+    <property name="hibernate.default_schema">cv_online_1</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <mapping class="model.Achievement"/>
     <mapping class="model.Achievementdetails"/>

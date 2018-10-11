@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "FOREIGNLANGUAGE")
@@ -57,12 +57,6 @@ public class Foreignlanguage implements Serializable {
         this.languagename = languagename;
     }
 
-    public Foreignlanguage(BigDecimal idflang, String languagename, List<Foreignlanguagedetails> foreignlanguagedetailsList) {
-        this.idflang = idflang;
-        this.languagename = languagename;
-        this.foreignlanguagedetailsList = foreignlanguagedetailsList;
-    }
-    
     public BigDecimal getIdflang() {
         return idflang;
     }
