@@ -6,7 +6,11 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -21,7 +25,7 @@ public class SerbaGuna {
  
     public enum pesan{
       save("Berhasil Disimpan"), update("Berhasil Diperbaharui"), 
-      delete("Berhassil Dihapus"), cancel("Batal Dihapus"),
+      delete("Berhasil Dihapus"), cancel("Batal Dihapus"),
       find("Berhasil Ditemukan");  
         
       private String isine;
@@ -50,7 +54,7 @@ public class SerbaGuna {
     
     public void filterPass(String pass){
 //        Pattern ptn = Pattern.compile("^([A-Z|0-9|a-z\\+_\\-]+)+[^\\w\\+_\\-]+$");
-        Pattern ptn = Pattern.compile("^([!-~\\+_\\-]+)+([!-~\\+_\\-]+)$");
+        Pattern ptn = Pattern.compile("^([A-Z|a-z\\+_\\-]+)([0-9\\+_\\-]+)([!-~\\+_\\-]+)([^\\w\\+_\\-]+)$");
         Matcher matcher = ptn.matcher(pass);
         if(pass.length()>=8 && !pass.substring(0, 1).equals(" ")){
             if(matcher.matches()){
@@ -87,5 +91,17 @@ public class SerbaGuna {
         return result;
     }
     
+    public String pickDate(String date, JXDatePicker picker, Class type){
+        Date dateHolder;
+        date = date.substring(0, 10);
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            dateHolder = formater.parse(date);
+            picker.setDate(dateHolder);
+        } catch (ParseException ex) {
+            Logger.getLogger(type.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
+    }
 
 }

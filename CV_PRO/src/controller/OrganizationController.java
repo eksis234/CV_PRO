@@ -37,8 +37,8 @@ public class OrganizationController {
      * @param enddate bertipe date
      * @return mengembalikan nilai true or false
      */
-    public boolean saveOrUpdate(String idorganisai, String organisainame, Date startdate, Date enddate){
-        Organization organization = new Organization(new BigDecimal(""+idorganisai+""), organisainame, idorganisai, startdate, enddate);
+    public boolean saveOrUpdate(String idorganisai, String organisainame, String posisi, String dateStart, String dateEnd){
+        Organization organization = new Organization(new BigDecimal(""+idorganisai+""), organisainame, posisi, new Date(dateStart), new Date(dateEnd));
         return idao.saveOrUpdate(organization);
     }
     /**
@@ -90,8 +90,8 @@ public class OrganizationController {
      * @return iDAO mengembalikan nilai object
      */
     public Object getAutoId(){
-        Tools tools =  (Tools) idao.getLastId();
+        Organization organization =  (Organization) idao.getLastId();
         BigDecimal one = new BigDecimal("1");
-        return tools.getIdtool().add(one);
+        return organization.getIdorganization().add(one);
     }
 }

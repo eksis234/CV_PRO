@@ -381,7 +381,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
      */
     private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateStart));
+        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateEnd));
         if (!txtTrainingId.isEnabled()) {
             JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         } else {

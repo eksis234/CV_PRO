@@ -179,10 +179,10 @@ public class ToolsView extends javax.swing.JInternalFrame {
                     .addComponent(txtToolsName, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addComponent(txtToolsId))
                 .addGap(72, 72, 72)
-                .addComponent(btnDropTools)
-                .addGap(18, 18, 18)
-                .addComponent(btnSaveTools)
-                .addGap(57, 57, 57))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDropTools)
+                    .addComponent(btnSaveTools))
+                .addGap(132, 132, 132))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,13 +190,13 @@ public class ToolsView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProgrammingId)
-                    .addComponent(txtToolsId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(txtToolsId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaveTools))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProgrammingName)
                     .addComponent(txtToolsName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDropTools)
-                    .addComponent(btnSaveTools))
+                    .addComponent(btnDropTools))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -216,7 +216,7 @@ public class ToolsView extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -290,19 +290,15 @@ public class ToolsView extends javax.swing.JInternalFrame {
 
     private void btnSaveToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToolsActionPerformed
         // TODO add your handling code here:
-                boolean isUpdate = false;
-                if(!txtToolsId.isEnabled()){
-                        isUpdate = false;
-                    }
-                if (isUpdate) {
-                    controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
-                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-                    bindingTools(controller.getAll());}
-                else {controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
-                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
-                    bindingTools(controller.getAll());
-                    txtToolsId.setEditable(true);
-                 }
+        controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
+        if(!txtToolsId.isEnabled()){
+            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingTools(controller.getAll());
+        reset();
     }//GEN-LAST:event_btnSaveToolsActionPerformed
 
     private void jtToolsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtToolsMouseClicked
@@ -356,7 +352,7 @@ private void bindingTools(List<Object> tools) {
      */
     public  void reset(){
         txtToolsId.setText(controller.getAutoId()+"");
-        txtToolsId.setEnabled(false);
+        txtToolsId.setEnabled(true);
         txtToolsName.setText("");
         btnDropTools.setEnabled(false);
         btnSaveTools.setEnabled(true);

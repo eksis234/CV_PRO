@@ -17,14 +17,6 @@ FROM
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
-				<reportElement x="14" y="0" width="79" height="69" uuid="dfa59a01-35b2-495d-827d-f72c4bc17153"/>
-				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\dist\\lib\\image\\metrodata.jpg"]]></imageExpression>
-			</image>
-			<image>
-				<reportElement x="456" y="2" width="99" height="67" uuid="a93469b2-e989-4918-ae5f-426eac85c967"/>
-				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\dist\\lib\\image\\mii.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="160" y="31" width="233" height="38" uuid="6da5b16f-7f0d-4578-9e65-728b9461597c"/>
 				<textElement textAlignment="Center">
@@ -32,26 +24,45 @@ FROM
 				</textElement>
 				<text><![CDATA[TOOLS REPORT]]></text>
 			</staticText>
+			<image>
+				<reportElement x="12" y="0" width="79" height="69" uuid="4a915bbd-7092-48f6-b2b1-4ab26ce766a0"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\src\\report\\metrodata.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="452" y="0" width="92" height="79" uuid="cd224a8b-9dca-4406-96aa-418409d9be2e"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\src\\report\\mii.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="28" splitType="Stretch"/>
+		<band height="26" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="220" y="0" width="100" height="20" uuid="20c02013-06d9-4d5b-8c99-9ab2c48fc68d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="22" splitType="Stretch">
 			<staticText>
 				<reportElement x="120" y="0" width="100" height="20" uuid="cfebcaed-d5dd-4966-9754-8eec21b333a5"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[NO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="220" y="0" width="100" height="20" uuid="522971ae-249d-419e-9dfb-6ee6639c928a"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Tool ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="320" y="0" width="100" height="20" uuid="6a63e4ae-8b80-402e-954e-9587212290bc"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Tool Name]]></text>
 			</staticText>
 		</band>
