@@ -70,5 +70,6 @@ Contributor(s):
     <mapping class="model.Training"/>
     <mapping class="model.Trainingdetails"/>
     <mapping class="model.Workingexperience"/>
+    <mapping class="model.UserManagement"/>
   </session-factory>
 </hibernate-configuration>
