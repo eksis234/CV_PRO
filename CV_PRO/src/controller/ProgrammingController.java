@@ -24,7 +24,7 @@ public class ProgrammingController {
      * @param sessionFactory 
      */
     public ProgrammingController(SessionFactory sessionFactory) {
-        this.idao = new GeneralDAO(sessionFactory, ProgrammingController.class);
+        this.idao = new GeneralDAO(sessionFactory, Programming.class);
     }
     
     /**
