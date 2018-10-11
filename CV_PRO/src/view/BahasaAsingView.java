@@ -283,14 +283,13 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if (!txtSearch.getText().equalsIgnoreCase("")) {
-            String text = txtSearch.getText();
-            if (text.trim().length() == 0) {
-                rowSorter.setRowFilter(null);
-            } else {
-                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
-                JOptionPane.showMessageDialog(this,pesan.find.getPesan(), "Search",JOptionPane.INFORMATION_MESSAGE);
-            }                 
-        }
+                        String text = txtSearch.getText();
+                        if (text.trim().length() == 0) {
+                                rowSorter.setRowFilter(null);
+                            } else {
+                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+                        }                 
+                    }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
