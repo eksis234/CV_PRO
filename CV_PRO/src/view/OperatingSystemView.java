@@ -274,7 +274,6 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
                                 rowSorter.setRowFilter(null);
                             } else {
                                 rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
-                            JOptionPane.showMessageDialog(this,pesan.find.getPesan(), "Search",JOptionPane.INFORMATION_MESSAGE);
                         }                 
                     }
     }//GEN-LAST:event_btnSearchActionPerformed
