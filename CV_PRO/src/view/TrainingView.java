@@ -6,10 +6,14 @@
 package view;
 
 import controller.TrainingController;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.*;
 import org.hibernate.SessionFactory;
+import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -21,13 +25,20 @@ public class TrainingView extends javax.swing.JInternalFrame {
      * Creates new form TrainingView
      */
     //private SessionFactory factory;
+    private final SerbaGuna sg;
     private TrainingController controller;
     private String[] cmb = {"idtraining", "trainingname", "trainingorganization", "startdate", "enddate"};
     
+    /**
+     * Konstruktor default kelas TrainingView berparameter
+     * @param factory - SessionFactory
+     */
     public TrainingView(SessionFactory factory) {
         initComponents();
         controller = new TrainingController(factory);
+        sg = new SerbaGuna();
         bindingTraining(controller.getAll());
+        reset();
     }
 
     /**
@@ -95,6 +106,11 @@ public class TrainingView extends javax.swing.JInternalFrame {
 
             }
         ));
+        tblTraining.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTrainingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTraining);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -270,111 +286,126 @@ public class TrainingView extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Method ketika kursor tidak pada textfield txtFindtraining
+     * @param evt - KeyEvent
+     */
     private void txtFindTrainingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindTrainingKeyReleased
-        // TODO add your handling code here:
-        //                if (txtFindCountry.getText().equals("")) {
-            //                bindingCountries(controller.getAll());
-            //            }else if (!txtFindCountry.getText().equalsIgnoreCase("")){
-            //                btnFindC.setEnabled(true);
-            //            }
-        //        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            ///*use inisialisasi string categori*/
-            ////            if (cmbKategoriCountry.getSelectedItem().equals("Region Id")){
-                ////            bindingCountries(controller.search("regionId", (txtFindCountry.getText())));
-                ////            } else if (cmbKategoriCountry.getSelectedItem().equals("Region Name")){
-                ////            bindingCountries(controller.search("regionName", txtFindCountry.getText()));
-                ////            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Id")){
-                ////            bindingCountries(controller.search("countryId", txtFindCountry.getText()));
-                ////            }else if (cmbKategoriCountry.getSelectedItem().equals("Country Name"))
-            ////            bindingCountries(controller.search("countryName", txtFindCountry.getText()));
-            ///*use array*/  //bindingCountries(controller.search(cmbItem[cmbKategoriCountry.getSelectedIndex()], txtFindCountry.getText()));
-            ///*use enum*/  bindingCountries(controller.searchCountry((String) cmbKategoriCountry.getSelectedItem(), txtFindCountry.getText()));
-            ///*use rowSorter*/
-            ////            String text = txtFindCountry.getText();
-            ////            if (text.trim().length() == 0) {
-                ////                rowSorter.setRowFilter(null);
-                ////            } else {
-                ////                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriCountry.getSelectedIndex() + 1));
-                ////            }
-            //        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!txtFindTraining.getText().equalsIgnoreCase("")) {
+                bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+            }
+        }
+        if (txtFindTraining.getText().equals("")) {
+            bindingTraining(controller.getAll());
+        }
     }//GEN-LAST:event_txtFindTrainingKeyReleased
-
+    
+    /**
+     * Method ketika button Find ditekan
+     * @param evt - KeyEvent
+     */
     private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
-        bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+        if (!txtFindTraining.equals("")){
+            bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+        }
     }//GEN-LAST:event_btnFindCActionPerformed
-
+    
+    /**
+     * Method ketika txtTraining ditekan
+     * @param evt - KeyEvent
+     */
     private void txtTrainingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrainingIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTrainingIdActionPerformed
-
+    
+    /**
+     * Method ketika txtTraining tidak ditekan
+     * @param evt - KeyEvent
+     */
     private void txtTrainingIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingIdKeyReleased
         // TODO add your handling code here:
-        //        if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-            //            if (!txtCountryId.getText().equals("") ){
-                //                sf.filterAngka(evt);
-                //            }
-            //        }
     }//GEN-LAST:event_txtTrainingIdKeyReleased
-
+    
+    /**
+     * Method ketikda txtTraining diketik
+     * @param evt - KeyEvent
+     */
     private void txtTrainingIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingIdKeyTyped
         // TODO add your handling code here:
         //        ss.filterAngka(evt);
     }//GEN-LAST:event_txtTrainingIdKeyTyped
-
+    
+    /**
+     * Method ketika txtTrainingName diketik
+     * @param evt - KeyEvent
+     */
     private void txtTrainingNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingNameKeyTyped
         // TODO add your handling code here:
         //        sf.filterPass(evt);
     }//GEN-LAST:event_txtTrainingNameKeyTyped
-
+    
+    /**
+     * Method ketika button Drop ditekan
+     * @param evt - AtionEvent
+     */
     private void btnDropCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCActionPerformed
         // TODO add your handling code here:
-        //        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
-        //        Country country = new Country();
-        //        country = new Country(txtCountryId.getText());
-        //        if (response == JOptionPane.YES_OPTION) {
-            //        controller.delete(country);
-            //        JOptionPane.showMessageDialog(this, inf.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            //        bindingCountries(controller.getAll());
-            //        cmbRegionId.setSelectedIndex(0);
-            //        }else if (response == JOptionPane.NO_OPTION) {
-            //            JOptionPane.showMessageDialog(this, inf.cancle.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-            //        }
+        int messageBox = JOptionPane.showConfirmDialog(this, "Are you sure want to delete this data ?", "Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (messageBox == JOptionPane.YES_OPTION) {
+            controller.delete(txtTrainingId.getText());
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.delete.getPesan());
+            bindingTraining(controller.getAll());
+            reset();
+        }
+        if (messageBox == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.cancel.getPesan());
+        }
     }//GEN-LAST:event_btnDropCActionPerformed
-
+    
+    /**
+     * Method ketika button Save ditekan
+     * @param evt - ActionEvent
+     */
     private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
         // TODO add your handling code here:
-        //        String abcd = cmbRegionId.getSelectedItem()+"";
-        //        String subRegionId = abcd.substring(0,1);
-        //        Country country = new Country();
-        //        country = new Country(txtCountryId.getText().toUpperCase());
-        //        country.setCountryName(txtCountryName.getText());
-        //        Region region = new Region(new BigDecimal(subRegionId));
-        //        country.setRegionId(region);
-        //        boolean isUpdate = false;
-        //        if(!txtCountryId.isEnabled()){
-            //            isUpdate = true;
-            //        }
-        //        if (isUpdate) {
-            //            controller.saveOrUpdate(country);        //txtCountryId.getText(),txtCountryName.getText(),  subRegionId, false);
-        //            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        //            bindingCountries(controller.getAll());}
-        //        else {controller.saveOrUpdate(country);    //txtCountryId.getText(),txtCountryName.getText(), subRegionId, true);
-        //            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Simpan", JOptionPane.INFORMATION_MESSAGE);
-        //            bindingCountries(controller.getAll());
-        //            txtCountryId.setEditable(true);
-        //         }
-        //cmbRegionId.setSelectedIndex(0);
-        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), dateStart.toString(), dateEnd.getName());
+        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateStart));
+        if (!txtTrainingId.isEnabled()) {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save, "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
+        bindingTraining(controller.getAll());
+        reset();
     }//GEN-LAST:event_btnSaveCActionPerformed
-
+    
+    /**
+     * Method ketika txtOrganization diketik
+     * @param evt - KeyEvent
+     */
     private void txtOrganizationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrganizationKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrganizationKeyTyped
-
+    
+    /**
+     * Methid ketika cmKategori dipilih
+     * @param evt - ActionEvent
+     */
     private void cmbKategoriTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriTrainingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbKategoriTrainingActionPerformed
+    /**
+     * Method ketika baris pada tblTraining dipilih
+     * @param evt - MouseEvent
+     */
+    private void tblTrainingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTrainingMouseClicked
+        // TODO add your handling code here:
+        int row = tblTraining.getSelectedRow();
+        txtTrainingId.setText(tblTraining.getValueAt(row, 1).toString());
+        txtTrainingName.setText(tblTraining.getValueAt(row, 2).toString());
+        txtOrganization.setText(tblTraining.getValueAt(row, 3).toString());
+        edit();
+    }//GEN-LAST:event_tblTrainingMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,6 +429,11 @@ public class TrainingView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTrainingId;
     private javax.swing.JTextField txtTrainingName;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     * Method untuk memanggil isi dari tblTraining
+     * @param object 
+     */
     public void bindingTraining(List<Object> object) {
         String[] header = {"No.", "Training ID", "Training Name", "Training Organization", "Start Date", "End Date"};
         String[][] data = new String[object.size()][header.length];
@@ -413,5 +449,23 @@ public class TrainingView extends javax.swing.JInternalFrame {
             i++;
         }
         tblTraining.setModel(new DefaultTableModel(data, header));
+        reset();
+    }
+    
+    /**
+     * Method untuk mengembalikan button dan textfield seperti keadaan awal
+     */
+    public void reset(){
+        txtTrainingId.setText(controller.getAutoId().toString());
+        txtTrainingId.setEnabled(false);
+        txtTrainingName.setEnabled(true);
+        txtOrganization.setEnabled(true);
+    }
+    
+    /**
+     * Method ketika proses edit
+     */
+    public void edit(){
+        txtTrainingId.setEnabled(false);
     }
 }

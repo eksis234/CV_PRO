@@ -68,8 +68,7 @@ public class TrainingController {
      * @return 
      */
     public boolean saveOrUpdate(String trainingId, String trainingName, String trainingOrganization, String startDate, String endDate) {
-        List<Trainingdetails> trainingdetailsList = (List<Trainingdetails>) new Trainingdetails(new BigDecimal(trainingId));
-        Training training = new Training(new BigDecimal(trainingId), trainingName, trainingOrganization, new Date(startDate), new Date(endDate), trainingdetailsList);
+        Training training = new Training(new BigDecimal(trainingId), trainingName, trainingOrganization, new Date(startDate), new Date(endDate));
         return idao.saveOrUpdate(training);
     }
     
@@ -81,6 +80,25 @@ public class TrainingController {
         Training training = (Training) idao.getLastId();
         BigDecimal bd = new BigDecimal("1");
         return training.getIdtraining().add(bd);
+    }
+    
+    /**
+     * Fungsi untuk mendapatkan data berdasarkan nama training
+     * @param name - nama training
+     * @return data hasil pencarian
+     */
+    public Object getByName(String name){
+        return idao.getByName(name);
+    }
+    
+    /**
+     * Fungsi untuk menghapus data
+     * @param id - id education
+     * @return apakah proses delete berhasil/tidak
+     */
+    public boolean delete(String id){
+        Training training = (Training) getById(id);
+        return idao.delete(training);
     }
 
 }

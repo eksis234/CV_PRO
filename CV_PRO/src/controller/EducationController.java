@@ -46,7 +46,7 @@ public class EducationController {
      * @return data Education
      */
     public Object getById(String id) {
-        return idao.getById(id);
+        return idao.getById(new BigDecimal(id));
     }
     
     /**
@@ -71,8 +71,7 @@ public class EducationController {
      * @return boolean berhasil/tidak proses dieksekusi
      */
     public boolean saveOrUpdate(String idEducation, String instansi, String LevelEducation, String gpa, String yearIn, String graduation, String major) {
-        List<Educationdetails> educationDetails = (List<Educationdetails>) new Educationdetails(new BigDecimal(idEducation));
-        Education education = new Education(new BigDecimal(idEducation), instansi, LevelEducation, new Double(gpa), new BigInteger(gpa), new BigInteger(yearIn), major, educationDetails);
+        Education education = new Education(new BigDecimal(idEducation), instansi, LevelEducation, new Double(gpa), new BigInteger(yearIn), new BigInteger(graduation), major);
         return idao.saveOrUpdate(education);
     }
     
@@ -84,5 +83,24 @@ public class EducationController {
         Education education = (Education) idao.getLastId();
         BigDecimal bd = new BigDecimal("1");
         return education.getIdeducation().add(bd);
+    }
+    
+    /**
+     * Fungsi untuk mendapatkan data berdasarkan nama instansi
+     * @param name - instansi
+     * @return data hasil pencarian
+     */
+    public Object getByName(String name){
+        return idao.getByName(name);
+    }
+    
+    /**
+     * Fungsi untuk menghapus data
+     * @param id - id education
+     * @return apakah proses delete berhasil/tidak
+     */
+    public boolean delete(String id){
+        Education edu = (Education) getById(id);
+        return idao.delete(edu);
     }
 }

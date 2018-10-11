@@ -6,9 +6,11 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -72,5 +74,18 @@ public class SerbaGuna {
             JOptionPane.showMessageDialog(null, "Penulisan email "+ mail + " salah" );
         }
     }
+    
+    /**
+     * Method untuk mendapatkan tanggal sesuai format yyyy/MM/dd
+     * @param date - JXDatePicker
+     * @return String hasil format tanggal
+     */
+    public String getDateFormat(JXDatePicker date){
+        String result = date.getDate().toString();
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
+        result = formater.format(date.getDate());
+        return result;
+    }
+    
 
 }
