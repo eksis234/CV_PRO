@@ -8,6 +8,7 @@ package controller;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -45,24 +46,26 @@ public class PersonalController {
         pc1 = new PengalamankerjaController(factory);
         tc1 = new TrainingController(factory);
     }
-   /**
-    * 
-    * @param idpersonal
-    * @param name
-    * @param dateofbirth
-    * @param nationality
-    * @param maritalstatus
-    * @param gender
-    * @param phonenumber
-    * @param email
-    * @param foto
-    * @return 
-    */
+
     public boolean saveOrUpdate(String idpersonal, String name, String dateofbirth, String nationality,
-            String maritalstatus, String gender, String phonenumber, String email, String foto){
+        String maritalstatus, String gender, String phonenumber, String email, String foto){
         Personaldata pdata = new Personaldata(new BigDecimal(idpersonal), name, new Date (dateofbirth), nationality, maritalstatus, gender, phonenumber, email, foto);
         return dAO.saveOrUpdate(pdata);
     }
+    
+    public boolean saveOrUpdate1(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
+        System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+        Education education = new Education(new BigDecimal(ideducation+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+//        personaldata.setIdpersonal();
+//        Educationdetails educationdetails = new Educationdetails();
+//        educationdetails.setIdeducation(education);educationdetails.setIdpersonal(personaldata);
+        Educationdetails educa; 
+        educa = new Educationdetails(new BigDecimal(idedudetail), status, new Double(ipk), new BigInteger(angkatan), new BigInteger(tahunlulus), 
+                jurusan, education, personaldata);
+        return dAO.saveOrUpdate(educa);
+    }
+    
     /**
      * Method untuk melakukan penghapusan data Region
      * @param idpersonal  dengan tipe data String

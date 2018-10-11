@@ -52,7 +52,7 @@ public class Educationdetails implements Serializable {
     @Column(name = "TAHUNLULUS")
     private BigInteger tahunlulus;
     @Column(name = "JURUSAN")
-    private BigInteger jurusan;
+    private String jurusan;
     @JoinColumn(name = "IDEDUCATION", referencedColumnName = "IDEDUCATION")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Education ideducation;
@@ -61,6 +61,17 @@ public class Educationdetails implements Serializable {
     private Personaldata idpersonal;
 
     public Educationdetails() {
+    }
+
+    public Educationdetails(BigDecimal idedudetail, String status, Double ipk, BigInteger angkatan, BigInteger tahunlulus, String jurusan, Education ideducation, Personaldata idpersonal) {
+        this.idedudetail = idedudetail;
+        this.status = status;
+        this.ipk = ipk;
+        this.angkatan = angkatan;
+        this.tahunlulus = tahunlulus;
+        this.jurusan = jurusan;
+        this.ideducation = ideducation;
+        this.idpersonal = idpersonal;
     }
 
     public Educationdetails(BigDecimal idedudetail) {
@@ -107,11 +118,11 @@ public class Educationdetails implements Serializable {
         this.tahunlulus = tahunlulus;
     }
 
-    public BigInteger getJurusan() {
+    public String getJurusan() {
         return jurusan;
     }
 
-    public void setJurusan(BigInteger jurusan) {
+    public void setJurusan(String jurusan) {
         this.jurusan = jurusan;
     }
 

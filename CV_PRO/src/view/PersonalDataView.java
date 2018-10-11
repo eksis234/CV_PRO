@@ -6,10 +6,12 @@
 package view;
 
 import controller.PersonalController;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import org.hibernate.SessionFactory;
 import view.SerbaGuna.pesan;
+import model.*;
 
 /**
  *
@@ -779,6 +781,9 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
             controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
                 cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
                 txtPhone.getText(), mailnya, txtPhone.getText());
+//            (String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal)
+            controller.saveOrUpdate1(txtIdPersonal.getText(), "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(),
+                    txtMajor.getText(), "1", txtIdPersonal.getText());
         if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }
