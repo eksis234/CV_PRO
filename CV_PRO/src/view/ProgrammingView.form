@@ -52,14 +52,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="cmbKategoriCountry" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="cmbKategori" min="-2" pref="130" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFindCountry" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="txtSearch" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnFindC" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFind" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="581" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -67,9 +67,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbKategoriCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFindCountry" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnFindC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbKategori" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnFind" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="180" max="32767" attributes="0"/>
@@ -78,13 +78,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="cmbKategoriCountry">
+        <Component class="javax.swing.JComboBox" name="cmbKategori">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value=" "/>
-                <StringItem index="1" value=" "/>
-                <StringItem index="2" value=" "/>
+              <StringArray count="2">
+                <StringItem index="0" value="ID Programming"/>
+                <StringItem index="1" value="Programming Name"/>
               </StringArray>
             </Property>
           </Properties>
@@ -92,17 +91,17 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFindCountry">
+        <Component class="javax.swing.JTextField" name="txtSearch">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindCountryKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnFindC">
+        <Component class="javax.swing.JButton" name="btnFind">
           <Properties>
             <Property name="text" type="java.lang.String" value="FIND"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFindCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFindActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -112,7 +111,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tblProgramming">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
@@ -124,6 +123,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblProgrammingMouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ProgrammingView_jTable1"/>
               </AuxValues>
@@ -156,13 +158,13 @@
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="txtProgrammingName" pref="164" max="32767" attributes="0"/>
-                      <Component id="txtProgrammingid" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtProgrammingId" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                  <Component id="btnDropC" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSaveC" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="btnDrop" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -172,14 +174,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlProgrammingId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtProgrammingid" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtProgrammingId" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlProgrammingName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtProgrammingName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnDropC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSaveC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDrop" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -187,11 +189,11 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtProgrammingid">
+        <Component class="javax.swing.JTextField" name="txtProgrammingId">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProgrammingidActionPerformed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingidKeyReleased"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingidKeyTyped"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProgrammingIdActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingIdKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtProgrammingIdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtProgrammingName">
@@ -209,20 +211,20 @@
             <Property name="text" type="java.lang.String" value="Programming Name :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDropC">
+        <Component class="javax.swing.JButton" name="btnDrop">
           <Properties>
             <Property name="text" type="java.lang.String" value="DROP"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDropCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDropActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSaveC">
+        <Component class="javax.swing.JButton" name="btnSave">
           <Properties>
             <Property name="text" type="java.lang.String" value="SAVE"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

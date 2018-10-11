@@ -9,7 +9,10 @@ import controller.NetworkingController;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.Networking;
 import org.hibernate.SessionFactory;
 import view.SerbaGuna.pesan;
@@ -21,7 +24,7 @@ import view.SerbaGuna.pesan;
 public class NetworkingView extends javax.swing.JInternalFrame {
     private SerbaGuna sg;
     private NetworkingController controller;
-    private String[] cmbItem = {"idnetworking","networkingskill"};
+    private TableRowSorter<TableModel> rowSorter;
     /**
      * Creates new form OrganisasiView
      */
@@ -29,6 +32,7 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         initComponents();
         sg = new SerbaGuna();
         controller = new NetworkingController(sessionFactory);
+        tblNetworking.setRowSorter(rowSorter);
         bindingNetworking(controller.getAll());
     }
 
@@ -204,7 +208,6 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         controller.saveOrUpdate(txtNetworkingId.getText(), txtNetworkingSkill.getText());
         if(!txtNetworkingId.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-           
         }
         else{
             JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
@@ -238,9 +241,13 @@ public class NetworkingView extends javax.swing.JInternalFrame {
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if(!txtSearch.getText().equalsIgnoreCase("")){
-                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
-                    bindingNetworking(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
+            if (!txtSearch.getText().equals("")) {
+                String text = txtSearch.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                    } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+                }  
             }
         }
         if (txtSearch.getText().equals("")) {
@@ -251,9 +258,13 @@ public class NetworkingView extends javax.swing.JInternalFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if(!txtSearch.getText().equalsIgnoreCase("")){
-                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
-                    bindingNetworking(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
-            }
+             String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+            }                 
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
@@ -284,6 +295,7 @@ public class NetworkingView extends javax.swing.JInternalFrame {
             i++;
         }
         tblNetworking.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(tblNetworking.getModel());
         reset();
     }
     
@@ -298,6 +310,7 @@ public class NetworkingView extends javax.swing.JInternalFrame {
         txtNetworkingSkill.setText("");
         btnDrop.setEnabled(false);
         txtNetworkingId.setEditable(false);
+        tblNetworking.setRowSorter(rowSorter);
     }
     
 }

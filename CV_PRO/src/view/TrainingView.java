@@ -7,13 +7,16 @@ package view;
 
 import controller.TrainingController;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.*;
 import org.hibernate.SessionFactory;
-import org.jdesktop.swingx.JXDatePicker;
 
 /**
  *
@@ -28,9 +31,10 @@ public class TrainingView extends javax.swing.JInternalFrame {
     private final SerbaGuna sg;
     private TrainingController controller;
     private String[] cmb = {"idtraining", "trainingname", "trainingorganization", "startdate", "enddate"};
-    
+
     /**
      * Konstruktor default kelas TrainingView berparameter
+     *
      * @param factory - SessionFactory
      */
     public TrainingView(SessionFactory factory) {
@@ -288,6 +292,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     /**
      * Method ketika kursor tidak pada textfield txtFindtraining
+     *
      * @param evt - KeyEvent
      */
     private void txtFindTrainingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindTrainingKeyReleased
@@ -300,53 +305,59 @@ public class TrainingView extends javax.swing.JInternalFrame {
             bindingTraining(controller.getAll());
         }
     }//GEN-LAST:event_txtFindTrainingKeyReleased
-    
+
     /**
      * Method ketika button Find ditekan
+     *
      * @param evt - KeyEvent
      */
     private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
-        if (!txtFindTraining.equals("")){
+        if (!txtFindTraining.equals("")) {
             bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
         }
     }//GEN-LAST:event_btnFindCActionPerformed
-    
+
     /**
      * Method ketika txtTraining ditekan
+     *
      * @param evt - KeyEvent
      */
     private void txtTrainingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrainingIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTrainingIdActionPerformed
-    
+
     /**
      * Method ketika txtTraining tidak ditekan
+     *
      * @param evt - KeyEvent
      */
     private void txtTrainingIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingIdKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTrainingIdKeyReleased
-    
+
     /**
      * Method ketikda txtTraining diketik
+     *
      * @param evt - KeyEvent
      */
     private void txtTrainingIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingIdKeyTyped
         // TODO add your handling code here:
         //        ss.filterAngka(evt);
     }//GEN-LAST:event_txtTrainingIdKeyTyped
-    
+
     /**
      * Method ketika txtTrainingName diketik
+     *
      * @param evt - KeyEvent
      */
     private void txtTrainingNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrainingNameKeyTyped
         // TODO add your handling code here:
         //        sf.filterPass(evt);
     }//GEN-LAST:event_txtTrainingNameKeyTyped
-    
+
     /**
      * Method ketika button Drop ditekan
+     *
      * @param evt - AtionEvent
      */
     private void btnDropCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropCActionPerformed
@@ -362,14 +373,15 @@ public class TrainingView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, SerbaGuna.pesan.cancel.getPesan());
         }
     }//GEN-LAST:event_btnDropCActionPerformed
-    
+
     /**
      * Method ketika button Save ditekan
+     *
      * @param evt - ActionEvent
      */
     private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateStart));
+        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateEnd));
         if (!txtTrainingId.isEnabled()) {
             JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -378,17 +390,19 @@ public class TrainingView extends javax.swing.JInternalFrame {
         bindingTraining(controller.getAll());
         reset();
     }//GEN-LAST:event_btnSaveCActionPerformed
-    
+
     /**
      * Method ketika txtOrganization diketik
+     *
      * @param evt - KeyEvent
      */
     private void txtOrganizationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrganizationKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrganizationKeyTyped
-    
+
     /**
      * Methid ketika cmKategori dipilih
+     *
      * @param evt - ActionEvent
      */
     private void cmbKategoriTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriTrainingActionPerformed
@@ -396,6 +410,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbKategoriTrainingActionPerformed
     /**
      * Method ketika baris pada tblTraining dipilih
+     *
      * @param evt - MouseEvent
      */
     private void tblTrainingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTrainingMouseClicked
@@ -429,10 +444,11 @@ public class TrainingView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTrainingId;
     private javax.swing.JTextField txtTrainingName;
     // End of variables declaration//GEN-END:variables
-    
+
     /**
      * Method untuk memanggil isi dari tblTraining
-     * @param object 
+     *
+     * @param object
      */
     public void bindingTraining(List<Object> object) {
         String[] header = {"No.", "Training ID", "Training Name", "Training Organization", "Start Date", "End Date"};
@@ -451,21 +467,21 @@ public class TrainingView extends javax.swing.JInternalFrame {
         tblTraining.setModel(new DefaultTableModel(data, header));
         reset();
     }
-    
+
     /**
      * Method untuk mengembalikan button dan textfield seperti keadaan awal
      */
-    public void reset(){
+    public void reset() {
         txtTrainingId.setText(controller.getAutoId().toString());
         txtTrainingId.setEnabled(false);
         txtTrainingName.setEnabled(true);
         txtOrganization.setEnabled(true);
     }
-    
+
     /**
      * Method ketika proses edit
      */
-    public void edit(){
+    public void edit() {
         txtTrainingId.setEnabled(false);
     }
 }

@@ -9,7 +9,10 @@ import controller.AchievementController;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.Achievement;
 import org.hibernate.SessionFactory;
 
@@ -21,7 +24,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
 
     private SerbaGuna sg;
     private AchievementController controller;
-    private String[] cmbItem = {"idachievement", "achievementname", "eventname", "year"};
+    private TableRowSorter<TableModel> rowSorter;
     
     /**
      * Creates new form OrganisasiView
@@ -30,6 +33,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
         initComponents();
         sg = new SerbaGuna();
         controller = new AchievementController(sessionFactory);
+        tblAchievement.setRowSorter(rowSorter);
         bindingAchievement(controller.getAll());
         
     }
@@ -272,9 +276,13 @@ public class AchievementView extends javax.swing.JInternalFrame {
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if(!txtSearch.getText().equalsIgnoreCase("")){
-                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
-                    bindingAchievement(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
+            if (!txtSearch.getText().equals("")) {
+                String text = txtSearch.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                    } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+                }
             }
         }
         if (txtSearch.getText().equals("")) {
@@ -285,9 +293,13 @@ public class AchievementView extends javax.swing.JInternalFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if(!txtSearch.getText().equalsIgnoreCase("")){
-                System.out.println(cmbItem[cmbKategori.getSelectedIndex()]+" - "+txtSearch.getText());
-                    bindingAchievement(controller.search(cmbItem[cmbKategori.getSelectedIndex()], txtSearch.getText()));               
-            }
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+            }            
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
@@ -325,6 +337,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
             i++;
         }
         tblAchievement.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(tblAchievement.getModel());
         reset();
         
     }    
@@ -341,10 +354,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
         txtYear.setText("");
         btnDrop.setEnabled(false);
         txtAchievementId.setEditable(false);
-    }
-        
-        
-        
-        
+        tblAchievement.setRowSorter(rowSorter);
+    }           
 
 }

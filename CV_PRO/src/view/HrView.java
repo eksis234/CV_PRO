@@ -253,7 +253,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOrganizationActionPerformed
         // TODO add your handling code here:
-        OrganizationView organizationView = new OrganizationView();
+        OrganizationView organizationView = new OrganizationView(sf);
         organizationView.show();
         dpUtamaHr.add(organizationView);
     }//GEN-LAST:event_jmOrganizationActionPerformed
@@ -321,7 +321,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmProgrammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProgrammingActionPerformed
          // TODO add your handling code here:
-         ProgrammingView programmingView = new ProgrammingView();
+         ProgrammingView programmingView = new ProgrammingView(sf);
          programmingView.show();
          dpUtamaHr.add(programmingView);
     }//GEN-LAST:event_jmProgrammingActionPerformed
