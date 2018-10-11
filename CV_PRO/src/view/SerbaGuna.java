@@ -19,7 +19,7 @@ public class SerbaGuna {
  
     public enum pesan{
       save("Berhasil Disimpan"), update("Berhasil Diperbaharui"), 
-      delete("Berhassil Dihapus"), cancel("Batal Dihapus"),
+      delete("Berhasil Dihapus"), cancel("Batal Dihapus"),
       find("Berhasil Ditemukan");  
         
       private String isine;
