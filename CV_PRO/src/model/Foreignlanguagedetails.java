@@ -21,14 +21,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "FOREIGNLANGUAGEDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Foreignlanguagedetails.findAll", query = "SELECT f FROM Foreignlanguagedetails f")
-    , @NamedQuery(name = "Foreignlanguagedetails.findByIdflangdetail", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.idflangdetail = :idflangdetail")})
+    , @NamedQuery(name = "Foreignlanguagedetails.findByIdflangdetail", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.idflangdetail = :idflangdetail")
+    , @NamedQuery(name = "Foreignlanguagedetails.findByStatus", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.status = :status")})
 public class Foreignlanguagedetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +38,8 @@ public class Foreignlanguagedetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDFLANGDETAIL")
     private BigDecimal idflangdetail;
+    @Column(name = "STATUS")
+    private String status;
     @JoinColumn(name = "IDFLANG", referencedColumnName = "IDFLANG")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Foreignlanguage idflang;
@@ -51,23 +54,20 @@ public class Foreignlanguagedetails implements Serializable {
         this.idflangdetail = idflangdetail;
     }
 
-    public Foreignlanguagedetails(BigDecimal idflangdetail, Foreignlanguage idflang) {
-        this.idflangdetail = idflangdetail;
-        this.idflang = idflang;
-    }
-
-    public Foreignlanguagedetails(BigDecimal idflangdetail, Foreignlanguage idflang, Personaldata idpersonal) {
-        this.idflangdetail = idflangdetail;
-        this.idflang = idflang;
-        this.idpersonal = idpersonal;
-    }
-    
     public BigDecimal getIdflangdetail() {
         return idflangdetail;
     }
 
     public void setIdflangdetail(BigDecimal idflangdetail) {
         this.idflangdetail = idflangdetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Foreignlanguage getIdflang() {

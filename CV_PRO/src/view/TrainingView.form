@@ -26,10 +26,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel2" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,18 +50,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="cmbKategoriTraining" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtFindTraining" min="-2" pref="150" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnFindC" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="cmbKategori" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="txtSearch" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnFindC" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -71,8 +74,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbKategoriTraining" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFindTraining" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbKategori" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnFindC" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -82,29 +85,27 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="cmbKategoriTraining">
+        <Component class="javax.swing.JComboBox" name="cmbKategori">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="3">
                 <StringItem index="0" value="ID Training"/>
                 <StringItem index="1" value="Nama Training"/>
                 <StringItem index="2" value="Penyelenggara"/>
-                <StringItem index="3" value="Tanggal Mulai"/>
-                <StringItem index="4" value="Tanggal Selesai"/>
               </StringArray>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKategoriTrainingActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbKategoriActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="TrainingView_cmbKategoriCountry"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFindTraining">
+        <Component class="javax.swing.JTextField" name="txtSearch">
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFindTrainingKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSearchKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFindC">
@@ -158,51 +159,23 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="jlTrainingId" pref="62" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jlProgrammingName1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jlProgrammingName" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jlTrainingId" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jlProgrammingName" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlProgrammingName1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtTrainingId" alignment="0" pref="151" max="32767" attributes="0"/>
                       <Component id="txtTrainingName" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtOrganization" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="jlProgrammingName2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="dateStart" pref="184" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jlProgrammingName3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnDropC" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnSaveC" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="dateEnd" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btnSaveC" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnDropC" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -213,33 +186,26 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlTrainingId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTrainingId" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlProgrammingName2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dateStart" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlProgrammingName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTrainingName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlProgrammingName3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dateEnd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jlProgrammingName1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtOrganization" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnDropC" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnSaveC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlProgrammingName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtOrganization" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSaveC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDropC" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -259,12 +225,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jlTrainingId">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Training ID"/>
+            <Property name="text" type="java.lang.String" value="Training ID :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlProgrammingName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Training Name"/>
+            <Property name="text" type="java.lang.String" value="Training Name :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnDropC">
@@ -285,27 +251,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jlProgrammingName1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Penyelenggara"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlProgrammingName2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tanggal Mulai"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlProgrammingName3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Tanggal Selesai"/>
+            <Property name="text" type="java.lang.String" value="Penyelenggara :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtOrganization">
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtOrganizationKeyTyped"/>
           </Events>
-        </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="dateStart">
-        </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="dateEnd">
         </Component>
       </SubComponents>
     </Container>

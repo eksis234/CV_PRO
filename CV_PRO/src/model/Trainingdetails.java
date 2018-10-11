@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,18 +18,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "TRAININGDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Trainingdetails.findAll", query = "SELECT t FROM Trainingdetails t")
-    , @NamedQuery(name = "Trainingdetails.findByIdtrainingdetail", query = "SELECT t FROM Trainingdetails t WHERE t.idtrainingdetail = :idtrainingdetail")})
+    , @NamedQuery(name = "Trainingdetails.findByIdtrainingdetail", query = "SELECT t FROM Trainingdetails t WHERE t.idtrainingdetail = :idtrainingdetail")
+    , @NamedQuery(name = "Trainingdetails.findByStatus", query = "SELECT t FROM Trainingdetails t WHERE t.status = :status")
+    , @NamedQuery(name = "Trainingdetails.findByStartdate", query = "SELECT t FROM Trainingdetails t WHERE t.startdate = :startdate")
+    , @NamedQuery(name = "Trainingdetails.findByEnddate", query = "SELECT t FROM Trainingdetails t WHERE t.enddate = :enddate")})
 public class Trainingdetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +43,14 @@ public class Trainingdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDTRAININGDETAIL")
     private BigDecimal idtrainingdetail;
+    @Column(name = "STATUS")
+    private String status;
+    @Column(name = "STARTDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startdate;
+    @Column(name = "ENDDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date enddate;
     @JoinColumn(name = "IDPERSONAL", referencedColumnName = "IDPERSONAL")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Personaldata idpersonal;
@@ -51,23 +65,36 @@ public class Trainingdetails implements Serializable {
         this.idtrainingdetail = idtrainingdetail;
     }
 
-    public Trainingdetails(BigDecimal idtrainingdetail, Personaldata idpersonal) {
-        this.idtrainingdetail = idtrainingdetail;
-        this.idpersonal = idpersonal;
-    }
-
-    public Trainingdetails(BigDecimal idtrainingdetail, Personaldata idpersonal, Training idtraining) {
-        this.idtrainingdetail = idtrainingdetail;
-        this.idpersonal = idpersonal;
-        this.idtraining = idtraining;
-    }
-
     public BigDecimal getIdtrainingdetail() {
         return idtrainingdetail;
     }
 
     public void setIdtrainingdetail(BigDecimal idtrainingdetail) {
         this.idtrainingdetail = idtrainingdetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
+
+    public Date getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
     }
 
     public Personaldata getIdpersonal() {

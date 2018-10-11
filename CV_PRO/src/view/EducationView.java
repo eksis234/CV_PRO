@@ -10,10 +10,13 @@ import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.Education;
 import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
 
 /**
  *
@@ -23,7 +26,7 @@ public class EducationView extends javax.swing.JInternalFrame {
 
     private final SerbaGuna sg;
     private final EducationController controller;
-    private String[] cmb = {"ideducation", "instansi", "leveleducation", "gpa", "yearin", "graduation", "major"};
+    private TableRowSorter<TableModel> rowSorter;
 
     /**
      * Konstruktor default kelas EducationView berparameter
@@ -32,6 +35,7 @@ public class EducationView extends javax.swing.JInternalFrame {
         initComponents();
         sg = new SerbaGuna();
         controller = new EducationController(factory);
+        tblEducation.setRowSorter(rowSorter);
         bindingEducation(controller.getAll());
         reset();
     }
@@ -58,14 +62,6 @@ public class EducationView extends javax.swing.JInternalFrame {
         txtInstansi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtTingkatEdukasi = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtIpk = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtAngkatan = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtTahunLulus = new javax.swing.JTextField();
-        txtJurusan = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         cmbKategori = new javax.swing.JComboBox<>();
@@ -123,15 +119,7 @@ public class EducationView extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Instansi :");
 
-        jLabel3.setText("Tingkat Pendidikani :");
-
-        jLabel4.setText("IPK :");
-
-        jLabel5.setText("Angkatan :");
-
-        jLabel6.setText("Tahun Lulus :");
-
-        jLabel7.setText("Jurusan :");
+        jLabel3.setText("Tingkat Pendidikan :");
 
         btnDelete.setText("Drop");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -156,40 +144,19 @@ public class EducationView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdEdukasi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtInstansi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtTingkatEdukasi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtIpk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(29, 29, 29)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(btnSave)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnDelete)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAngkatan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                            .addComponent(txtTahunLulus, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtJurusan, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
+                        .addComponent(txtIdEdukasi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtInstansi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTingkatEdukasi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(149, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnSave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDelete))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,38 +164,22 @@ public class EducationView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtIdEdukasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtAngkatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdEdukasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtTahunLulus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtTingkatEdukasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtIpk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(txtJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSave)
-                            .addComponent(btnDelete))
-                        .addContainerGap())))
+                    .addComponent(txtInstansi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtTingkatEdukasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnDelete)))
         );
 
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Edukasi", "Instansi", "Tingkat Pendidikan", "IPK", "Angkatan", "Tahun Lulus", "Jurusan" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Edukasi", "Instansi", "Tingkat Pendidikan" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,16 +188,16 @@ public class EducationView extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSearch)))
                 .addContainerGap())
-            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,15 +232,20 @@ public class EducationView extends javax.swing.JInternalFrame {
      */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(controller.getAutoId().toString(), txtInstansi.getText(), txtTingkatEdukasi.getText(), txtIpk.getText(), txtAngkatan.getText(), txtTahunLulus.getText(), txtJurusan.getText());
-        if (!txtIdEdukasi.isEnabled()) {
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save, "Save", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtInstansi.getText().equals("") && !txtTingkatEdukasi.getText().equals("")){
+            if(!txtInstansi.getText().substring(0, 1).equals(" ") && !txtTingkatEdukasi.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtIdEdukasi.getText(), txtInstansi.getText(), txtTingkatEdukasi.getText());
+                if(!txtIdEdukasi.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingEducation(controller.getAll());
+                reset();
+            }
         }
-        bindingEducation(controller.getAll());
-        reset();
-
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveActionPerformed
     
     /**
@@ -299,7 +255,12 @@ public class EducationView extends javax.swing.JInternalFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if (!txtSearch.getText().equals("")) {
-            bindingEducation(controller.search(cmb[cmbKategori.getSelectedIndex()], txtSearch.getText()));
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+            }
         }
     }//GEN-LAST:event_btnSearchActionPerformed
     
@@ -313,10 +274,6 @@ public class EducationView extends javax.swing.JInternalFrame {
         txtIdEdukasi.setText(tblEducation.getValueAt(row, 1).toString());
         txtInstansi.setText(tblEducation.getValueAt(row, 2).toString());
         txtTingkatEdukasi.setText(tblEducation.getValueAt(row, 3).toString());
-        txtIpk.setText(tblEducation.getValueAt(row, 4).toString());
-        txtAngkatan.setText(tblEducation.getValueAt(row, 5).toString());
-        txtTahunLulus.setText(tblEducation.getValueAt(row, 6).toString());
-        txtJurusan.setText(tblEducation.getValueAt(row, 7).toString());
         edit();
     }//GEN-LAST:event_tblEducationMouseClicked
     
@@ -352,10 +309,15 @@ public class EducationView extends javax.swing.JInternalFrame {
      */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!txtSearch.getText().equalsIgnoreCase("")) {
-                System.out.println(cmb[cmbKategori.getSelectedIndex()] + " - " + txtSearch.getText());
-                bindingEducation(controller.search(cmb[cmbKategori.getSelectedIndex()], txtSearch.getText()));
+        if (!txtSearch.getText().equals("")) {
+            btnSearch.setEnabled(true);
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                String text = txtSearch.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                    } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+                }
             }
         }
         if (txtSearch.getText().equals("")) {
@@ -372,22 +334,14 @@ public class EducationView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEducation;
-    private javax.swing.JTextField txtAngkatan;
     private javax.swing.JTextField txtAngkatan1;
     private javax.swing.JTextField txtIdEdukasi;
     private javax.swing.JTextField txtInstansi;
     private javax.swing.JTextField txtInstansi1;
-    private javax.swing.JTextField txtIpk;
-    private javax.swing.JTextField txtJurusan;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtTahunLulus;
     private javax.swing.JTextField txtTingkatEdukasi;
     // End of variables declaration//GEN-END:variables
     
@@ -396,7 +350,7 @@ public class EducationView extends javax.swing.JInternalFrame {
      * @param object 
      */
     public void bindingEducation(List<Object> object) {
-        String[] header = {"No.", "ID Edukasi", "Instansi", "Tingkat Edukasi", "IPK", "Angkatan", "Tahun Lulus", "Jurusan"};
+        String[] header = {"No.", "ID Edukasi", "Instansi", "Tingkat Edukasi"};
         String[][] data = new String[object.size()][header.length];
         int i = 0;
         for (Object obj : object) {
@@ -405,13 +359,10 @@ public class EducationView extends javax.swing.JInternalFrame {
             data[i][1] = education.getIdeducation() + "";
             data[i][2] = education.getInstansi() + "";
             data[i][3] = education.getLeveleducation() + "";
-            data[i][4] = education.getGpa() + "";
-            data[i][5] = education.getYearin() + "";
-            data[i][6] = education.getGraduation() + "";
-            data[i][7] = education.getMajor() + "";
             i++;
         }
         tblEducation.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(tblEducation.getModel());
         reset();
     }
     
@@ -419,18 +370,14 @@ public class EducationView extends javax.swing.JInternalFrame {
      * Method untuk mengembalikan button dan textfield seperti keadaan awal
      */
     public void reset() {
-        txtIdEdukasi.setText(controller.getAutoId() + " ");
-        txtIdEdukasi.setEnabled(false);
-        txtInstansi.setEnabled(true);
-        txtTingkatEdukasi.setEnabled(true);
-        txtIpk.setEnabled(true);
-        txtAngkatan.setEnabled(true);
-        txtAngkatan.setEnabled(true);
-        txtTahunLulus.setEnabled(true);
-        txtJurusan.setEnabled(true);
+        txtIdEdukasi.setText(controller.getAutoId()+"");
+        txtIdEdukasi.setEnabled(true);
+        txtInstansi.setText("");
+        txtTingkatEdukasi.setText("");
+        txtIdEdukasi.setEditable(false);
         btnDelete.setEnabled(false);
-        btnSave.setEnabled(true);
-        btnSearch.setEnabled(true);
+        btnSearch.setEnabled(false);
+        tblEducation.setRowSorter(rowSorter);
     }
     
     /**
@@ -438,5 +385,6 @@ public class EducationView extends javax.swing.JInternalFrame {
      */
     public void edit() {
         txtIdEdukasi.setEnabled(false);
+        btnDelete.setEnabled(true);
     }
 }

@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -19,14 +18,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "TRAINING")
@@ -35,9 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Training.findAll", query = "SELECT t FROM Training t")
     , @NamedQuery(name = "Training.findByIdtraining", query = "SELECT t FROM Training t WHERE t.idtraining = :idtraining")
     , @NamedQuery(name = "Training.findByTrainingname", query = "SELECT t FROM Training t WHERE t.trainingname = :trainingname")
-    , @NamedQuery(name = "Training.findByTrainingorganization", query = "SELECT t FROM Training t WHERE t.trainingorganization = :trainingorganization")
-    , @NamedQuery(name = "Training.findByStartdate", query = "SELECT t FROM Training t WHERE t.startdate = :startdate")
-    , @NamedQuery(name = "Training.findByEnddate", query = "SELECT t FROM Training t WHERE t.enddate = :enddate")})
+    , @NamedQuery(name = "Training.findByTrainingorganization", query = "SELECT t FROM Training t WHERE t.trainingorganization = :trainingorganization")})
 public class Training implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,12 +45,6 @@ public class Training implements Serializable {
     private String trainingname;
     @Column(name = "TRAININGORGANIZATION")
     private String trainingorganization;
-    @Column(name = "STARTDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startdate;
-    @Column(name = "ENDDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date enddate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtraining", fetch = FetchType.LAZY)
     private List<Trainingdetails> trainingdetailsList;
 
@@ -66,41 +55,12 @@ public class Training implements Serializable {
         this.idtraining = idtraining;
     }
 
-    public Training(BigDecimal idtraining, String trainingname) {
-        this.idtraining = idtraining;
-        this.trainingname = trainingname;
-    }
-
     public Training(BigDecimal idtraining, String trainingname, String trainingorganization) {
         this.idtraining = idtraining;
         this.trainingname = trainingname;
         this.trainingorganization = trainingorganization;
     }
 
-    public Training(BigDecimal idtraining, String trainingname, String trainingorganization, Date startdate) {
-        this.idtraining = idtraining;
-        this.trainingname = trainingname;
-        this.trainingorganization = trainingorganization;
-        this.startdate = startdate;
-    }
-
-    public Training(BigDecimal idtraining, String trainingname, String trainingorganization, Date startdate, Date enddate) {
-        this.idtraining = idtraining;
-        this.trainingname = trainingname;
-        this.trainingorganization = trainingorganization;
-        this.startdate = startdate;
-        this.enddate = enddate;
-    }
-
-    public Training(BigDecimal idtraining, String trainingname, String trainingorganization, Date startdate, Date enddate, List<Trainingdetails> trainingdetailsList) {
-        this.idtraining = idtraining;
-        this.trainingname = trainingname;
-        this.trainingorganization = trainingorganization;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.trainingdetailsList = trainingdetailsList;
-    }
-    
     public BigDecimal getIdtraining() {
         return idtraining;
     }
@@ -123,22 +83,6 @@ public class Training implements Serializable {
 
     public void setTrainingorganization(String trainingorganization) {
         this.trainingorganization = trainingorganization;
-    }
-
-    public Date getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
     }
 
     @XmlTransient

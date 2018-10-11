@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "TOOLDETAILS")
@@ -53,17 +53,6 @@ public class Tooldetails implements Serializable {
 
     public BigDecimal getIdtooldetail() {
         return idtooldetail;
-    }
-
-    public Tooldetails(BigDecimal idtooldetail, Personaldata idpersonal) {
-        this.idtooldetail = idtooldetail;
-        this.idpersonal = idpersonal;
-    }
-
-    public Tooldetails(BigDecimal idtooldetail, Personaldata idpersonal, Tools idtool) {
-        this.idtooldetail = idtooldetail;
-        this.idpersonal = idpersonal;
-        this.idtool = idtool;
     }
 
     public void setIdtooldetail(BigDecimal idtooldetail) {

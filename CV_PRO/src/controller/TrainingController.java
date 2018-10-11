@@ -67,12 +67,10 @@ public class TrainingController {
      * @param trainingId
      * @param trainingName
      * @param trainingOrganization
-     * @param startDate
-     * @param endDate
      * @return 
      */
-    public boolean saveOrUpdate(String trainingId, String trainingName, String trainingOrganization, String startDate, String endDate) {
-        Training training = new Training(new BigDecimal(trainingId), trainingName, trainingOrganization, new Date(startDate), new Date(endDate));
+    public boolean saveOrUpdate(String trainingId, String trainingName, String trainingOrganization) {
+        Training training = new Training(new BigDecimal(trainingId), trainingName, trainingOrganization);
         return idao.saveOrUpdate(training);
     }
     
@@ -97,11 +95,11 @@ public class TrainingController {
     
     /**
      * Fungsi untuk menghapus data
-     * @param id - id education
+     * @param id - id training
      * @return apakah proses delete berhasil/tidak
      */
     public boolean delete(String id){
-        Training training = (Training) getById(id);
+        Training training = new Training(new BigDecimal(id));
         return idao.delete(training);
     }
 

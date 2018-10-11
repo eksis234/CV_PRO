@@ -27,8 +27,10 @@ public class ToolsView extends javax.swing.JInternalFrame {
     private final ToolsController controller;
     private final SerbaGuna sg;
     private TableRowSorter<TableModel> rowSorter;
-     /**
+
+    /**
      * Creates new form ToolsView
+     *
      * @param factory untuk koneksi
      */
     public ToolsView(SessionFactory factory) {
@@ -66,7 +68,7 @@ public class ToolsView extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Master Tools");
+        setTitle("Tools");
 
         cmbKategoriTools.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tools ID", "Tools Name" }));
 
@@ -103,24 +105,28 @@ public class ToolsView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmbKategoriTools, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFindTools, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFindTools)
-                .addGap(25, 25, 25))
-            .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(cmbKategoriTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFindTools, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFindTools))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbKategoriTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFindTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFindTools))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
         );
 
@@ -174,15 +180,16 @@ public class ToolsView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jlProgrammingName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlProgrammingId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtToolsName, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(txtToolsId))
-                .addGap(72, 72, 72)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDropTools)
-                    .addComponent(btnSaveTools))
-                .addGap(132, 132, 132))
+                    .addComponent(txtToolsId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtToolsName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSaveTools)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDropTools)))
+                .addGap(120, 120, 120))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,14 +197,17 @@ public class ToolsView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProgrammingId)
-                    .addComponent(txtToolsId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveTools))
-                .addGap(19, 19, 19)
+                    .addComponent(txtToolsId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProgrammingName)
-                    .addComponent(txtToolsName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDropTools))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtToolsName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDropTools)
+                    .addComponent(btnSaveTools)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,9 +215,9 @@ public class ToolsView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,52 +226,68 @@ public class ToolsView extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Untuk melakukan pencarian dari kategori dengan menekan tombol enter dan
+     * menampilkan seluruh data saat textfield search dikosongkan
+     *
+     * @param evt (KeyEvent)
+     */
     private void txtFindToolsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindToolsKeyReleased
         // TODO add your handling code here:
         if (txtFindTools.getText().equals("")) {
-                bindingTools(controller.getAll());
-            }else if (!txtFindTools.getText().equalsIgnoreCase("")){
-                btnFindTools.setEnabled(true);
-            }
-            if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
+            bindingTools(controller.getAll());
+        } else if (!txtFindTools.getText().equalsIgnoreCase("")) {
+            btnFindTools.setEnabled(true);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String text = txtFindTools.getText();
             if (text.trim().length() == 0) {
                 rowSorter.setRowFilter(null);
-                } else {
+            } else {
                 rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriTools.getSelectedIndex() + 1));
             }
         }
     }//GEN-LAST:event_txtFindToolsKeyReleased
 
+    /**
+     * Melakukan pencarian dengan menggunakan button search
+     *
+     * @param evt (ActionEvent)
+     */
     private void btnFindToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindToolsActionPerformed
         // TODO add your handling code here:
-                if (!txtFindTools.getText().equalsIgnoreCase("")) {
-                        String text = txtFindTools.getText();
-                        if (text.trim().length() == 0) {
-                                rowSorter.setRowFilter(null);
-                            } else {
-                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriTools.getSelectedIndex() + 1));
-                        }                 
-                    }
+        if (!txtFindTools.getText().equalsIgnoreCase("")) {
+            String text = txtFindTools.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategoriTools.getSelectedIndex() + 1));
+            }
+        }
     }//GEN-LAST:event_btnFindToolsActionPerformed
 
     private void txtToolsIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtToolsIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtToolsIdActionPerformed
 
+    /**
+     * untuk memfilter angka dari input
+     *
+     * @param evt KeyEvent
+     */
     private void txtToolsIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToolsIdKeyReleased
         // TODO add your handling code here:
-                if (evt.getKeyCode()==KeyEvent.VK_ENTER) {
-                        if (!txtToolsId.getText().equals("") ){
-                                sg.filterAngka(evt);
-                            }
-                    }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!txtToolsId.getText().equals("")) {
+                sg.filterAngka(evt);
+            }
+        }
     }//GEN-LAST:event_txtToolsIdKeyReleased
 
     private void txtToolsIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToolsIdKeyTyped
@@ -274,32 +300,52 @@ public class ToolsView extends javax.swing.JInternalFrame {
         //        sf.filterPass(evt);
     }//GEN-LAST:event_txtToolsNameKeyTyped
 
+    /**
+     * Untuk menghapus data dengan menggunakan button drop
+     *
+     * @param evt (ActionEvent)
+     */
     private void btnDropToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropToolsActionPerformed
         // TODO add your handling code here:
-                int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
-                if (response == JOptionPane.YES_OPTION) {
-                    controller.delete(txtToolsId.getText());
-                    JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-                    bindingTools(controller.getAll());
-                    reset();
-                    }else if (response == JOptionPane.NO_OPTION) {
-                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-                    }
+        int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?", "Pertanyaan", JOptionPane.YES_NO_OPTION);
+        if (response == JOptionPane.YES_OPTION) {
+            controller.delete(txtToolsId.getText());
+            JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+            bindingTools(controller.getAll());
+            reset();
+        } else if (response == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnDropToolsActionPerformed
 
+    /**
+     * Menyimpan data saat menekan button save
+     *
+     * @param evt (ActionEvent)
+     */
     private void btnSaveToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToolsActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
-        if(!txtToolsId.isEnabled()){
-            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtToolsName.getText().equals("")){
+            if(!txtToolsName.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtToolsId.getText(), txtToolsName.getText());
+                if(!txtToolsId.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingTools(controller.getAll());
+                reset();
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
-        }
-        bindingTools(controller.getAll());
-        reset();
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveToolsActionPerformed
 
+    /**
+     * Mengambil data dari baris yang di klik oleh mouse
+     *
+     * @param evt (MouseEvent)
+     */
     private void jtToolsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtToolsMouseClicked
         // TODO add your handling code here:
         int row = jtTools.getSelectedRow();
@@ -325,51 +371,48 @@ public class ToolsView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtToolsName;
     // End of variables declaration//GEN-END:variables
 
-    
-       /**
-     * dok bindingCountries
-     * @param countrys berupa list<object>
+    /**
+     * Untuk menampilkan seluruh data ke dalam tabel
+     *
+     * @param tools (List<Object>) data yang akan dimasukan ke tabel
      */
-private void bindingTools(List<Object> tools) {
-    String [] header = {"No","Tools Id","Tools Name"};
-        String [][] data = new String[tools.size()][header.length];
+    private void bindingTools(List<Object> tools) {
+        String[] header = {"No", "Tools Id", "Tools Name"};
+        String[][] data = new String[tools.size()][header.length];
         int i = 0;
         for (Object object : tools) {
-            Tools t  =  (Tools) object;
+            Tools t = (Tools) object;
             data[i][0] = (i + 1) + "";
-            data[i][1] = t.getIdtool()+"";
+            data[i][1] = t.getIdtool() + "";
             data[i][2] = t.getToolname();
             i++;
         }
         jtTools.setModel(new DefaultTableModel(data, header));
         this.rowSorter = new TableRowSorter<>(jtTools.getModel());
-        reset();     
+        reset();
     }
-    
+
     /**
-     * dok reset
+     * Menampilkan ID terakhir di textfield achievementId dan mengaktifkan serta
+     * menghilangkan kemampuan meng-edit textfield tersebut, menonaktifkan
+     * button drop dan search, mengosongkan textfield
+     * achievementName,eventName,dan year
      */
-    public  void reset(){
-        txtToolsId.setText(controller.getAutoId()+"");
+    public void reset() {
+        txtToolsId.setText(controller.getAutoId() + "");
         txtToolsId.setEnabled(true);
         txtToolsName.setText("");
         btnDropTools.setEnabled(false);
-        btnSaveTools.setEnabled(true);
         btnFindTools.setEnabled(false);
         jtTools.setRowSorter(rowSorter);
     }
-    
+
     /**
-     * dok edit
+     * menonaktifkan texfield ToolsId, mengaktifkan button button drop
      */
-    private void edit(){
+    private void edit() {
         txtToolsId.setEnabled(false);
-        btnSaveTools.setEnabled(true);
         btnDropTools.setEnabled(true);
-    }  
-    
-    
-    
-    
-    
+    }
+
 }

@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "OSDETAILS")
@@ -49,17 +49,6 @@ public class Osdetails implements Serializable {
 
     public Osdetails(BigDecimal idosdetail) {
         this.idosdetail = idosdetail;
-    }
-
-    public Osdetails(BigDecimal idosdetail, Os idos) {
-        this.idosdetail = idosdetail;
-        this.idos = idos;
-    }
-
-    public Osdetails(BigDecimal idosdetail, Os idos, Personaldata idpersonal) {
-        this.idosdetail = idosdetail;
-        this.idos = idos;
-        this.idpersonal = idpersonal;
     }
 
     public BigDecimal getIdosdetail() {

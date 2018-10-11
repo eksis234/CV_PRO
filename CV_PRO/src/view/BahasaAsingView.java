@@ -226,15 +226,20 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
      */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(txtIdBahasa.getText(), txtNamaBahasa.getText());
-        if(!txtIdBahasa.isEnabled()){
-            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtNamaBahasa.getText().equals("")){
+            if(!txtNamaBahasa.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtIdBahasa.getText(), txtNamaBahasa.getText());
+                if(!txtIdBahasa.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingBhsa(controller.getAll());
+                reset();
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
-        }
-        bindingBhsa(controller.getAll());
-        reset();
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
@@ -244,14 +249,14 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
-                if (response == JOptionPane.YES_OPTION) {
-                    controller.delete(txtIdBahasa.getText());
-                    JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-                    bindingBhsa(controller.getAll());
-                    reset();
-                    }else if (response == JOptionPane.NO_OPTION) {
-                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-                    }
+            if (response == JOptionPane.YES_OPTION) {
+                controller.delete(txtIdBahasa.getText());
+                JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+                bindingBhsa(controller.getAll());
+                reset();
+            }else if (response == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+            }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
@@ -283,13 +288,13 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if (!txtSearch.getText().equalsIgnoreCase("")) {
-                        String text = txtSearch.getText();
-                        if (text.trim().length() == 0) {
-                                rowSorter.setRowFilter(null);
-                            } else {
-                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
-                        }                 
-                    }
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+            }                 
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
@@ -338,7 +343,6 @@ public class BahasaAsingView extends javax.swing.JInternalFrame {
         txtNamaBahasa.setText("");
         txtIdBahasa.setEditable(false);
         btnDelete.setEnabled(false);
-        btnSave.setEnabled(true);
         btnSearch.setEnabled(false);
         tblBahasaAsing.setRowSorter(rowSorter);
     }

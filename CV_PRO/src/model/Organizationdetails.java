@@ -7,6 +7,8 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,18 +19,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "ORGANIZATIONDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Organizationdetails.findAll", query = "SELECT o FROM Organizationdetails o")
-    , @NamedQuery(name = "Organizationdetails.findByIdorgdetail", query = "SELECT o FROM Organizationdetails o WHERE o.idorgdetail = :idorgdetail")})
+    , @NamedQuery(name = "Organizationdetails.findByIdorgdetail", query = "SELECT o FROM Organizationdetails o WHERE o.idorgdetail = :idorgdetail")
+    , @NamedQuery(name = "Organizationdetails.findByOrganizationid", query = "SELECT o FROM Organizationdetails o WHERE o.organizationid = :organizationid")
+    , @NamedQuery(name = "Organizationdetails.findByOrganizationname", query = "SELECT o FROM Organizationdetails o WHERE o.organizationname = :organizationname")
+    , @NamedQuery(name = "Organizationdetails.findByPosition", query = "SELECT o FROM Organizationdetails o WHERE o.position = :position")
+    , @NamedQuery(name = "Organizationdetails.findByStartdate", query = "SELECT o FROM Organizationdetails o WHERE o.startdate = :startdate")
+    , @NamedQuery(name = "Organizationdetails.findByEnddate", query = "SELECT o FROM Organizationdetails o WHERE o.enddate = :enddate")
+    , @NamedQuery(name = "Organizationdetails.findByStatus", query = "SELECT o FROM Organizationdetails o WHERE o.status = :status")})
 public class Organizationdetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +47,21 @@ public class Organizationdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDORGDETAIL")
     private BigDecimal idorgdetail;
+    @Basic(optional = false)
+    @Column(name = "ORGANIZATIONID")
+    private BigInteger organizationid;
+    @Column(name = "ORGANIZATIONNAME")
+    private String organizationname;
+    @Column(name = "POSITION")
+    private String position;
+    @Column(name = "STARTDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startdate;
+    @Column(name = "ENDDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date enddate;
+    @Column(name = "STATUS")
+    private String status;
     @JoinColumn(name = "IDORGANIZATION", referencedColumnName = "IDORGANIZATION")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Organization idorganization;
@@ -51,15 +76,9 @@ public class Organizationdetails implements Serializable {
         this.idorgdetail = idorgdetail;
     }
 
-    public Organizationdetails(BigDecimal idorgdetail, Organization idorganization) {
+    public Organizationdetails(BigDecimal idorgdetail, BigInteger organizationid) {
         this.idorgdetail = idorgdetail;
-        this.idorganization = idorganization;
-    }
-
-    public Organizationdetails(BigDecimal idorgdetail, Organization idorganization, Personaldata idpersonal) {
-        this.idorgdetail = idorgdetail;
-        this.idorganization = idorganization;
-        this.idpersonal = idpersonal;
+        this.organizationid = organizationid;
     }
 
     public BigDecimal getIdorgdetail() {
@@ -68,6 +87,54 @@ public class Organizationdetails implements Serializable {
 
     public void setIdorgdetail(BigDecimal idorgdetail) {
         this.idorgdetail = idorgdetail;
+    }
+
+    public BigInteger getOrganizationid() {
+        return organizationid;
+    }
+
+    public void setOrganizationid(BigInteger organizationid) {
+        this.organizationid = organizationid;
+    }
+
+    public String getOrganizationname() {
+        return organizationname;
+    }
+
+    public void setOrganizationname(String organizationname) {
+        this.organizationname = organizationname;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Date getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
+
+    public Date getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Organization getIdorganization() {

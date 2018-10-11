@@ -21,14 +21,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "ACHIEVEMENTDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Achievementdetails.findAll", query = "SELECT a FROM Achievementdetails a")
-    , @NamedQuery(name = "Achievementdetails.findByIdachdetail", query = "SELECT a FROM Achievementdetails a WHERE a.idachdetail = :idachdetail")})
+    , @NamedQuery(name = "Achievementdetails.findByIdachdetail", query = "SELECT a FROM Achievementdetails a WHERE a.idachdetail = :idachdetail")
+    , @NamedQuery(name = "Achievementdetails.findByStatus", query = "SELECT a FROM Achievementdetails a WHERE a.status = :status")})
 public class Achievementdetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +38,8 @@ public class Achievementdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDACHDETAIL")
     private BigDecimal idachdetail;
+    @Column(name = "STATUS")
+    private String status;
     @JoinColumn(name = "IDACHIEVEMENT", referencedColumnName = "IDACHIEVEMENT")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Achievement idachievement;
@@ -51,23 +54,20 @@ public class Achievementdetails implements Serializable {
         this.idachdetail = idachdetail;
     }
 
-    public Achievementdetails(BigDecimal idachdetail, Achievement idachievement) {
-        this.idachdetail = idachdetail;
-        this.idachievement = idachievement;
-    }
-
-    public Achievementdetails(BigDecimal idachdetail, Achievement idachievement, Personaldata idpersonal) {
-        this.idachdetail = idachdetail;
-        this.idachievement = idachievement;
-        this.idpersonal = idpersonal;
-    }
-    
     public BigDecimal getIdachdetail() {
         return idachdetail;
     }
 
     public void setIdachdetail(BigDecimal idachdetail) {
         this.idachdetail = idachdetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Achievement getIdachievement() {

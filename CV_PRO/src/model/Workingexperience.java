@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -15,19 +14,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "WORKINGEXPERIENCE")
@@ -35,11 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Workingexperience.findAll", query = "SELECT w FROM Workingexperience w")
     , @NamedQuery(name = "Workingexperience.findByIdworkingexperience", query = "SELECT w FROM Workingexperience w WHERE w.idworkingexperience = :idworkingexperience")
-    , @NamedQuery(name = "Workingexperience.findByJobtitle", query = "SELECT w FROM Workingexperience w WHERE w.jobtitle = :jobtitle")
-    , @NamedQuery(name = "Workingexperience.findByEmployer", query = "SELECT w FROM Workingexperience w WHERE w.employer = :employer")
-    , @NamedQuery(name = "Workingexperience.findByCity", query = "SELECT w FROM Workingexperience w WHERE w.city = :city")
-    , @NamedQuery(name = "Workingexperience.findByStartdate", query = "SELECT w FROM Workingexperience w WHERE w.startdate = :startdate")
-    , @NamedQuery(name = "Workingexperience.findByEnddate", query = "SELECT w FROM Workingexperience w WHERE w.enddate = :enddate")})
+    , @NamedQuery(name = "Workingexperience.findByNamaperusahaan", query = "SELECT w FROM Workingexperience w WHERE w.namaperusahaan = :namaperusahaan")
+    , @NamedQuery(name = "Workingexperience.findByCity", query = "SELECT w FROM Workingexperience w WHERE w.city = :city")})
 public class Workingexperience implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,21 +41,10 @@ public class Workingexperience implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDWORKINGEXPERIENCE")
     private BigDecimal idworkingexperience;
-    @Column(name = "JOBTITLE")
-    private String jobtitle;
-    @Column(name = "EMPLOYER")
-    private String employer;
+    @Column(name = "NAMAPERUSAHAAN")
+    private String namaperusahaan;
     @Column(name = "CITY")
     private String city;
-    @Column(name = "STARTDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startdate;
-    @Column(name = "ENDDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date enddate;
-    @Lob
-    @Column(name = "DESCRIPTION")
-    private String description;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idworkingexperience", fetch = FetchType.LAZY)
     private List<Experiencedetails> experiencedetailsList;
 
@@ -73,25 +55,10 @@ public class Workingexperience implements Serializable {
         this.idworkingexperience = idworkingexperience;
     }
 
-    public Workingexperience(BigDecimal idworkingexperience, String jobtitle, String employer, String city, Date startdate, Date enddate, String description) {
+    public Workingexperience(BigDecimal idworkingexperience, String namaperusahaan, String city) {
         this.idworkingexperience = idworkingexperience;
-        this.jobtitle = jobtitle;
-        this.employer = employer;
+        this.namaperusahaan = namaperusahaan;
         this.city = city;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.description = description;
-    }
-
-    public Workingexperience(BigDecimal idworkingexperience, String jobtitle, String employer, String city, Date startdate, Date enddate, String description, List<Experiencedetails> experiencedetailsList) {
-        this.idworkingexperience = idworkingexperience;
-        this.jobtitle = jobtitle;
-        this.employer = employer;
-        this.city = city;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.description = description;
-        this.experiencedetailsList = experiencedetailsList;
     }
 
     public BigDecimal getIdworkingexperience() {
@@ -102,20 +69,12 @@ public class Workingexperience implements Serializable {
         this.idworkingexperience = idworkingexperience;
     }
 
-    public String getJobtitle() {
-        return jobtitle;
+    public String getNamaperusahaan() {
+        return namaperusahaan;
     }
 
-    public void setJobtitle(String jobtitle) {
-        this.jobtitle = jobtitle;
-    }
-
-    public String getEmployer() {
-        return employer;
-    }
-
-    public void setEmployer(String employer) {
-        this.employer = employer;
+    public void setNamaperusahaan(String namaperusahaan) {
+        this.namaperusahaan = namaperusahaan;
     }
 
     public String getCity() {
@@ -124,30 +83,6 @@ public class Workingexperience implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Date getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @XmlTransient

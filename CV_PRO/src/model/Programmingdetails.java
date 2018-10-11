@@ -21,14 +21,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "PROGRAMMINGDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Programmingdetails.findAll", query = "SELECT p FROM Programmingdetails p")
-    , @NamedQuery(name = "Programmingdetails.findByIdprogdetail", query = "SELECT p FROM Programmingdetails p WHERE p.idprogdetail = :idprogdetail")})
+    , @NamedQuery(name = "Programmingdetails.findByIdprogdetail", query = "SELECT p FROM Programmingdetails p WHERE p.idprogdetail = :idprogdetail")
+    , @NamedQuery(name = "Programmingdetails.findByStatus", query = "SELECT p FROM Programmingdetails p WHERE p.status = :status")})
 public class Programmingdetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +38,8 @@ public class Programmingdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDPROGDETAIL")
     private BigDecimal idprogdetail;
+    @Column(name = "STATUS")
+    private String status;
     @JoinColumn(name = "IDPERSONAL", referencedColumnName = "IDPERSONAL")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Personaldata idpersonal;
@@ -51,23 +54,20 @@ public class Programmingdetails implements Serializable {
         this.idprogdetail = idprogdetail;
     }
 
-    public Programmingdetails(BigDecimal idprogdetail, Personaldata idpersonal) {
-        this.idprogdetail = idprogdetail;
-        this.idpersonal = idpersonal;
-    }
-
-    public Programmingdetails(BigDecimal idprogdetail, Personaldata idpersonal, Programming idprogramming) {
-        this.idprogdetail = idprogdetail;
-        this.idpersonal = idpersonal;
-        this.idprogramming = idprogramming;
-    }
-
     public BigDecimal getIdprogdetail() {
         return idprogdetail;
     }
 
     public void setIdprogdetail(BigDecimal idprogdetail) {
         this.idprogdetail = idprogdetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Personaldata getIdpersonal() {

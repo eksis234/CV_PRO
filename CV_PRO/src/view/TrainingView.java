@@ -14,9 +14,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import model.*;
 import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
 
 /**
  *
@@ -30,7 +34,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
     //private SessionFactory factory;
     private final SerbaGuna sg;
     private TrainingController controller;
-    private String[] cmb = {"idtraining", "trainingname", "trainingorganization", "startdate", "enddate"};
+     private TableRowSorter<TableModel> rowSorter;
 
     /**
      * Konstruktor default kelas TrainingView berparameter
@@ -41,6 +45,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
         initComponents();
         controller = new TrainingController(factory);
         sg = new SerbaGuna();
+        tblTraining.setRowSorter(rowSorter);
         bindingTraining(controller.getAll());
         reset();
     }
@@ -55,8 +60,8 @@ public class TrainingView extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cmbKategoriTraining = new javax.swing.JComboBox<>();
-        txtFindTraining = new javax.swing.JTextField();
+        cmbKategori = new javax.swing.JComboBox<>();
+        txtSearch = new javax.swing.JTextField();
         btnFindC = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTraining = new javax.swing.JTable();
@@ -68,27 +73,23 @@ public class TrainingView extends javax.swing.JInternalFrame {
         btnDropC = new javax.swing.JButton();
         btnSaveC = new javax.swing.JButton();
         jlProgrammingName1 = new javax.swing.JLabel();
-        jlProgrammingName2 = new javax.swing.JLabel();
-        jlProgrammingName3 = new javax.swing.JLabel();
         txtOrganization = new javax.swing.JTextField();
-        dateStart = new org.jdesktop.swingx.JXDatePicker();
-        dateEnd = new org.jdesktop.swingx.JXDatePicker();
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Master Training");
 
-        cmbKategoriTraining.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Training", "Nama Training", "Penyelenggara", "Tanggal Mulai", "Tanggal Selesai" }));
-        cmbKategoriTraining.addActionListener(new java.awt.event.ActionListener() {
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Training", "Nama Training", "Penyelenggara" }));
+        cmbKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKategoriTrainingActionPerformed(evt);
+                cmbKategoriActionPerformed(evt);
             }
         });
 
-        txtFindTraining.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFindTrainingKeyReleased(evt);
+                txtSearchKeyReleased(evt);
             }
         });
 
@@ -121,17 +122,18 @@ public class TrainingView extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmbKategoriTraining, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFindTraining, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFindC)
-                .addGap(25, 25, 25))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFindC)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,8 +141,8 @@ public class TrainingView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbKategoriTraining, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFindTraining, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFindC))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
@@ -169,9 +171,9 @@ public class TrainingView extends javax.swing.JInternalFrame {
             }
         });
 
-        jlTrainingId.setText("Training ID");
+        jlTrainingId.setText("Training ID :");
 
-        jlProgrammingName.setText("Training Name");
+        jlProgrammingName.setText("Training Name :");
 
         btnDropC.setText("DROP");
         btnDropC.addActionListener(new java.awt.event.ActionListener() {
@@ -187,11 +189,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
             }
         });
 
-        jlProgrammingName1.setText("Penyelenggara");
-
-        jlProgrammingName2.setText("Tanggal Mulai");
-
-        jlProgrammingName3.setText("Tanggal Selesai");
+        jlProgrammingName1.setText("Penyelenggara :");
 
         txtOrganization.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -204,40 +202,20 @@ public class TrainingView extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jlTrainingId, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jlProgrammingName1)
-                        .addGap(13, 13, 13))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlProgrammingName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addComponent(jlTrainingId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlProgrammingName)
+                    .addComponent(jlProgrammingName1))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtTrainingId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                     .addComponent(txtTrainingName, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtOrganization, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jlProgrammingName2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dateStart, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jlProgrammingName3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnDropC)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSaveC)
-                                .addGap(32, 32, 32))
-                            .addComponent(dateEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(42, 42, 42)
+                .addComponent(btnSaveC)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDropC)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -246,27 +224,22 @@ public class TrainingView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlTrainingId)
-                    .addComponent(txtTrainingId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlProgrammingName2)
-                    .addComponent(dateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTrainingId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlProgrammingName)
-                    .addComponent(txtTrainingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlProgrammingName3)
-                    .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlProgrammingName1)
-                            .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDropC)
-                            .addComponent(btnSaveC))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtTrainingName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlProgrammingName1)
+                    .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaveC)
+                    .addComponent(btnDropC))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -274,10 +247,10 @@ public class TrainingView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,16 +268,22 @@ public class TrainingView extends javax.swing.JInternalFrame {
      *
      * @param evt - KeyEvent
      */
-    private void txtFindTrainingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindTrainingKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!txtFindTraining.getText().equalsIgnoreCase("")) {
-                bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        if (!txtSearch.getText().equals("")) {
+            btnFindC.setEnabled(true);
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String text = txtSearch.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                    } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+                }
             }
         }
-        if (txtFindTraining.getText().equals("")) {
+        if (txtSearch.getText().equals("")) {
             bindingTraining(controller.getAll());
         }
-    }//GEN-LAST:event_txtFindTrainingKeyReleased
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     /**
      * Method ketika button Find ditekan
@@ -312,8 +291,13 @@ public class TrainingView extends javax.swing.JInternalFrame {
      * @param evt - KeyEvent
      */
     private void btnFindCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCActionPerformed
-        if (!txtFindTraining.equals("")) {
-            bindingTraining(controller.search(cmb[cmbKategoriTraining.getSelectedIndex()], txtFindTraining.getText()));
+        if(!txtSearch.getText().equalsIgnoreCase("")){
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+                } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex()+1));
+            }            
         }
     }//GEN-LAST:event_btnFindCActionPerformed
 
@@ -365,12 +349,12 @@ public class TrainingView extends javax.swing.JInternalFrame {
         int messageBox = JOptionPane.showConfirmDialog(this, "Are you sure want to delete this data ?", "Delete", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if (messageBox == JOptionPane.YES_OPTION) {
             controller.delete(txtTrainingId.getText());
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.delete.getPesan());
+            JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), null ,JOptionPane.INFORMATION_MESSAGE);
             bindingTraining(controller.getAll());
             reset();
         }
         if (messageBox == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.cancel.getPesan());
+            JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), null,JOptionPane.INFORMATION_MESSAGE );
         }
     }//GEN-LAST:event_btnDropCActionPerformed
 
@@ -381,14 +365,20 @@ public class TrainingView extends javax.swing.JInternalFrame {
      */
     private void btnSaveCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveCActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(controller.getAutoId().toString(), txtTrainingName.getText(), txtOrganization.getText(), sg.getDateFormat(dateStart), sg.getDateFormat(dateEnd));
-        if (!txtTrainingId.isEnabled()) {
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save, "Save", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtTrainingName.getText().equals("") && !txtOrganization.getText().equals("")){
+            if(!txtTrainingName.getText().substring(0, 1).equals(" ") && !txtOrganization.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtTrainingId.getText(), txtTrainingName.getText(), txtOrganization.getText());
+                if(!txtTrainingId.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingTraining(controller.getAll());
+                reset();
+            }
         }
-        bindingTraining(controller.getAll());
-        reset();
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveCActionPerformed
 
     /**
@@ -405,9 +395,9 @@ public class TrainingView extends javax.swing.JInternalFrame {
      *
      * @param evt - ActionEvent
      */
-    private void cmbKategoriTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriTrainingActionPerformed
+    private void cmbKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKategoriTrainingActionPerformed
+    }//GEN-LAST:event_cmbKategoriActionPerformed
     /**
      * Method ketika baris pada tblTraining dipilih
      *
@@ -427,20 +417,16 @@ public class TrainingView extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDropC;
     private javax.swing.JButton btnFindC;
     private javax.swing.JButton btnSaveC;
-    private javax.swing.JComboBox<String> cmbKategoriTraining;
-    private org.jdesktop.swingx.JXDatePicker dateEnd;
-    private org.jdesktop.swingx.JXDatePicker dateStart;
+    private javax.swing.JComboBox<String> cmbKategori;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlProgrammingName;
     private javax.swing.JLabel jlProgrammingName1;
-    private javax.swing.JLabel jlProgrammingName2;
-    private javax.swing.JLabel jlProgrammingName3;
     private javax.swing.JLabel jlTrainingId;
     private javax.swing.JTable tblTraining;
-    private javax.swing.JTextField txtFindTraining;
     private javax.swing.JTextField txtOrganization;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTrainingId;
     private javax.swing.JTextField txtTrainingName;
     // End of variables declaration//GEN-END:variables
@@ -451,7 +437,7 @@ public class TrainingView extends javax.swing.JInternalFrame {
      * @param object
      */
     public void bindingTraining(List<Object> object) {
-        String[] header = {"No.", "Training ID", "Training Name", "Training Organization", "Start Date", "End Date"};
+        String[] header = {"No.", "Training ID", "Training Name", "Training Organization"};
         String[][] data = new String[object.size()][header.length];
         int i = 0;
         for (Object obj : object) {
@@ -460,11 +446,10 @@ public class TrainingView extends javax.swing.JInternalFrame {
             data[i][1] = training.getIdtraining() + "";
             data[i][2] = training.getTrainingname() + "";
             data[i][3] = training.getTrainingorganization() + "";
-            data[i][4] = training.getStartdate() + "";
-            data[i][5] = training.getEnddate() + "";
             i++;
         }
         tblTraining.setModel(new DefaultTableModel(data, header));
+        this.rowSorter = new TableRowSorter<>(tblTraining.getModel());
         reset();
     }
 
@@ -476,6 +461,10 @@ public class TrainingView extends javax.swing.JInternalFrame {
         txtTrainingId.setEnabled(false);
         txtTrainingName.setEnabled(true);
         txtOrganization.setEnabled(true);
+        btnDropC.setEnabled(false);
+        btnFindC.setEnabled(false);
+        txtTrainingId.setEditable(false);
+        tblTraining.setRowSorter(rowSorter);
     }
 
     /**
@@ -483,5 +472,6 @@ public class TrainingView extends javax.swing.JInternalFrame {
      */
     public void edit() {
         txtTrainingId.setEnabled(false);
+        btnDropC.setEnabled(true);
     }
 }

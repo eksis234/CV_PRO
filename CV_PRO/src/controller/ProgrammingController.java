@@ -35,16 +35,17 @@ public class ProgrammingController {
      * @return mengembalikan nilai true or false
      */
     public boolean saveOrUpdate(String idprogramming, String programmingname){
-        Programming programming = new Programming(new BigDecimal(""+idprogramming+""), programmingname);
+        Programming programming = new Programming(new BigDecimal(idprogramming), programmingname);
         return idao.saveOrUpdate(programming);
     }
+    
     /**
      * Method untuk melakukan penghapusan data programming
      * @param idprogramming dengan tipe data String
      * @return iDAO mengembalikan nilai boolean
      */
     public boolean delete(String idprogramming){
-        Programming programming = new Programming(new BigDecimal(""+idprogramming+""));
+        Programming programming = new Programming(new BigDecimal(idprogramming));
         return idao.delete(programming);
     }
     /**

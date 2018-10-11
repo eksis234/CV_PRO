@@ -37,10 +37,10 @@ public class PersonalController {
     * @param foto
     * @return 
     */
-    public boolean saveOrUpdate(String idpersonal, String name, String dateofbirth, String nationality, String maritalstatus, String gender, String phonenumber, String email, String foto){
-        Personaldata pdata = new Personaldata(new BigDecimal(idpersonal), name, new Date (dateofbirth), nationality, maritalstatus, gender, phonenumber, email, foto);
-        return dAO.saveOrUpdate(pdata);
-    }
+//    public boolean saveOrUpdate(String idpersonal, String name, String dateofbirth, String nationality, String maritalstatus, String gender, String phonenumber, String email, String foto){
+//        Personaldata pdata = new Personaldata(new BigDecimal(idpersonal), name, new Date (dateofbirth), nationality, maritalstatus, gender, phonenumber, email, foto);
+//        return dAO.saveOrUpdate(pdata);
+//    }
     /**
      * Method untuk melakukan penghapusan data Region
      * @param idpersonal  dengan tipe data String

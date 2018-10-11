@@ -281,7 +281,7 @@ public class HrView extends javax.swing.JFrame {
 
     private void jmWorkingExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmWorkingExperienceActionPerformed
          // TODO add your handling code here:
-        PengalamanKerjaView pengalamanKerjaView = new PengalamanKerjaView();
+        PengalamanKerjaView pengalamanKerjaView = new PengalamanKerjaView(sf);
         pengalamanKerjaView.show();
         dpUtamaHr.add(pengalamanKerjaView);
     }//GEN-LAST:event_jmWorkingExperienceActionPerformed

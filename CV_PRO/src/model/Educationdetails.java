@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,14 +22,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author Martin
  */
 @Entity
 @Table(name = "EDUCATIONDETAILS")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Educationdetails.findAll", query = "SELECT e FROM Educationdetails e")
-    , @NamedQuery(name = "Educationdetails.findByIdedudetail", query = "SELECT e FROM Educationdetails e WHERE e.idedudetail = :idedudetail")})
+    , @NamedQuery(name = "Educationdetails.findByIdedudetail", query = "SELECT e FROM Educationdetails e WHERE e.idedudetail = :idedudetail")
+    , @NamedQuery(name = "Educationdetails.findByStatus", query = "SELECT e FROM Educationdetails e WHERE e.status = :status")
+    , @NamedQuery(name = "Educationdetails.findByIpk", query = "SELECT e FROM Educationdetails e WHERE e.ipk = :ipk")
+    , @NamedQuery(name = "Educationdetails.findByAngkatan", query = "SELECT e FROM Educationdetails e WHERE e.angkatan = :angkatan")
+    , @NamedQuery(name = "Educationdetails.findByTahunlulus", query = "SELECT e FROM Educationdetails e WHERE e.tahunlulus = :tahunlulus")
+    , @NamedQuery(name = "Educationdetails.findByJurusan", query = "SELECT e FROM Educationdetails e WHERE e.jurusan = :jurusan")})
 public class Educationdetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,6 +43,16 @@ public class Educationdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDEDUDETAIL")
     private BigDecimal idedudetail;
+    @Column(name = "STATUS")
+    private String status;
+    @Column(name = "IPK")
+    private Double ipk;
+    @Column(name = "ANGKATAN")
+    private BigInteger angkatan;
+    @Column(name = "TAHUNLULUS")
+    private BigInteger tahunlulus;
+    @Column(name = "JURUSAN")
+    private BigInteger jurusan;
     @JoinColumn(name = "IDEDUCATION", referencedColumnName = "IDEDUCATION")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Education ideducation;
@@ -51,23 +67,52 @@ public class Educationdetails implements Serializable {
         this.idedudetail = idedudetail;
     }
 
-    public Educationdetails(BigDecimal idedudetail, Education ideducation) {
-        this.idedudetail = idedudetail;
-        this.ideducation = ideducation;
-    }
-
-    public Educationdetails(BigDecimal idedudetail, Education ideducation, Personaldata idpersonal) {
-        this.idedudetail = idedudetail;
-        this.ideducation = ideducation;
-        this.idpersonal = idpersonal;
-    }
-    
     public BigDecimal getIdedudetail() {
         return idedudetail;
     }
 
     public void setIdedudetail(BigDecimal idedudetail) {
         this.idedudetail = idedudetail;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Double getIpk() {
+        return ipk;
+    }
+
+    public void setIpk(Double ipk) {
+        this.ipk = ipk;
+    }
+
+    public BigInteger getAngkatan() {
+        return angkatan;
+    }
+
+    public void setAngkatan(BigInteger angkatan) {
+        this.angkatan = angkatan;
+    }
+
+    public BigInteger getTahunlulus() {
+        return tahunlulus;
+    }
+
+    public void setTahunlulus(BigInteger tahunlulus) {
+        this.tahunlulus = tahunlulus;
+    }
+
+    public BigInteger getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(BigInteger jurusan) {
+        this.jurusan = jurusan;
     }
 
     public Education getIdeducation() {

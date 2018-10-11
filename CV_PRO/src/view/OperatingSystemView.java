@@ -215,6 +215,10 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         sg.filterHuruf(evt);
     }//GEN-LAST:event_txtIdOsKeyTyped
 
+    /**
+     * Mengambil data dari baris yang di klik oleh mouse
+     * @param evt (MouseEvent)
+     */
     private void tblOperatingSystemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOperatingSystemMouseClicked
         // TODO add your handling code here:
         int row = tblOperatingSystem.getSelectedRow();
@@ -223,32 +227,50 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         edit();
     }//GEN-LAST:event_tblOperatingSystemMouseClicked
 
+    /**
+     * Menyimpan data saat menekan button save
+     * @param evt (ActionEvent)
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
-        if(!txtIdOs.isEnabled()){
-            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtNamaOs.getText().equals("")){
+            if(!txtNamaOs.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtIdOs.getText(), txtNamaOs.getText());
+                if(!txtIdOs.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingOs(controller.getAll());
+                reset();
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
-        }
-        bindingOs(controller.getAll());
-        reset();
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    /**
+     * Untuk menghapus data dengan menggunakan button drop
+     * @param evt (ActionEvent)
+     */
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(null, "Do you really want to delete?","Pertanyaan",JOptionPane.YES_NO_OPTION);
-                if (response == JOptionPane.YES_OPTION) {
-                    controller.delete(txtIdOs.getText());
-                    JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-                    bindingOs(controller.getAll());
-                    reset();
-                    }else if (response == JOptionPane.NO_OPTION) {
-                        JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
-                    }
+        if (response == JOptionPane.YES_OPTION) {
+            controller.delete(txtIdOs.getText());
+            JOptionPane.showMessageDialog(this, pesan.delete.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+            bindingOs(controller.getAll());
+            reset();
+        }else if (response == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, pesan.cancel.getPesan(), "Delete", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    /**
+     * Untuk melakukan pencarian dari kategori dengan menekan tombol enter dan menampilkan seluruh data saat
+     * textfield search dikosongkan
+     * @param evt (KeyEvent)
+     */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         if (txtSearch.getText().equals("")) {
@@ -266,16 +288,20 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
+    /**
+     * Melakukan pencarian dengan menggunakan button search
+     * @param evt (ActionEvent)
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         if (!txtSearch.getText().equalsIgnoreCase("")) {
-                        String text = txtSearch.getText();
-                        if (text.trim().length() == 0) {
-                                rowSorter.setRowFilter(null);
-                            } else {
-                                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
-                        }                 
-                    }
+            String text = txtSearch.getText();
+            if (text.trim().length() == 0) {
+                rowSorter.setRowFilter(null);
+            } else {
+                rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, cmbKategori.getSelectedIndex() + 1));
+            }                 
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
@@ -294,11 +320,11 @@ public class OperatingSystemView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 
-       /**
-     * dok bindingCountries
-     * @param countrys berupa list<object>
+    /**
+     * Untuk menampilkan seluruh data ke dalam tabel
+     * @param Os (List<Object>) data yang akan dimasukan ke tabel
      */
-private void bindingOs(List<Object> Os) {
+    private void bindingOs(List<Object> Os) {
     String [] header = {"No","OS Id","OS Name"};
         String [][] data = new String[Os.size()][header.length];
         int i = 0;
@@ -315,24 +341,24 @@ private void bindingOs(List<Object> Os) {
     }
     
     /**
-     * dok reset
+     * Menampilkan ID terakhir di textfield idOs dan mengaktifkan serta menghilangkan kemampuan meng-edit 
+     * textfield tersebut, menonaktifkan button drop, save dan search, mengosongkan textfield NamaOs
      */
     public  void reset(){
         txtIdOs.setText(controller.getAutoId()+"");
         txtIdOs.setEnabled(true);
         txtNamaOs.setText("");
         btnDelete.setEnabled(false);
-        btnSave.setEnabled(true);
+        txtIdOs.setEditable(false);
         btnSearch.setEnabled(false);
         tblOperatingSystem.setRowSorter(rowSorter);
     }
     
     /**
-     * dok edit
+     * menonaktifkan texfield idOs, button save dan delete
      */
     private void edit(){
         txtIdOs.setEnabled(false);
-        btnSave.setEnabled(true);
         btnDelete.setEnabled(true);
     } 
     

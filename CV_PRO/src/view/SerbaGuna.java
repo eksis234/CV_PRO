@@ -28,7 +28,7 @@ public class SerbaGuna {
     public enum pesan{
       save("Berhasil Disimpan"), update("Berhasil Diperbaharui"), 
       delete("Berhasil Dihapus"), cancel("Batal Dihapus"),
-      find("Berhasil Ditemukan");  
+      find("Berhasil Ditemukan"), kosong("Terdapat Field Yang Kosong");  
         
       private String isine;
       

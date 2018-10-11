@@ -15,6 +15,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Achievement;
 import org.hibernate.SessionFactory;
+import view.SerbaGuna.pesan;
 
 /**
  *
@@ -246,15 +247,20 @@ public class AchievementView extends javax.swing.JInternalFrame {
      */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        controller.saveOrUpdate(txtAchievementId.getText(), txtAchievementName.getText(), txtEventName.getText(), txtYear.getText());
-        if(!txtAchievementId.isEnabled()){
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        if(!txtAchievementName.getText().equals("") && !txtEventName.getText().equals("") && !txtYear.getText().equals("")){
+            if(!txtAchievementName.getText().substring(0, 1).equals(" ") && !txtEventName.getText().substring(0, 1).equals(" ") && !txtYear.getText().substring(0, 1).equals(" ")){
+                controller.saveOrUpdate(txtAchievementId.getText(), txtAchievementName.getText(), txtEventName.getText(), txtYear.getText());
+                if(!txtAchievementId.isEnabled()){
+                    JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+                }
+                bindingAchievement(controller.getAll());
+                reset();
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(this, SerbaGuna.pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
-        }
-        bindingAchievement(controller.getAll());
-        reset();
+        else JOptionPane.showMessageDialog(this, pesan.kosong.getPesan(), "Kosong", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
@@ -296,9 +302,10 @@ public class AchievementView extends javax.swing.JInternalFrame {
      */
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!txtSearch.getText().equals("")) {
-                String text = txtSearch.getText();
+        if (!txtSearch.getText().equals("")) {
+            btnSearch.setEnabled(true);
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String text = txtSearch.getText();
                 if (text.trim().length() == 0) {
                     rowSorter.setRowFilter(null);
                     } else {
@@ -368,7 +375,6 @@ public class AchievementView extends javax.swing.JInternalFrame {
         tblAchievement.setModel(new DefaultTableModel(data, header));
         this.rowSorter = new TableRowSorter<>(tblAchievement.getModel());
         reset();
-        
     } 
     
     /**
@@ -381,7 +387,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
     
     /**
      * Menampilkan ID terakhir di textfield achievementId dan mengaktifkan serta menghilangkan kemampuan meng-edit 
-     * textfield tersebut, menonaktifkan button drop, mengosongkan textfield achievementName,eventName,dan year
+     * textfield tersebut, menonaktifkan button drop,save dan search, mengosongkan textfield achievementName,eventName,dan year
      */
     private void reset() {
         txtAchievementId.setText(controller.getAutoId()+"");
@@ -390,6 +396,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
         txtEventName.setText("");
         txtYear.setText("");
         btnDrop.setEnabled(false);
+        btnSearch.setEnabled(false);
         txtAchievementId.setEditable(false);
         tblAchievement.setRowSorter(rowSorter);
     }           
