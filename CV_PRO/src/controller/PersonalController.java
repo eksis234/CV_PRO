@@ -58,7 +58,8 @@ public class PersonalController {
     * @param foto
     * @return 
     */
-    public boolean saveOrUpdate(String idpersonal, String name, String dateofbirth, String nationality, String maritalstatus, String gender, String phonenumber, String email, String foto){
+    public boolean saveOrUpdate(String idpersonal, String name, String dateofbirth, String nationality,
+            String maritalstatus, String gender, String phonenumber, String email, String foto){
         Personaldata pdata = new Personaldata(new BigDecimal(idpersonal), name, new Date (dateofbirth), nationality, maritalstatus, gender, phonenumber, email, foto);
         return dAO.saveOrUpdate(pdata);
     }
@@ -199,20 +200,6 @@ public class PersonalController {
                         cmb.addItem(or1.getOrganizationname());
                     });     break;
                 }
-            case "thOrAw":
-                {
-                    List<Object> objects = (List<Object>) oc1.getAll();
-                    objects.stream().map((object) -> (Organization) object).forEachOrdered((or1) -> {
-                        cmb.addItem(or1.getStartdate().toString().substring(0, 10));
-                    });     break;
-                }
-            case "thOrAk":
-                {
-                    List<Object> objects = (List<Object>) oc1.getAll();
-                    objects.stream().map((object) -> (Organization) object).forEachOrdered((or1) -> {
-                        cmb.addItem(or1.getEnddate().toString().substring(0, 10));
-                    });     break;
-                }
             case "network":
                 {
                     List<Object> objects = (List<Object>) nc.getAll();
@@ -232,20 +219,6 @@ public class PersonalController {
                     List<Object> objects = (List<Object>) pc1.getAll();
                     objects.stream().map((object) -> (Workingexperience) object).forEachOrdered((prsh) -> {
                         cmb.addItem(prsh.getJobtitle());
-                    });     break;
-                }
-            case "thKrAk":
-                {
-                    List<Object> objects = (List<Object>) pc1.getAll();
-                    objects.stream().map((object) -> (Workingexperience) object).forEachOrdered((prsh) -> {
-                        cmb.addItem(prsh.getStartdate().toString().substring(0, 10));
-                    });     break;
-                }
-            case "thKrAw":
-                {
-                    List<Object> objects = (List<Object>) pc1.getAll();
-                    objects.stream().map((object) -> (Workingexperience) object).forEachOrdered((prsh) -> {
-                        cmb.addItem(prsh.getEnddate().toString().substring(0, 10));
                     });     break;
                 }
             case "nmPenghargaan":
@@ -283,29 +256,8 @@ public class PersonalController {
                         cmb.addItem(tra.getTrainingorganization());
                     });     break;
                 }
-            case "awTrain":
-                {
-                    List<Object> objects = (List<Object>) tc1.getAll();
-                    objects.stream().map((object) -> (Training) object).forEachOrdered((tra) -> {
-                        cmb.addItem(tra.getStartdate().toString().substring(0, 10));
-                    });     break;
-                }
-            case "akTrain":
-                {
-                    List<Object> objects = (List<Object>) tc1.getAll();
-                    objects.stream().map((object) -> (Training) object).forEachOrdered((tra) -> {
-                        cmb.addItem(tra.getEnddate().toString().substring(0, 10));
-                    });     break;
-                }
             default:
                 break;
         }
     }
 }
-//        controller.loadCmbTools(cmbNamaPenghaargaan, "nmPenghargaan");
-//        controller.loadCmbTools(cmbEventPenghargaan, "evPenghargaan");
-//        controller.loadCmbTools(cmbTahunPenghargaan, "thPenghargaan");
-//        controller.loadCmbTools(cmbNameTrain, "nmTrain");
-//        controller.loadCmbTools(cmbLembgTraining, "lgTrain");
-//        controller.loadCmbTools(cmbTglMulaiTraining, "awTrain");
-//        controller.loadCmbTools(cmbTglSelesaiTrain, "akTrain");
