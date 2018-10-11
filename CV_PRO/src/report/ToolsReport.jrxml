@@ -1,29 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b2b06c7-f884-4b66-8a63-83c1a9d7e048">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     TOOLS."IDTOOL" AS TOOLS_IDTOOL,
+     TOOLS."TOOLNAME" AS TOOLS_TOOLNAME
+FROM
+     "CV_ONLINE"."TOOLS" TOOLS]]>
+	</queryString>
+	<field name="TOOLS_IDTOOL" class="java.math.BigDecimal"/>
+	<field name="TOOLS_TOOLNAME" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="14" y="0" width="79" height="69" uuid="dfa59a01-35b2-495d-827d-f72c4bc17153"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\dist\\lib\\image\\metrodata.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="456" y="2" width="99" height="67" uuid="a93469b2-e989-4918-ae5f-426eac85c967"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\dist\\lib\\image\\mii.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="160" y="31" width="233" height="38" uuid="6da5b16f-7f0d-4578-9e65-728b9461597c"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOOLS REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="0" width="100" height="20" uuid="cfebcaed-d5dd-4966-9754-8eec21b333a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="20" uuid="522971ae-249d-419e-9dfb-6ee6639c928a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tool ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="20" uuid="6a63e4ae-8b80-402e-954e-9587212290bc"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tool Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="0" width="100" height="20" uuid="daab936b-63a4-4464-853b-47655c5b8813"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="100" height="20" uuid="d427fd70-dbe6-48bd-bd4f-9d2840b11e81"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOOLS_IDTOOL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="3" width="100" height="20" uuid="44b068ed-4d20-48af-99cf-26720c5a0c02"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOOLS_TOOLNAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>
