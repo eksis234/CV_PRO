@@ -40,8 +40,10 @@ public class HrView extends javax.swing.JFrame {
     /**
      * Creates new form HRView
      */
-    public HrView() {
-        initComponents();
+    public HrView(boolean a, String nama) {
+        if(a){
+            initComponents();
+        }
         this.sf = HibernateUtil.getSessionFactory();
     }
 
@@ -401,7 +403,7 @@ public class HrView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HrView().setVisible(true);
+                new HrView(true, "").setVisible(false);
             }
         });
     }

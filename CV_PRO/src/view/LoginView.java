@@ -5,6 +5,12 @@
  */
 package view;
 
+import controller.UserManagementController;
+import javax.swing.JOptionPane;
+import model.UserManagement;
+import org.hibernate.SessionFactory;
+import tools.HibernateUtil;
+
 /**
  *
  * @author X453MA
@@ -14,8 +20,12 @@ public class LoginView extends javax.swing.JFrame {
     /**
      * Creates new form LoginView
      */
+    private SessionFactory factory;
+    private UserManagementController controller;
     public LoginView() {
         initComponents();
+        this.factory = HibernateUtil.getSessionFactory();
+        controller = new UserManagementController(factory);
     }
 
     /**
@@ -44,6 +54,11 @@ public class LoginView extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLogin.setText("LOGIN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +96,26 @@ public class LoginView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+         // TODO add your handling code here:
+          UserManagement user = (UserManagement) controller.getByName(txtUsername.getText());
+        if (controller.login(txtUsername.getText(), new String(txtPassword.getPassword()))) {
+            JOptionPane.showMessageDialog(this, "Login Berhasil selamat datang "+txtUsername.getText(), "Login", JOptionPane.INFORMATION_MESSAGE);
+            if (user.getRole().equalsIgnoreCase("admin")) {
+                HrView hr = new HrView(true, txtUsername.getText());
+                hr.setVisible(true);
+                this.setVisible(false);
+            } else if (user.getRole().equalsIgnoreCase("kandidat")) {
+                
+            } else {
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Username/Password Salah", "Login", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
