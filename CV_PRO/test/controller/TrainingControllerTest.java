@@ -18,22 +18,22 @@ import static org.junit.Assert.*;
  * @author chochong
  */
 public class TrainingControllerTest {
-    
+
     public TrainingControllerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,104 +43,84 @@ public class TrainingControllerTest {
      */
     @Test
     public void testGetAll() {
-        System.out.println("getAll");
-        TrainingController instance = new TrainingController(tools.HibernateUtil.getSessionFactory());
-        List<Object> result = instance.getAll();
-        assertNotNull(result);
+        System.out.println("====================================================");
+        try {
+            TrainingController instance = new TrainingController(tools.HibernateUtil.getSessionFactory());
+            List<Object> result = instance.getAll();
+            assertNotNull(result);
+            System.out.println("getAll berhasil");
+        } catch (Exception e) {
+            System.out.println("getAll gagal");
+        }
     }
 
     /**
-     * Test of getById method, of class TrainingController.
+     * Test of saveOrUpdate method, of class TrainingController.
      */
-//    @Test
-//    public void testGetById() {
-//        System.out.println("getById");
-//        String id = "";
-//        TrainingController instance = null;
-//        Object expResult = null;
-//        Object result = instance.getById(id);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of search method, of class TrainingController.
-//     */
-//    @Test
-//    public void testSearch() {
-//        System.out.println("search");
-//        String category = "";
-//        String key = "";
-//        TrainingController instance = null;
-//        List<Object> expResult = null;
-//        List<Object> result = instance.search(category, key);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of saveOrUpdate method, of class TrainingController.
-//     */
-//    @Test
-//    public void testSaveOrUpdate() {
-//        System.out.println("saveOrUpdate");
-//        String trainingId = "";
-//        String trainingName = "";
-//        String trainingOrganization = "";
-//        String startDate = "";
-//        String endDate = "";
-//        TrainingController instance = null;
-//        boolean expResult = false;
-//        boolean result = instance.saveOrUpdate(trainingId, trainingName, trainingOrganization, startDate, endDate);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getAutoId method, of class TrainingController.
-//     */
-//    @Test
-//    public void testGetAutoId() {
-//        System.out.println("getAutoId");
-//        TrainingController instance = null;
-//        Object expResult = null;
-//        Object result = instance.getAutoId();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getByName method, of class TrainingController.
-//     */
-//    @Test
-//    public void testGetByName() {
-//        System.out.println("getByName");
-//        String name = "";
-//        TrainingController instance = null;
-//        Object expResult = null;
-//        Object result = instance.getByName(name);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of delete method, of class TrainingController.
-//     */
-//    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        String id = "";
-//        TrainingController instance = null;
-//        boolean expResult = false;
-//        boolean result = instance.delete(id);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    
+    @Test
+    public void testSaveOrUpdate() {
+        System.out.println("====================================================");
+        System.out.println("saveOrUpdate");
+        String trainingId = "";
+        String trainingName = "leo";
+        String trainingOrganization = "leo";
+        TrainingController instance = new TrainingController(tools.HibernateUtil.getSessionFactory());
+
+        for (int i = 0; i < 3; i++) {
+            try {
+                switch (i) {
+                    case 1:
+                        trainingId = "3";
+                        break;
+                    case 2:
+                        trainingId = "b";
+                        break;
+                    default:
+                        trainingId = "1b";
+                        break;
+                }
+                boolean result = instance.saveOrUpdate(trainingId, trainingName, trainingOrganization);
+                assertTrue(result);
+                System.out.println("berhasil simpan karena id = " + trainingId);
+            } catch (Exception e) {
+                System.out.println("gagal simpan karena id = " + trainingId);
+            }
+        }
+    }
+
+    /**
+     * Test of getAutoId method, of class TrainingController.
+     */
+    @Test
+    public void testGetAutoId() {
+        System.out.println("====================================================");
+        try {
+            TrainingController instance = new TrainingController(tools.HibernateUtil.getSessionFactory());
+            Object result = instance.getAutoId();
+            assertNotNull(result);
+            System.out.println("getAutoId berhasil");
+        } catch (Exception e) {
+            System.out.println("getAutoId gagal");
+        }
+
+    }
+
+    /**
+     * Test of delete method, of class TrainingController.
+     */
+    @Test
+    public void testDelete() {
+        System.out.println("====================================================");
+        try {
+            String id = "1";
+            TrainingController instance = new TrainingController(tools.HibernateUtil.getSessionFactory());
+            boolean result = instance.delete(id);
+            assertTrue(result);
+            System.out.println("delete berhasil");
+        } catch (Exception e) {
+            System.out.println("delete gagal");
+        }
+
+    }
+
 }

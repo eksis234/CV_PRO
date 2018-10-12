@@ -9,12 +9,16 @@ import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
 import model.Personaldata;
 import model.*;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 
 /**
  *
@@ -65,7 +69,7 @@ public class PersonalController {
                 jurusan, education, personaldata);
         return dAO.saveOrUpdate(educa);
     }
-    
+   
     /**
      * Method untuk melakukan penghapusan data Region
      * @param idpersonal  dengan tipe data String

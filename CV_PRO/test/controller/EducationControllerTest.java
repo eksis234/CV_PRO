@@ -51,35 +51,6 @@ public class EducationControllerTest {
     }
 
     /**
-     * Test of getById method, of class EducationController.
-     */
-//    @Test
-//    public void testGetById() {
-//        System.out.println("getById");
-//        String id = "";
-//        EducationController instance = null;
-//        Object expResult = null;
-//        Object result = instance.getById(id);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    /**
-     * Test of search method, of class EducationController.
-     */
-//    @Test
-//    public void testSearch() {
-//        System.out.println("search");
-//        String category = "";
-//        Object key = null;
-//        EducationController instance = null;
-//        List<Object> expResult = null;
-//        List<Object> result = instance.search(category, key);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    /**
      * Test of saveOrUpdate method, of class EducationController.
      */
     @Test
@@ -127,30 +98,4 @@ public class EducationControllerTest {
         assertNotNull(result);
         System.out.println("getAutoId berhasil");
     }
-
-    /**
-     * Test of getByName method, of class EducationController.
-     */
-//    @Test
-//    public void testGetByName() {
-//        System.out.println("getByName");
-//        String name = "";
-//        EducationController instance = null;
-//        Object expResult = null;
-//        Object result = instance.getByName(name);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-    /**
-     * Test of delete method, of class EducationController.
-     */
-//    @Test
-//    public void testDelete() {
-//        System.out.println("delete");
-//        String id = "2";
-//        EducationController instance = new EducationController(tools.HibernateUtil.getSessionFactory());
-//        boolean result = instance.delete(id);
-//        assertTrue(result);
-//    }
 }

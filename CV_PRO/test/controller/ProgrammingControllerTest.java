@@ -6,7 +6,6 @@
 package controller;
 
 import java.util.List;
-import model.Programming;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -105,67 +104,35 @@ public class ProgrammingControllerTest {
     }
 
     /**
-     * Test of getById method, of class ProgrammingController.
-     */
-//    @Test
-//    public void testGetById() {
-//        System.out.println("getById");
-//        String idorganisai = "1";
-//        ProgrammingController instance = new ProgrammingController(tools.HibernateUtil.getSessionFactory());
-//        Programming result = instance.getById(idorganisai);
-//        assertNotNull(result);
-//    }
-//
-//    /**
-//     * Test of getByName method, of class ProgrammingController.
-//     */
-//    @Test
-//    public void testGetByName() {
-//        System.out.println("getByName");
-//        String programmingname = "";
-//        ProgrammingController instance = null;
-//        Programming expResult = null;
-//        Programming result = instance.getByName(programmingname);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-    /**
      * Test of getAll method, of class ProgrammingController.
      */
-//    @Test
-//    public void testGetAll() {
-//        System.out.println("getAll");
-//        ProgrammingController instance = new ProgrammingController(tools.HibernateUtil.getSessionFactory());
-//        List<Object> result = instance.getAll();
-//        assertNotNull(result);
-//    }
-//
-//    /**
-//     * Test of search method, of class ProgrammingController.
-//     */
-//    @Test
-//    public void testSearch() {
-//        System.out.println("search");
-//        String category = "";
-//        Object key = null;
-//        ProgrammingController instance = null;
-//        List<Object> expResult = null;
-//        List<Object> result = instance.search(category, key);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of getAutoId method, of class ProgrammingController.
-//     */
-//    @Test
-//    public void testGetAutoId() {
-//        System.out.println("getAutoId");
-//        ProgrammingController instance = new ProgrammingController(tools.HibernateUtil.getSessionFactory());
-//        Object result = instance.getAutoId();
-//        assertNotNull(result);
-//    }
+    @Test
+    public void testGetAll() {
+        System.out.println("====================================================");
+        try {
+            ProgrammingController instance = new ProgrammingController(tools.HibernateUtil.getSessionFactory());
+            List<Object> result = instance.getAll();
+            assertNotNull(result);
+            System.out.println("getAll berhasil");
+        } catch (Exception e) {
+            System.out.println("getAll gagal");
+        }
+    }
+
+    /**
+     * Test of getAutoId method, of class ProgrammingController.
+     */
+    @Test
+    public void testGetAutoId() {
+        System.out.println("====================================================");
+        try {
+            ProgrammingController instance = new ProgrammingController(tools.HibernateUtil.getSessionFactory());
+            Object result = instance.getAutoId();
+            assertNotNull(result);
+            System.out.println("getAutoId berhasil");
+        } catch (Exception e) {
+            System.out.println("getAutoId gagal");
+        }
+
+    }
 }

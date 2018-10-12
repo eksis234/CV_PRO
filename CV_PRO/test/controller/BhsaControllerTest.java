@@ -6,7 +6,6 @@
 package controller;
 
 import java.util.List;
-import model.Foreignlanguage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -103,33 +102,6 @@ public class BhsaControllerTest {
     }
 
     /**
-     * Test of getById method, of class BhsaController.
-     */
-//    @Test
-//    public void testGetById() {
-//        System.out.println("getById");
-//        String idflang = "1";
-//        BhsaController instance = new BhsaController(tools.HibernateUtil.getSessionFactory());
-//        Foreignlanguage result = instance.getById(idflang);
-//        assertNotNull(result);
-//    }
-//
-//    /**
-//     * Test of getByName method, of class BhsaController.
-//     */
-//    @Test
-//    public void testGetByName() {
-//        System.out.println("getByName");
-//        String languagename = "";
-//        BhsaController instance = null;
-//        Foreignlanguage expResult = null;
-//        Foreignlanguage result = instance.getByName(languagename);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-    /**
      * Test of getAll method, of class BhsaController.
      */
     @Test
@@ -173,7 +145,6 @@ public class BhsaControllerTest {
             }
         }
     }
-
 
 /**
  * Test of getAutoId method, of class BhsaController.

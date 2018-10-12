@@ -61,8 +61,6 @@ public class Workingexperience implements Serializable {
         this.city = city;
     }
     
-    
-
     public BigDecimal getIdworkingexperience() {
         return idworkingexperience;
     }

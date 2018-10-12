@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author chochong
  */
-public class ToolsControllerTest {
+public class PersonalControllerTest {
 
-    public ToolsControllerTest() {
+    public PersonalControllerTest() {
     }
 
     @BeforeClass
@@ -39,99 +39,99 @@ public class ToolsControllerTest {
     }
 
     /**
-     * Test of saveOrUpdate method, of class ToolsController.
+     * Test of saveOrUpdate method, of class PersonalController.
      */
     @Test
     public void testSaveOrUpdate() {
         System.out.println("====================================================");
         System.out.println("saveOrUpdate");
-        String idtool = "";
-        String toolname = "b";
-        ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
+        String idpersonal = "2";
+        String name = "leo";
+        String dateofbirth = "02/12/1996";
+        String nationality = "indonesia";
+        String maritalstatus = "Single";
+        String gender = "M";
+        String phonenumber = "0987654321";
+        String email = "leo@leo";
+        String foto = "d:\\img\\pp.jpg";
+        PersonalController instance = new PersonalController(tools.HibernateUtil.getSessionFactory());
         for (int i = 0; i < 3; i++) {
             try {
                 switch (i) {
                     case 1:
-                        idtool = "2";
+                        phonenumber = "2";
                         break;
                     case 2:
-                        idtool = "b";
+                        phonenumber = "b";
                         break;
                     default:
-                        idtool = "1b";
+                        phonenumber = "1b";
                         break;
                 }
-                boolean result = instance.saveOrUpdate(idtool, toolname);
+                boolean result = instance.saveOrUpdate(idpersonal, name, dateofbirth, nationality, maritalstatus, gender, phonenumber, email, foto);
                 assertTrue(result);
-                System.out.println("berhasil simpan karena id = " + idtool);
+                System.out.println("berhasil simpan karena phonenumber = " + phonenumber);
             } catch (Exception e) {
-                System.out.println("gagal simpan karena id = " + idtool);
+                System.out.println("gagal simpan karena phonenumber = " + phonenumber);
             }
         }
     }
 
     /**
-     * Test of delete method, of class ToolsController.
+     * Test of delete method, of class PersonalController.
      */
     @Test
     public void testDelete() {
         System.out.println("====================================================");
         System.out.println("delete");
-        String idtool = "3";
-        ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
+        String idpersonal = "";
+        PersonalController instance = new PersonalController(tools.HibernateUtil.getSessionFactory());
+
         for (int i = 0; i < 3; i++) {
             try {
                 switch (i) {
                     case 1:
-                        idtool = "2";
+                        idpersonal = "1";
                         break;
                     case 2:
-                        idtool = "b";
+                        idpersonal = "b";
                         break;
                     default:
-                        idtool = "1b";
+                        idpersonal = "1b";
                         break;
                 }
-                boolean result = instance.delete(idtool);
+                boolean result = instance.delete(idpersonal);
                 assertTrue(result);
-                System.out.println("berhasil hapus karena id = " + idtool);
+                System.out.println("berhasil hapus karena id = " + idpersonal);
             } catch (Exception e) {
-                System.out.println("gagal hapus karena id = " + idtool);
+                System.out.println("gagal hapus karena id = " + idpersonal);
             }
         }
     }
 
     /**
-     * Test of getAll method, of class ToolsController.
+     * Test of getAll method, of class PersonalController.
      */
     @Test
     public void testGetAll() {
         System.out.println("====================================================");
-        try {
-            ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
-            List<Object> result = instance.getAll();
-            assertNotNull(result);
-            System.out.println("getAll berhasil");
-        } catch (Exception e) {
-            System.out.println("getAll gagal");
-        }
-
+        System.out.println("getAll");
+        PersonalController instance = new PersonalController(tools.HibernateUtil.getSessionFactory());
+        List<Object> result = instance.getAll();
+        assertNotNull(result);
     }
 
+
     /**
-     * Test of getAutoId method, of class ToolsController.
+     * Test of getAutoId method, of class PersonalController.
      */
     @Test
     public void testGetAutoId() {
         System.out.println("====================================================");
-        try {
-            ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
-            Object result = instance.getAutoId();
-            assertNotNull(result);
-            System.out.println("getAutoId berhasil");
-        } catch (Exception e) {
-            System.out.println("getAutoId gagal");
-        }
-
+        System.out.println("getAutoId");
+        PersonalController instance = new PersonalController(tools.HibernateUtil.getSessionFactory());
+        Object result = instance.getAutoId();
+        assertNotNull(result);
     }
+
 }

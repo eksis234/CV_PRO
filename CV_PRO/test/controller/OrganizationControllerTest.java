@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.List;
+import model.Organization;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author chochong
  */
-public class ToolsControllerTest {
+public class OrganizationControllerTest {
 
-    public ToolsControllerTest() {
+    public OrganizationControllerTest() {
     }
 
     @BeforeClass
@@ -39,99 +40,98 @@ public class ToolsControllerTest {
     }
 
     /**
-     * Test of saveOrUpdate method, of class ToolsController.
+     * Test of saveOrUpdate method, of class OrganizationController.
      */
     @Test
     public void testSaveOrUpdate() {
-        System.out.println("====================================================");
+        System.out.println("===================================================");
         System.out.println("saveOrUpdate");
-        String idtool = "";
-        String toolname = "b";
-        ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
+        String idorganisai = "";
+        String organisainame = "HMJTI";
+        OrganizationController instance = new OrganizationController(tools.HibernateUtil.getSessionFactory());
         for (int i = 0; i < 3; i++) {
             try {
                 switch (i) {
                     case 1:
-                        idtool = "2";
+                        idorganisai = "2";
                         break;
                     case 2:
-                        idtool = "b";
+                        idorganisai = "b";
                         break;
                     default:
-                        idtool = "1b";
+                        idorganisai = "1b";
                         break;
                 }
-                boolean result = instance.saveOrUpdate(idtool, toolname);
+                boolean result = instance.saveOrUpdate(idorganisai, organisainame);
                 assertTrue(result);
-                System.out.println("berhasil simpan karena id = " + idtool);
+                System.out.println("berhasil simpan karna id = " + idorganisai);
             } catch (Exception e) {
-                System.out.println("gagal simpan karena id = " + idtool);
+                System.out.println("gagal karna id = " + idorganisai);
             }
         }
     }
 
     /**
-     * Test of delete method, of class ToolsController.
+     * Test of delete method, of class OrganizationController.
      */
     @Test
     public void testDelete() {
-        System.out.println("====================================================");
+        System.out.println("===================================================");
         System.out.println("delete");
-        String idtool = "3";
-        ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
+        String idorganisai = "";
+        OrganizationController instance = new OrganizationController(tools.HibernateUtil.getSessionFactory());
         for (int i = 0; i < 3; i++) {
             try {
                 switch (i) {
                     case 1:
-                        idtool = "2";
+                        idorganisai = "2";
                         break;
                     case 2:
-                        idtool = "b";
+                        idorganisai = "b";
                         break;
                     default:
-                        idtool = "1b";
+                        idorganisai = "1b";
                         break;
                 }
-                boolean result = instance.delete(idtool);
+                boolean result = instance.delete(idorganisai);
                 assertTrue(result);
-                System.out.println("berhasil hapus karena id = " + idtool);
+                System.out.println("berhasil hapus karna id = " + idorganisai);
             } catch (Exception e) {
-                System.out.println("gagal hapus karena id = " + idtool);
+                System.out.println("gagal hapus karna id = " + idorganisai);
             }
         }
     }
 
     /**
-     * Test of getAll method, of class ToolsController.
+     * Test of getAll method, of class OrganizationController.
      */
     @Test
     public void testGetAll() {
-        System.out.println("====================================================");
+        System.out.println("===================================================");
         try {
-            ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
+            OrganizationController instance = new OrganizationController(tools.HibernateUtil.getSessionFactory());
             List<Object> result = instance.getAll();
             assertNotNull(result);
             System.out.println("getAll berhasil");
         } catch (Exception e) {
             System.out.println("getAll gagal");
         }
-
     }
 
     /**
-     * Test of getAutoId method, of class ToolsController.
+     * Test of getAutoId method, of class OrganizationController.
      */
     @Test
     public void testGetAutoId() {
-        System.out.println("====================================================");
         try {
-            ToolsController instance = new ToolsController(tools.HibernateUtil.getSessionFactory());
+            OrganizationController instance = new OrganizationController(tools.HibernateUtil.getSessionFactory());
             Object result = instance.getAutoId();
             assertNotNull(result);
-            System.out.println("getAutoId berhasil");
+            System.out.println("getAutoId berasil");
         } catch (Exception e) {
             System.out.println("getAutoId gagal");
         }
 
     }
+//    
 }
