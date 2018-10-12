@@ -6,6 +6,7 @@
 package view;
 
 import controller.AchievementController;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -62,9 +63,9 @@ public class AchievementView extends javax.swing.JInternalFrame {
         txtEventName = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAchievement = new javax.swing.JTable();
-        cmbKategori = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
+        cmbKategori = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setMaximizable(true);
@@ -180,8 +181,6 @@ public class AchievementView extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblAchievement);
 
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Achievement", "Nama Achievement", "Nama Event", "Tahun" }));
-
         btnSearch.setText("SEARCH");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,9 +188,21 @@ public class AchievementView extends javax.swing.JInternalFrame {
             }
         });
 
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
+            }
+        });
+
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Achievement", "Nama Achievement", "Nama Event", "Tahun" }));
+        cmbKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKategoriActionPerformed(evt);
             }
         });
 
@@ -217,7 +228,7 @@ public class AchievementView extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearch)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,6 +344,14 @@ public class AchievementView extends javax.swing.JInternalFrame {
             }            
         }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void cmbKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKategoriActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
