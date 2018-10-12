@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="134c9e4b-f887-444a-8d4b-4844af8aa678">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="106" y="10" width="332" height="69" uuid="6782ca0d-b923-428f-be8c-588b4d42593c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Education Report]]></text>
+			</staticText>
+			<image>
+				<reportElement x="449" y="0" width="92" height="79" uuid="4874b5fa-8cad-44e6-882d-0a56e07d179e"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\src\\report\\mii.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="15" y="0" width="79" height="69" uuid="18c98424-b65e-4435-a936-598cd151840c"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\oracle\\CV_PRO\\CV_PRO\\src\\report\\metrodata.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="224" y="0" width="100" height="20" uuid="cb7137fc-1720-47dd-9e84-3d4619e1763c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="0" width="60" height="20" uuid="287d79f8-77f1-485c-a625-18ef765e5f40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="0" width="89" height="20" uuid="60369945-b107-461b-a064-f28746f0295f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTANSI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="0" width="100" height="20" uuid="46cd3674-edeb-4b9b-a3c6-2b6c5047456d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Education ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="0" width="100" height="20" uuid="ba0a5844-2814-430b-a88c-26ef62eb48f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Education Level]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="68" y="0" width="60" height="20" uuid="6cb381e9-29d9-4ee0-8c76-33c7d6feba2e"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="0" width="100" height="20" uuid="48979adf-1539-48a6-a7be-46bc2401f333"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="0" width="89" height="20" uuid="de2a1047-a8cd-45de-a56d-324c14dffcd6"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="0" width="100" height="20" uuid="d4141a57-f4a8-4ee2-bee6-5af2294a6c25"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
