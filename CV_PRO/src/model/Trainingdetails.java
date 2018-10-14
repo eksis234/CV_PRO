@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Trainingdetails.findByStatus", query = "SELECT t FROM Trainingdetails t WHERE t.status = :status")
     , @NamedQuery(name = "Trainingdetails.findByStartdate", query = "SELECT t FROM Trainingdetails t WHERE t.startdate = :startdate")
     , @NamedQuery(name = "Trainingdetails.findByEnddate", query = "SELECT t FROM Trainingdetails t WHERE t.enddate = :enddate")
-    , @NamedQuery(name = "Trainingdetails.findByNametraining", query = "SELECT t FROM Trainingdetails t WHERE t.namatraining = :namatraining")
+    , @NamedQuery(name = "Trainingdetails.findByNametraining", query = "SELECT t FROM Trainingdetails t WHERE t.nametraining = :nametraining")
     , @NamedQuery(name = "Trainingdetails.findByLembagatraining", query = "SELECT t FROM Trainingdetails t WHERE t.lembagatraining = :lembagatraining")})
 public class Trainingdetails implements Serializable {
 

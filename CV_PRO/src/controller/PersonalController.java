@@ -73,15 +73,24 @@ public class PersonalController {
         experiencedetails = new Experiencedetails(new BigDecimal(idexpdetail), status, jobtitle, new Date(startdate), new Date(enddate), namaperusahaan, personaldata, workingexperience);
         return dAO.saveOrUpdate(experiencedetails);
     }
+    //(String namainstansi, String jenjang, BigDecimal idedudetail, String status, Double ipk, BigInteger angkatan, BigInteger tahunlulus, String jurusan, Education ideducation, Personaldata idpersonal)
+    public boolean saveOrUpdate3(String namainstansi, String jenjang, String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
+        //System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+        Education education = new Education(new BigDecimal(ideducation+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Educationdetails educa; 
+        educa = new  Educationdetails(namainstansi, jenjang, new BigDecimal(idedudetail), status, new Double (ipk), new BigInteger(angkatan), new BigInteger (tahunlulus), jurusan, education, personaldata);
+        return dAO.saveOrUpdate(educa);
+    }
     
-//    public boolean saveOrUpdate3(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
-//        System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
-//        Education education = new Education(new BigDecimal(ideducation+""));
-//        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
-//        Educationdetails educa; 
-//        educa = new Educationdetails(angkatan, jurusan, BigDecimal.ZERO, status, Double.NaN, BigInteger.TEN, BigInteger.TEN, jurusan, education, personaldata)
-//        return dAO.saveOrUpdate(educa);
-//    }
+    public boolean saveOrUpdate4(String namaachievement, String nameevant, String year, String idachdetail, String status, String idachievement, String idpersonal) {
+        //System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+        Achievement achievement = new Achievement(new BigDecimal(idachievement+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Achievementdetails achievementdetails;
+        achievementdetails = new  Achievementdetails(namaachievement, nameevant, new BigInteger(year), new BigDecimal(idachdetail), status, achievement, personaldata);
+        return dAO.saveOrUpdate(achievementdetails);
+    }
    
     /**
      * Method untuk melakukan penghapusan data Region

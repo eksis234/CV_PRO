@@ -23,8 +23,8 @@ import tools.HibernateUtil;
  */
 public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private final PersonalController controller;
-   private GetIdController controller1;
-   private SessionFactory factory;
+   private final GetIdController controller1;
+   private final SessionFactory factory;
     private final SerbaGuna sg;
     /**
      * Creates new form PersonalDataView
@@ -536,11 +536,13 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
          //controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
          //(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience)
          //controller.saveOrUpdate2(idExp, "w", txtJabatanPrus.getText(), sg.getDateFormat(DateAwKer), sg.getDateFormat(DateAkKer), txtNamaPerus.getText(), txtIdPersonal.getText(), idExpW);
-         JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+       if(!txtIdPersonal.isEnabled()){
+            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+        }
         reset();
-        PersonalDataView personalDataView = new PersonalDataView(factory);
-         personalDataView.show();
-         dpPersonal.add(personalDataView);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtIdPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPersonalActionPerformed

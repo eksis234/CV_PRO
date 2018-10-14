@@ -32,6 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Osdetails.findByOsname", query = "SELECT o FROM Osdetails o WHERE o.osname = :osname")})
 public class Osdetails implements Serializable {
 
+    @Column(name = "STATUS")
+    private String status;
+
     @Column(name = "OSNAME")
     private String osname;
 
@@ -55,7 +58,8 @@ public class Osdetails implements Serializable {
         this.idosdetail = idosdetail;
     }
 
-    public Osdetails(String osname, BigDecimal idosdetail, Os idos, Personaldata idpersonal) {
+    public Osdetails(String status, String osname, BigDecimal idosdetail, Os idos, Personaldata idpersonal) {
+        this.status = status;
         this.osname = osname;
         this.idosdetail = idosdetail;
         this.idos = idos;
@@ -117,6 +121,14 @@ public class Osdetails implements Serializable {
 
     public void setOsname(String osname) {
         this.osname = osname;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

@@ -32,6 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Tooldetails.findBynametool", query = "SELECT t FROM Tooldetails t WHERE t.nametool = :nametool")})
 public class Tooldetails implements Serializable {
 
+    @Column(name = "STATUS")
+    private String status;
+
     @Column(name = "NAMETOOL")
     private String nametool;
 
@@ -55,7 +58,8 @@ public class Tooldetails implements Serializable {
         this.idtooldetail = idtooldetail;
     }
 
-    public Tooldetails(String nametool, BigDecimal idtooldetail, Personaldata idpersonal, Tools idtool) {
+    public Tooldetails(String status, String nametool, BigDecimal idtooldetail, Personaldata idpersonal, Tools idtool) {
+        this.status = status;
         this.nametool = nametool;
         this.idtooldetail = idtooldetail;
         this.idpersonal = idpersonal;
@@ -117,6 +121,14 @@ public class Tooldetails implements Serializable {
 
     public void setNametool(String nametool) {
         this.nametool = nametool;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

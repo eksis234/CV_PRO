@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.GetIdController;
 import controller.PersonalController;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ import model.*;
  */
 public class PersonalDataView2 extends javax.swing.JInternalFrame {
     private final PersonalController controller;
+     private GetIdController controller1;
     private final SerbaGuna sg;
     /**
      * Creates new form PersonalDataView
@@ -27,6 +29,7 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
     public PersonalDataView2(SessionFactory factory) {
         initComponents();
         controller = new PersonalController(factory);
+        controller1 = new GetIdController(factory);
         controller.loadCmbTools(cmbTools, "tool");
         controller.loadCmbTools(cmbNamaOS, "os");
         controller.loadCmbTools(cmbBhsaProg, "bhsProg");
@@ -504,7 +507,12 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        //controller.saveOrUpdate3(txtIdPersonal.getText(), "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(),txtMajor.getText(), "1", txtIdPersonal.getText());
+        String idPer = controller1.getLastId3().toString();
+        String idEduT = controller1.getAutoId4().toString();String idedu = controller1.getLastId4().toString(); 
+        String idAchiT = controller1.getAutoId5().toString();String idAchi = controller1.getLastId5().toString(); 
+        //controller.saveOrUpdate3(txtInstansi.getText(), txtEduLevel.getText(), idEduT, "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(), txtMajor.getText(), idedu, idPer);
+        //(String namaachievement, String nameevant, BigInteger year, BigDecimal idachdetail, String status, Achievement idachievement, Personaldata idpersonal)
+       controller.saveOrUpdate4(txtNamaPerhar.getText(), txtEventPenghar.getText(), txtTahunAchiv.getText(), idAchiT, "w", idAchi, idPer);
         if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -623,9 +631,18 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
 
     public  void reset(){
         txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(true);
-        txtEduLevel.setText("Jenjang Pendidikan");txtEventPenghar.setText("Event Pengahargaan");txtInstansi.setText("Nama Instansi/Kampus/Sekolahan");
-        txtBhsaProg.setText("Kompetensi Bahasa Pemrograman");txtGPA.setText("");txtLbgTrain.setText("Nama Lembaga Training");
-        txtMajor.setText("Jurusan");txtNamaPerhar.setText("Nama Penghargaan");
-        txtNamaTrain.setText("Nama Training");txtNetworking.setText("Kompetensi Networking");txtTahunAchiv.setText("");
+        txtEduLevel.setText("Jenjang Pendidikan");
+        txtEventPenghar.setText("Event Pengahargaan");
+        txtInstansi.setText("Nama Instansi/Kampus/Sekolahan");
+        txtBhsaProg.setText("Kompetensi Bahasa Pemrograman");
+        txtGPA.setText("4.00");
+        txtLbgTrain.setText("Nama Lembaga Training");
+        txtMajor.setText("Jurusan");
+        txtNamaPerhar.setText("Nama Penghargaan");
+        txtNamaTrain.setText("Nama Training");
+        txtNetworking.setText("Kompetensi Networking");
+        txtTahunAchiv.setText("");
+        txtYearIn.setText("");
+        txtGraduation.setText("");
     }
 }

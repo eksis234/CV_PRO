@@ -62,6 +62,16 @@ public class Achievementdetails implements Serializable {
         this.idachdetail = idachdetail;
     }
 
+    public Achievementdetails(String namaachievement, String nameevant, BigInteger year, BigDecimal idachdetail, String status, Achievement idachievement, Personaldata idpersonal) {
+        this.namaachievement = namaachievement;
+        this.nameevant = nameevant;
+        this.year = year;
+        this.idachdetail = idachdetail;
+        this.status = status;
+        this.idachievement = idachievement;
+        this.idpersonal = idpersonal;
+    }
+
     public BigDecimal getIdachdetail() {
         return idachdetail;
     }

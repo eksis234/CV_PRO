@@ -40,7 +40,6 @@ public class GetIdController {
     public Object getLastId(){
         idao = new GeneralDAO(factory, Organization.class);
         Organization organization =  (Organization) idao.getLastId();
-        BigDecimal one = new BigDecimal("1");
         return organization.getIdorganization();
     }
     
@@ -73,7 +72,58 @@ public class GetIdController {
     public Object getLastId2(){
         idao = new GeneralDAO(factory, Workingexperience.class);
         Workingexperience workingexperience =  (Workingexperience) idao.getLastId();
-        BigDecimal one = new BigDecimal("1");
         return workingexperience.getIdworkingexperience();
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId3(){
+        idao = new GeneralDAO(factory, Personaldata.class);
+        Personaldata personaldata =  (Personaldata) idao.getLastId();
+        return personaldata.getIdpersonal();
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getAutoId4(){
+        idao = new GeneralDAO(factory, Educationdetails.class);
+        Educationdetails educationdetails = (Educationdetails) idao.getLastId();
+        BigDecimal bd = new BigDecimal("1");
+        return educationdetails.getIdedudetail().add(bd);
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId4(){
+        idao = new GeneralDAO(factory, Education.class);
+        Education education = (Education) idao.getLastId();
+        return education.getIdeducation();
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getAutoId5(){
+        idao = new GeneralDAO(factory, Achievementdetails.class);
+        Achievementdetails achievementdetails = (Achievementdetails) idao.getLastId();
+        BigDecimal bd = new BigDecimal("1");
+        return achievementdetails.getIdachdetail().add(bd);
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId5(){
+        idao = new GeneralDAO(factory, Achievement.class);
+        Achievement achievement = (Achievement) idao.getLastId();
+        return achievement.getIdachievement();
     }
 }
