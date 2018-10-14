@@ -85,8 +85,8 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
         txtTahunAchiv = new javax.swing.JTextField();
         cmbNameTrain = new javax.swing.JComboBox<>();
         cmbLembgTraining = new javax.swing.JComboBox<>();
-        jXDatePicker5 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker6 = new org.jdesktop.swingx.JXDatePicker();
+        DateAwTrain = new org.jdesktop.swingx.JXDatePicker();
+        DateAkTrain = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane10 = new javax.swing.JScrollPane();
         txtNamaPerhar = new javax.swing.JTextArea();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -311,8 +311,8 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
                                 .addComponent(cmbTools, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbNetworking, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbBhsaProg, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jXDatePicker6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                .addComponent(jXDatePicker5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DateAkTrain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                                .addComponent(DateAwTrain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbLembgTraining, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbNameTrain, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbEventPenghargaan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -397,11 +397,11 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel42)
-                            .addComponent(jXDatePicker5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(DateAwTrain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel43)
-                            .addComponent(jXDatePicker6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(DateAkTrain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -510,10 +510,19 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
         String idPer = controller1.getLastId3().toString();
         String idEduT = controller1.getAutoId4().toString();String idedu = controller1.getLastId4().toString(); 
         String idAchiT = controller1.getAutoId5().toString();String idAchi = controller1.getLastId5().toString(); 
+        String idTraiT = controller1.getAutoId6().toString();String idTrai = controller1.getLastId6().toString(); 
+        String idProgT = controller1.getAutoId7().toString();String idProg = controller1.getLastId7().toString(); 
+        String idNetT = controller1.getAutoId8().toString();String idNet = controller1.getLastId8().toString(); 
         //controller.saveOrUpdate3(txtInstansi.getText(), txtEduLevel.getText(), idEduT, "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(), txtMajor.getText(), idedu, idPer);
         //(String namaachievement, String nameevant, BigInteger year, BigDecimal idachdetail, String status, Achievement idachievement, Personaldata idpersonal)
-       controller.saveOrUpdate4(txtNamaPerhar.getText(), txtEventPenghar.getText(), txtTahunAchiv.getText(), idAchiT, "w", idAchi, idPer);
-        if(!txtIdPersonal.isEnabled()){
+       //controller.saveOrUpdate4(txtNamaPerhar.getText(), txtEventPenghar.getText(), txtTahunAchiv.getText(), idAchiT, "w", idAchi, idPer);
+      //(String nametraining, String lembagatraining, BigDecimal idtrainingdetail, String status, Date startdate, Date enddate, Personaldata idpersonal, Training idtraining) 
+       //controller.saveOrUpdate5(txtNamaTrain.getText(), txtLbgTrain.getText(), idTraiT, "w", sg.getDateFormat(DateAwTrain), sg.getDateFormat(DateAkTrain), idPer, idTrai);
+       //(String bhsaprog, BigDecimal idprogdetail, String status, Personaldata idpersonal, Programming idprogramming)
+       controller.saveOrUpdate6(txtBhsaProg.getText(), idProgT, "w", idPer, idProg);
+       //(String networkskill, BigDecimal idnetdetail, String status, Networking idnetworking, Personaldata idpersonal) 
+       controller.saveOrUpdate7(txtNetworking.getText(), idNetT, "w", idNet, idPer);
+       if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
@@ -568,6 +577,8 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.jdesktop.swingx.JXDatePicker DateAkTrain;
+    private org.jdesktop.swingx.JXDatePicker DateAwTrain;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnViewData;
@@ -611,8 +622,6 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker5;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker6;
     private javax.swing.JTextArea txtBhsaProg;
     private javax.swing.JTextArea txtEduLevel;
     private javax.swing.JTextArea txtEventPenghar;

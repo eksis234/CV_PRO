@@ -126,4 +126,67 @@ public class GetIdController {
         Achievement achievement = (Achievement) idao.getLastId();
         return achievement.getIdachievement();
     }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getAutoId6(){
+        idao = new GeneralDAO(factory, Trainingdetails.class);
+        Trainingdetails trainingdetails = (Trainingdetails) idao.getLastId();
+        BigDecimal bd = new BigDecimal("1");
+        return trainingdetails.getIdtrainingdetail().add(bd);
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId6(){
+        idao = new GeneralDAO(factory, Training.class);
+        Training training = (Training) idao.getLastId();
+        return training.getIdtraining();
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getAutoId7(){
+        idao = new GeneralDAO(factory, Programmingdetails.class);
+        Programmingdetails p = (Programmingdetails) idao.getLastId();
+        BigDecimal bd = new BigDecimal("1");
+        return p.getIdprogdetail().add(bd);
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId7(){
+        idao = new GeneralDAO(factory, Programming.class);
+        Programming p = (Programming) idao.getLastId();
+        return p.getIdprogramming();
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getAutoId8(){
+        idao = new GeneralDAO(factory, Networkingdetails.class);
+        Networkingdetails n = (Networkingdetails) idao.getLastId();
+        BigDecimal bd = new BigDecimal("1");
+        return n.getIdnetdetail().add(bd);
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId8(){
+        idao = new GeneralDAO(factory, Networking.class);
+        Networking n = (Networking) idao.getLastId();
+        return n.getIdnetworking();
+    }
 }

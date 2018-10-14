@@ -91,6 +91,34 @@ public class PersonalController {
         achievementdetails = new  Achievementdetails(namaachievement, nameevant, new BigInteger(year), new BigDecimal(idachdetail), status, achievement, personaldata);
         return dAO.saveOrUpdate(achievementdetails);
     }
+    
+    //(String nametraining, String lembagatraining, BigDecimal idtrainingdetail, String status, Date startdate, Date enddate, Personaldata idpersonal, Training idtraining) 
+    public boolean saveOrUpdate5(String nametraining, String lembagatraining, String idtrainingdetail, String status, String startdate, String enddate, String idpersonal, String idtraining){
+        //System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+        Training training = new Training(new BigDecimal(idtraining+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Trainingdetails trainingdetails;
+        trainingdetails = new  Trainingdetails(nametraining, lembagatraining, new BigDecimal (idtrainingdetail), status, new Date(startdate), new  Date (enddate), personaldata, training);
+        return dAO.saveOrUpdate(trainingdetails);
+    }
+    
+    public boolean saveOrUpdate6(String bhsaprog, String idprogdetail, String status, String idpersonal, String idprogramming){
+        //System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+        Programming programming = new Programming(new BigDecimal(idprogramming+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Programmingdetails programmingdetails;
+        programmingdetails = new  Programmingdetails(bhsaprog, new BigDecimal (idprogdetail), status, personaldata , programming );
+        return dAO.saveOrUpdate(programmingdetails);
+    }
+    
+    public boolean saveOrUpdate7(String networkskill, String idnetdetail, String status, String idnetworking, String idpersonal){
+        //System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+        Networking networking = new Networking(new BigDecimal(idnetworking+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Networkingdetails networkingdetails;
+        networkingdetails = new  Networkingdetails(networkskill, new BigDecimal(idnetdetail), status, networking, personaldata);
+        return dAO.saveOrUpdate(networkingdetails);
+    }
    
     /**
      * Method untuk melakukan penghapusan data Region

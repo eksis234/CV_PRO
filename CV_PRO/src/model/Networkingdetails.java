@@ -58,6 +58,14 @@ public class Networkingdetails implements Serializable {
         this.idnetdetail = idnetdetail;
     }
 
+    public Networkingdetails(String networkskill, BigDecimal idnetdetail, String status, Networking idnetworking, Personaldata idpersonal) {
+        this.networkskill = networkskill;
+        this.idnetdetail = idnetdetail;
+        this.status = status;
+        this.idnetworking = idnetworking;
+        this.idpersonal = idpersonal;
+    }
+
     public BigDecimal getIdnetdetail() {
         return idnetdetail;
     }

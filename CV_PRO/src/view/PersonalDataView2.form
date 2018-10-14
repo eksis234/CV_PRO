@@ -160,8 +160,8 @@
                                   <Component id="cmbTools" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbNetworking" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbBhsaProg" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jXDatePicker6" alignment="0" pref="193" max="32767" attributes="0"/>
-                                  <Component id="jXDatePicker5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="DateAkTrain" alignment="0" pref="193" max="32767" attributes="0"/>
+                                  <Component id="DateAwTrain" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbLembgTraining" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbNameTrain" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbEventPenghargaan" alignment="0" max="32767" attributes="0"/>
@@ -267,12 +267,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jXDatePicker5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DateAwTrain" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jXDatePicker6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DateAkTrain" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -516,9 +516,9 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker5">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="DateAwTrain">
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker6">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="DateAkTrain">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane10">
           <AuxValues>
