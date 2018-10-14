@@ -19,6 +19,7 @@ import org.hibernate.SessionFactory;
  */
 public class OrganizationController {
     private InterfaceDAO idao;
+    private final SessionFactory factory;
 
     /**
      * constructor dari kelas oragizationController berbarameter sessionFactory 
@@ -26,7 +27,9 @@ public class OrganizationController {
      * @param sessionFactory nemapung nilai sementara dari session
      */
     public OrganizationController(SessionFactory sessionFactory) {
-        this.idao = new GeneralDAO(sessionFactory, Organization.class);
+        
+        this.factory = sessionFactory;
+        idao = new GeneralDAO(sessionFactory, Organization.class);
     } 
     
     /**
@@ -93,5 +96,26 @@ public class OrganizationController {
         Organization organization =  (Organization) idao.getLastId();
         BigDecimal one = new BigDecimal("1");
         return organization.getIdorganization().add(one);
+    }
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getLastId(){
+        idao = new GeneralDAO(factory, Organization.class);
+        Organization organization =  (Organization) idao.getLastId();
+        BigDecimal one = new BigDecimal("1");
+        return organization.getIdorganization();
+    }
+    
+    /**
+     * Method untuk membuat id baru secara increment +1
+     * @return iDAO mengembalikan nilai object
+     */
+    public Object getAutoId1(){
+        idao = new GeneralDAO(factory, Organizationdetails.class);
+        Organizationdetails organizationdetails = (Organizationdetails) idao.getLastId();
+        BigDecimal one = new BigDecimal("1");
+        return organizationdetails.getIdorgdetail().add(one);
     }
 }

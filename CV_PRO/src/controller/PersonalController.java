@@ -56,14 +56,19 @@ public class PersonalController {
         Personaldata pdata = new Personaldata(new BigDecimal(idpersonal), name, new Date (dateofbirth), nationality, maritalstatus, gender, phonenumber, email, foto);
         return dAO.saveOrUpdate(pdata);
     }
+    //(BigDecimal idorgdetail, BigInteger organizationid, String organizationname, String position, Date startdate, Date enddate, String status, Organization idorganization, Personaldata idpersonal)
+    public boolean saveOrUpdate1(String idorgdetail, String organizationname, String position, String startdate, String enddate, String status, String idorganization, String idpersonal) {
+        Organization organization = new Organization(new BigDecimal(idorganization+""));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Organizationdetails organizationdetails; 
+        organizationdetails = new Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
+        return dAO.saveOrUpdate(organizationdetails);
+    }
     
-    public boolean saveOrUpdate1(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
+        public boolean saveOrUpdate2(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
         System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
         Education education = new Education(new BigDecimal(ideducation+""));
         Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
-//        personaldata.setIdpersonal();
-//        Educationdetails educationdetails = new Educationdetails();
-//        educationdetails.setIdeducation(education);educationdetails.setIdpersonal(personaldata);
         Educationdetails educa; 
         educa = new Educationdetails(new BigDecimal(idedudetail), status, new Double(ipk), new BigInteger(angkatan), new BigInteger(tahunlulus), 
                 jurusan, education, personaldata);
@@ -170,6 +175,13 @@ public class PersonalController {
                     List<Object> objects = (List<Object>) oc1.getAll();
                     objects.stream().map((object) -> (Organization) object).forEachOrdered((or1) -> {
                         cmb.addItem(or1.getOrganizationname());
+                    });     break;
+                }
+            case "jbatn":
+                {
+                    List<Object> objects = (List<Object>) oc1.getAll();
+                    objects.stream().map((object) -> (Organization) object).forEachOrdered((or1) -> {
+                        cmb.addItem(or1.getPosition());
                     });     break;
                 }
             case "network":

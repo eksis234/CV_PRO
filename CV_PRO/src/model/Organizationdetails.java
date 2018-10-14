@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Organizationdetails.findAll", query = "SELECT o FROM Organizationdetails o")
     , @NamedQuery(name = "Organizationdetails.findByIdorgdetail", query = "SELECT o FROM Organizationdetails o WHERE o.idorgdetail = :idorgdetail")
-    , @NamedQuery(name = "Organizationdetails.findByOrganizationid", query = "SELECT o FROM Organizationdetails o WHERE o.organizationid = :organizationid")
     , @NamedQuery(name = "Organizationdetails.findByOrganizationname", query = "SELECT o FROM Organizationdetails o WHERE o.organizationname = :organizationname")
     , @NamedQuery(name = "Organizationdetails.findByPosition", query = "SELECT o FROM Organizationdetails o WHERE o.position = :position")
     , @NamedQuery(name = "Organizationdetails.findByStartdate", query = "SELECT o FROM Organizationdetails o WHERE o.startdate = :startdate")
@@ -47,9 +46,6 @@ public class Organizationdetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDORGDETAIL")
     private BigDecimal idorgdetail;
-    @Basic(optional = false)
-    @Column(name = "ORGANIZATIONID")
-    private BigInteger organizationid;
     @Column(name = "ORGANIZATIONNAME")
     private String organizationname;
     @Column(name = "POSITION")
@@ -76,9 +72,15 @@ public class Organizationdetails implements Serializable {
         this.idorgdetail = idorgdetail;
     }
 
-    public Organizationdetails(BigDecimal idorgdetail, BigInteger organizationid) {
+    public Organizationdetails(BigDecimal idorgdetail, String organizationname, String position, Date startdate, Date enddate, String status, Organization idorganization, Personaldata idpersonal) {
         this.idorgdetail = idorgdetail;
-        this.organizationid = organizationid;
+        this.organizationname = organizationname;
+        this.position = position;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.status = status;
+        this.idorganization = idorganization;
+        this.idpersonal = idpersonal;
     }
 
     public BigDecimal getIdorgdetail() {
@@ -87,14 +89,6 @@ public class Organizationdetails implements Serializable {
 
     public void setIdorgdetail(BigDecimal idorgdetail) {
         this.idorgdetail = idorgdetail;
-    }
-
-    public BigInteger getOrganizationid() {
-        return organizationid;
-    }
-
-    public void setOrganizationid(BigInteger organizationid) {
-        this.organizationid = organizationid;
     }
 
     public String getOrganizationname() {

@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Organization.findByOrganizationname", query = "SELECT o FROM Organization o WHERE o.organizationname = :organizationname")})
 public class Organization implements Serializable {
 
+    @Column(name = "POSITION")
+    private String position;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -105,6 +108,14 @@ public class Organization implements Serializable {
     @Override
     public String toString() {
         return "model.Organization[ idorganization=" + idorganization + " ]";
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
     
 }

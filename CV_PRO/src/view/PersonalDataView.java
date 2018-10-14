@@ -776,21 +776,21 @@ public class PersonalDataView extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();
-            String emainya = mailnya.concat(cmbMael); 
-            controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
-                cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
-                txtPhone.getText(), mailnya, txtPhone.getText());
-//            (String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal)
-            controller.saveOrUpdate1(txtIdPersonal.getText(), "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(),
-                    txtMajor.getText(), "1", txtIdPersonal.getText());
-        if(!txtIdPersonal.isEnabled()){
-            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
-            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
-        }
-        reset();
+//       String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();
+//            String emainya = mailnya.concat(cmbMael); 
+//            controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
+//                cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
+//                txtPhone.getText(), mailnya, txtPhone.getText());
+////            (String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal)
+//            controller.saveOrUpdate1(txtIdPersonal.getText(), "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(),
+//                    txtMajor.getText(), "1", txtIdPersonal.getText());
+//        if(!txtIdPersonal.isEnabled()){
+//            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtIdPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPersonalActionPerformed

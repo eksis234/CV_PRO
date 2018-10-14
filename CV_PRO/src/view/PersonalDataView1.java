@@ -21,6 +21,7 @@ import model.*;
  */
 public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private final PersonalController controller;
+   private OrganizationController controller1;
     private final SerbaGuna sg;
     /**
      * Creates new form PersonalDataView
@@ -29,6 +30,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
     public PersonalDataView1(SessionFactory factory) {
         initComponents();
         controller = new PersonalController(factory);
+        controller1 = new OrganizationController(factory);
         controller.loadCmbTools(cmbBahasa, "bahasa1");
         controller.loadCmbTools(cmbJabatan, "jbatn");
         controller.loadCmbTools(cmbNamaOraginsasi, "naOr");
@@ -129,6 +131,12 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Photo (Max 500 KB)");
 
+        cmbBahasa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbBahasaMouseEntered(evt);
+            }
+        });
+
         cmbNegara.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "WNI", "WNA" }));
 
         cmbSex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-Laki", "Perempuan" }));
@@ -136,6 +144,11 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         btnPhoto.setText("Chose Photo");
 
         cmbMail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "@gmail.com", "@yahoo.com", "@yahoo.co.id", "@mii.co.id" }));
+        cmbMail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbMailMouseEntered(evt);
+            }
+        });
 
         jLabel16.setText("Nama Organisasi");
 
@@ -153,15 +166,37 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
         jLabel23.setText("Bulan & Tahun Selesai");
 
+        cmbNamaOraginsasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbNamaOraginsasiMouseEntered(evt);
+            }
+        });
         cmbNamaOraginsasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbNamaOraginsasiActionPerformed(evt);
             }
         });
 
+        cmbJabatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbJabatanMouseEntered(evt);
+            }
+        });
+
+        cmbNmPerusahaan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbNmPerusahaanMouseEntered(evt);
+            }
+        });
         cmbNmPerusahaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbNmPerusahaanActionPerformed(evt);
+            }
+        });
+
+        cmbJabatanPeru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbJabatanPeruMouseEntered(evt);
             }
         });
 
@@ -192,6 +227,13 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Working Experience");
+
+        cmbStatusKwn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kawin", "Lajang", "Duda", "Janda" }));
+        cmbStatusKwn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbStatusKwnMouseEntered(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -344,12 +386,11 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbNamaOraginsasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -480,20 +521,16 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-       String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();
-            String emainya = mailnya.concat(cmbMael); 
-            controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
-                cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
-                txtPhone.getText(), mailnya, txtPhone.getText());
-//            (String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal)
-//            controller.saveOrUpdate1(txtIdPersonal.getText(), "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(),
-//                    txtMajor.getText(), "1", txtIdPersonal.getText());
-        if(!txtIdPersonal.isEnabled()){
-            JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
-            JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
-        }
+       String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();String emainya = mailnya.concat(cmbMael); 
+       String idOrgT = controller1.getAutoId1().toString();
+       String idOrg = controller1.getLastId().toString(); 
+//            controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
+//                cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
+//                txtPhone.getText(), txtMail.getText(), txtPhone.getText());
+//Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
+            controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), 
+                    sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
+        JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
         reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -505,6 +542,41 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         sg.filterAngka(evt);
     }//GEN-LAST:event_txtbahsaKeyTyped
+
+    private void cmbStatusKwnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbStatusKwnMouseEntered
+        // TODO add your handling code here:
+        txtStatus.setText((String) cmbStatusKwn.getSelectedItem());
+    }//GEN-LAST:event_cmbStatusKwnMouseEntered
+
+    private void cmbMailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMailMouseEntered
+        // TODO add your handling code here:
+        txtMail.setText((String) cmbMail.getSelectedItem());
+    }//GEN-LAST:event_cmbMailMouseEntered
+
+    private void cmbBahasaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbBahasaMouseEntered
+        // TODO add your handling code here:
+        txtbahsa.setText((String) cmbBahasa.getSelectedItem());
+    }//GEN-LAST:event_cmbBahasaMouseEntered
+
+    private void cmbNamaOraginsasiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbNamaOraginsasiMouseEntered
+        // TODO add your handling code here:
+        txtNamaOrga.setText((String) cmbNamaOraginsasi.getSelectedItem());
+    }//GEN-LAST:event_cmbNamaOraginsasiMouseEntered
+
+    private void cmbJabatanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJabatanMouseEntered
+        // TODO add your handling code here:
+        txtJabatanOrg.setText((String) cmbJabatan.getSelectedItem());
+    }//GEN-LAST:event_cmbJabatanMouseEntered
+
+    private void cmbNmPerusahaanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbNmPerusahaanMouseEntered
+        // TODO add your handling code here:
+        txtNamaPerus.setText((String) cmbNmPerusahaan.getSelectedItem());
+    }//GEN-LAST:event_cmbNmPerusahaanMouseEntered
+
+    private void cmbJabatanPeruMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJabatanPeruMouseEntered
+        // TODO add your handling code here:
+        txtJabatanPrus.setText((String) cmbJabatanPeru.getSelectedItem());
+    }//GEN-LAST:event_cmbJabatanPeruMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
