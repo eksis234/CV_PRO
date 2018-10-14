@@ -40,7 +40,7 @@ public class MainTest {
 //            System.out.println(w.getIdworkingexperience()+" - "+w.getNamaperusahaan());
 //        }
 //        System.out.println(w.getIdworkingexperience()+" - "+w.getEmployer());
-        System.out.println(controller.saveOrUpdate("1", "user1", "user1", "admin"));
+        System.out.println(controller.saveOrUpdate("2", "user2", "E23sis,.", "admin"));
     }
     
 }
