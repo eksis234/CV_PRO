@@ -34,8 +34,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Educationdetails.findByIpk", query = "SELECT e FROM Educationdetails e WHERE e.ipk = :ipk")
     , @NamedQuery(name = "Educationdetails.findByAngkatan", query = "SELECT e FROM Educationdetails e WHERE e.angkatan = :angkatan")
     , @NamedQuery(name = "Educationdetails.findByTahunlulus", query = "SELECT e FROM Educationdetails e WHERE e.tahunlulus = :tahunlulus")
-    , @NamedQuery(name = "Educationdetails.findByJurusan", query = "SELECT e FROM Educationdetails e WHERE e.jurusan = :jurusan")})
+    , @NamedQuery(name = "Educationdetails.findByJurusan", query = "SELECT e FROM Educationdetails e WHERE e.jurusan = :jurusan")
+    , @NamedQuery(name = "Educationdetails.findByNamainstansi", query = "SELECT e FROM Educationdetails e WHERE e.namainstansi = :namainstansi")
+    , @NamedQuery(name = "Educationdetails.findByJenjang", query = "SELECT e FROM Educationdetails e WHERE e.jenjang = :jenjang")})
 public class Educationdetails implements Serializable {
+
+    @Column(name = "NAMAINSTANSI")
+    private String namainstansi;
+    @Column(name = "JENJANG")
+    private String jenjang;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -63,7 +70,9 @@ public class Educationdetails implements Serializable {
     public Educationdetails() {
     }
 
-    public Educationdetails(BigDecimal idedudetail, String status, Double ipk, BigInteger angkatan, BigInteger tahunlulus, String jurusan, Education ideducation, Personaldata idpersonal) {
+    public Educationdetails(String namainstansi, String jenjang, BigDecimal idedudetail, String status, Double ipk, BigInteger angkatan, BigInteger tahunlulus, String jurusan, Education ideducation, Personaldata idpersonal) {
+        this.namainstansi = namainstansi;
+        this.jenjang = jenjang;
         this.idedudetail = idedudetail;
         this.status = status;
         this.ipk = ipk;
@@ -165,6 +174,22 @@ public class Educationdetails implements Serializable {
     @Override
     public String toString() {
         return "model.Educationdetails[ idedudetail=" + idedudetail + " ]";
+    }
+
+    public String getNamainstansi() {
+        return namainstansi;
+    }
+
+    public void setNamainstansi(String namainstansi) {
+        this.namainstansi = namainstansi;
+    }
+
+    public String getJenjang() {
+        return jenjang;
+    }
+
+    public void setJenjang(String jenjang) {
+        this.jenjang = jenjang;
     }
     
 }

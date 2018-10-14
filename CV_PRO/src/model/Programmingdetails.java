@@ -29,8 +29,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Programmingdetails.findAll", query = "SELECT p FROM Programmingdetails p")
     , @NamedQuery(name = "Programmingdetails.findByIdprogdetail", query = "SELECT p FROM Programmingdetails p WHERE p.idprogdetail = :idprogdetail")
-    , @NamedQuery(name = "Programmingdetails.findByStatus", query = "SELECT p FROM Programmingdetails p WHERE p.status = :status")})
+    , @NamedQuery(name = "Programmingdetails.findByBhsaprog", query = "SELECT p FROM Programmingdetails p WHERE p.bhsaprog = :bhsaprog")})
 public class Programmingdetails implements Serializable {
+
+    @Column(name = "BHSAPROG")
+    private String bhsaprog;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -52,6 +55,14 @@ public class Programmingdetails implements Serializable {
 
     public Programmingdetails(BigDecimal idprogdetail) {
         this.idprogdetail = idprogdetail;
+    }
+
+    public Programmingdetails(String bhsaprog, BigDecimal idprogdetail, String status, Personaldata idpersonal, Programming idprogramming) {
+        this.bhsaprog = bhsaprog;
+        this.idprogdetail = idprogdetail;
+        this.status = status;
+        this.idpersonal = idpersonal;
+        this.idprogramming = idprogramming;
     }
 
     public BigDecimal getIdprogdetail() {
@@ -109,6 +120,14 @@ public class Programmingdetails implements Serializable {
     @Override
     public String toString() {
         return "model.Programmingdetails[ idprogdetail=" + idprogdetail + " ]";
+    }
+
+    public String getBhsaprog() {
+        return bhsaprog;
+    }
+
+    public void setBhsaprog(String bhsaprog) {
+        this.bhsaprog = bhsaprog;
     }
     
 }

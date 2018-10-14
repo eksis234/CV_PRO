@@ -74,15 +74,14 @@ public class PersonalController {
         return dAO.saveOrUpdate(experiencedetails);
     }
     
-    public boolean saveOrUpdate3(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
-        System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
-        Education education = new Education(new BigDecimal(ideducation+""));
-        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
-        Educationdetails educa; 
-        educa = new Educationdetails(new BigDecimal(idedudetail), status, new Double(ipk), new BigInteger(angkatan), new BigInteger(tahunlulus), 
-                jurusan, education, personaldata);
-        return dAO.saveOrUpdate(educa);
-    }
+//    public boolean saveOrUpdate3(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
+//        System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
+//        Education education = new Education(new BigDecimal(ideducation+""));
+//        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+//        Educationdetails educa; 
+//        educa = new Educationdetails(angkatan, jurusan, BigDecimal.ZERO, status, Double.NaN, BigInteger.TEN, BigInteger.TEN, jurusan, education, personaldata)
+//        return dAO.saveOrUpdate(educa);
+//    }
    
     /**
      * Method untuk melakukan penghapusan data Region

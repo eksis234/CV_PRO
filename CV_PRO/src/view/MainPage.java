@@ -110,9 +110,13 @@ public class MainPage extends javax.swing.JFrame {
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
          // TODO add your handling code here:
-        PersonalDataView1 personalDataView1 = new PersonalDataView1(sf);
-         personalDataView1.show();
-         dpMainPage.add(personalDataView1);
+//        PersonalDataView1 personalDataView1 = new PersonalDataView1(sf);
+//        personalDataView1.show();
+//        dpMainPage.add(personalDataView1);
+        
+        PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
+        personalDataView2.show();
+        dpMainPage.add(personalDataView2);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**

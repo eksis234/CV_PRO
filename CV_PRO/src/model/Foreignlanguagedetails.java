@@ -29,8 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Foreignlanguagedetails.findAll", query = "SELECT f FROM Foreignlanguagedetails f")
     , @NamedQuery(name = "Foreignlanguagedetails.findByIdflangdetail", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.idflangdetail = :idflangdetail")
-    , @NamedQuery(name = "Foreignlanguagedetails.findByStatus", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.status = :status")})
+    , @NamedQuery(name = "Foreignlanguagedetails.findByStatus", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.status = :status")
+    , @NamedQuery(name = "Foreignlanguagedetails.findByLanguagename", query = "SELECT f FROM Foreignlanguagedetails f WHERE f.languagename = :languagename")})
 public class Foreignlanguagedetails implements Serializable {
+
+    @Column(name = "LANGUAGENAME")
+    private String languagename;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -52,6 +56,14 @@ public class Foreignlanguagedetails implements Serializable {
 
     public Foreignlanguagedetails(BigDecimal idflangdetail) {
         this.idflangdetail = idflangdetail;
+    }
+
+    public Foreignlanguagedetails(String languagename, BigDecimal idflangdetail, String status, Foreignlanguage idflang, Personaldata idpersonal) {
+        this.languagename = languagename;
+        this.idflangdetail = idflangdetail;
+        this.status = status;
+        this.idflang = idflang;
+        this.idpersonal = idpersonal;
     }
 
     public BigDecimal getIdflangdetail() {
@@ -109,6 +121,14 @@ public class Foreignlanguagedetails implements Serializable {
     @Override
     public String toString() {
         return "model.Foreignlanguagedetails[ idflangdetail=" + idflangdetail + " ]";
+    }
+
+    public String getLanguagename() {
+        return languagename;
+    }
+
+    public void setLanguagename(String languagename) {
+        this.languagename = languagename;
     }
     
 }

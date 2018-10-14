@@ -28,8 +28,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Tooldetails.findAll", query = "SELECT t FROM Tooldetails t")
-    , @NamedQuery(name = "Tooldetails.findByIdtooldetail", query = "SELECT t FROM Tooldetails t WHERE t.idtooldetail = :idtooldetail")})
+    , @NamedQuery(name = "Tooldetails.findByIdtooldetail", query = "SELECT t FROM Tooldetails t WHERE t.idtooldetail = :idtooldetail")
+    , @NamedQuery(name = "Tooldetails.findBynametool", query = "SELECT t FROM Tooldetails t WHERE t.nametool = :nametool")})
 public class Tooldetails implements Serializable {
+
+    @Column(name = "NAMETOOL")
+    private String nametool;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -49,6 +53,13 @@ public class Tooldetails implements Serializable {
 
     public Tooldetails(BigDecimal idtooldetail) {
         this.idtooldetail = idtooldetail;
+    }
+
+    public Tooldetails(String nametool, BigDecimal idtooldetail, Personaldata idpersonal, Tools idtool) {
+        this.nametool = nametool;
+        this.idtooldetail = idtooldetail;
+        this.idpersonal = idpersonal;
+        this.idtool = idtool;
     }
 
     public BigDecimal getIdtooldetail() {
@@ -98,6 +109,14 @@ public class Tooldetails implements Serializable {
     @Override
     public String toString() {
         return "model.Tooldetails[ idtooldetail=" + idtooldetail + " ]";
+    }
+
+    public String getNametool() {
+        return nametool;
+    }
+
+    public void setNametool(String nametool) {
+        this.nametool = nametool;
     }
     
 }

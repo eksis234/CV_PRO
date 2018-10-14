@@ -34,8 +34,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Trainingdetails.findByIdtrainingdetail", query = "SELECT t FROM Trainingdetails t WHERE t.idtrainingdetail = :idtrainingdetail")
     , @NamedQuery(name = "Trainingdetails.findByStatus", query = "SELECT t FROM Trainingdetails t WHERE t.status = :status")
     , @NamedQuery(name = "Trainingdetails.findByStartdate", query = "SELECT t FROM Trainingdetails t WHERE t.startdate = :startdate")
-    , @NamedQuery(name = "Trainingdetails.findByEnddate", query = "SELECT t FROM Trainingdetails t WHERE t.enddate = :enddate")})
+    , @NamedQuery(name = "Trainingdetails.findByEnddate", query = "SELECT t FROM Trainingdetails t WHERE t.enddate = :enddate")
+    , @NamedQuery(name = "Trainingdetails.findByNametraining", query = "SELECT t FROM Trainingdetails t WHERE t.namatraining = :namatraining")
+    , @NamedQuery(name = "Trainingdetails.findByLembagatraining", query = "SELECT t FROM Trainingdetails t WHERE t.lembagatraining = :lembagatraining")})
 public class Trainingdetails implements Serializable {
+
+    @Column(name = "NAMETRAINING")
+    private String nametraining;
+    @Column(name = "LEMBAGATRAINING")
+    private String lembagatraining;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -63,6 +70,17 @@ public class Trainingdetails implements Serializable {
 
     public Trainingdetails(BigDecimal idtrainingdetail) {
         this.idtrainingdetail = idtrainingdetail;
+    }
+
+    public Trainingdetails(String nametraining, String lembagatraining, BigDecimal idtrainingdetail, String status, Date startdate, Date enddate, Personaldata idpersonal, Training idtraining) {
+        this.nametraining = nametraining;
+        this.lembagatraining = lembagatraining;
+        this.idtrainingdetail = idtrainingdetail;
+        this.status = status;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.idpersonal = idpersonal;
+        this.idtraining = idtraining;
     }
 
     public BigDecimal getIdtrainingdetail() {
@@ -136,6 +154,22 @@ public class Trainingdetails implements Serializable {
     @Override
     public String toString() {
         return "model.Trainingdetails[ idtrainingdetail=" + idtrainingdetail + " ]";
+    }
+
+    public String getNametraining() {
+        return nametraining;
+    }
+
+    public void setNametraining(String nametraining) {
+        this.nametraining = nametraining;
+    }
+
+    public String getLembagatraining() {
+        return lembagatraining;
+    }
+
+    public void setLembagatraining(String lembagatraining) {
+        this.lembagatraining = lembagatraining;
     }
     
 }

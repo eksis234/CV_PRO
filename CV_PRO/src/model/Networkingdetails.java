@@ -29,8 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Networkingdetails.findAll", query = "SELECT n FROM Networkingdetails n")
     , @NamedQuery(name = "Networkingdetails.findByIdnetdetail", query = "SELECT n FROM Networkingdetails n WHERE n.idnetdetail = :idnetdetail")
-    , @NamedQuery(name = "Networkingdetails.findByStatus", query = "SELECT n FROM Networkingdetails n WHERE n.status = :status")})
+    , @NamedQuery(name = "Networkingdetails.findByStatus", query = "SELECT n FROM Networkingdetails n WHERE n.status = :status")
+    , @NamedQuery(name = "Networkingdetails.findByNetworkskill", query = "SELECT n FROM Networkingdetails n WHERE n.networkskill = :networkskill")})
 public class Networkingdetails implements Serializable {
+
+    @Column(name = "NETWORKSKILL")
+    private String networkskill;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -109,6 +113,14 @@ public class Networkingdetails implements Serializable {
     @Override
     public String toString() {
         return "model.Networkingdetails[ idnetdetail=" + idnetdetail + " ]";
+    }
+
+    public String getNetworkskill() {
+        return networkskill;
+    }
+
+    public void setNetworkskill(String networkskill) {
+        this.networkskill = networkskill;
     }
     
 }

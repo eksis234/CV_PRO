@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +32,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Achievementdetails.findByIdachdetail", query = "SELECT a FROM Achievementdetails a WHERE a.idachdetail = :idachdetail")
     , @NamedQuery(name = "Achievementdetails.findByStatus", query = "SELECT a FROM Achievementdetails a WHERE a.status = :status")})
 public class Achievementdetails implements Serializable {
+
+    @Column(name = "NAMAACHIEVEMENT")
+    private String namaachievement;
+    @Column(name = "NAMEEVANT")
+    private String nameevant;
+    @Column(name = "YEAR")
+    private BigInteger year;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -109,6 +117,30 @@ public class Achievementdetails implements Serializable {
     @Override
     public String toString() {
         return "model.Achievementdetails[ idachdetail=" + idachdetail + " ]";
+    }
+
+    public String getNamaachievement() {
+        return namaachievement;
+    }
+
+    public void setNamaachievement(String namaachievement) {
+        this.namaachievement = namaachievement;
+    }
+
+    public String getNameevant() {
+        return nameevant;
+    }
+
+    public void setNameevant(String nameevant) {
+        this.nameevant = nameevant;
+    }
+
+    public BigInteger getYear() {
+        return year;
+    }
+
+    public void setYear(BigInteger year) {
+        this.year = year;
     }
     
 }

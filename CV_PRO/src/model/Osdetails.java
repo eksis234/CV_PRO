@@ -28,8 +28,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Osdetails.findAll", query = "SELECT o FROM Osdetails o")
-    , @NamedQuery(name = "Osdetails.findByIdosdetail", query = "SELECT o FROM Osdetails o WHERE o.idosdetail = :idosdetail")})
+    , @NamedQuery(name = "Osdetails.findByIdosdetail", query = "SELECT o FROM Osdetails o WHERE o.idosdetail = :idosdetail")
+    , @NamedQuery(name = "Osdetails.findByOsname", query = "SELECT o FROM Osdetails o WHERE o.osname = :osname")})
 public class Osdetails implements Serializable {
+
+    @Column(name = "OSNAME")
+    private String osname;
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -49,6 +53,13 @@ public class Osdetails implements Serializable {
 
     public Osdetails(BigDecimal idosdetail) {
         this.idosdetail = idosdetail;
+    }
+
+    public Osdetails(String osname, BigDecimal idosdetail, Os idos, Personaldata idpersonal) {
+        this.osname = osname;
+        this.idosdetail = idosdetail;
+        this.idos = idos;
+        this.idpersonal = idpersonal;
     }
 
     public BigDecimal getIdosdetail() {
@@ -98,6 +109,14 @@ public class Osdetails implements Serializable {
     @Override
     public String toString() {
         return "model.Osdetails[ idosdetail=" + idosdetail + " ]";
+    }
+
+    public String getOsname() {
+        return osname;
+    }
+
+    public void setOsname(String osname) {
+        this.osname = osname;
     }
     
 }
