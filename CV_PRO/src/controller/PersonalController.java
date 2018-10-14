@@ -64,8 +64,17 @@ public class PersonalController {
         organizationdetails = new Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
         return dAO.saveOrUpdate(organizationdetails);
     }
+    //(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience)
+    public boolean saveOrUpdate2(String idexpdetail, String status, String jobtitle, String startdate, String enddate, String namaperusahaan, String idpersonal, String idworkingexperience) {
+        System.out.println(idexpdetail+" - "+status+" - "+jobtitle+" - "+startdate+" - "+enddate+" - "+namaperusahaan+" - "+ idpersonal+" - "+idworkingexperience);
+        Workingexperience workingexperience = new Workingexperience(new BigDecimal(idworkingexperience));
+        Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));
+        Experiencedetails experiencedetails;
+        experiencedetails = new Experiencedetails(new BigDecimal(idexpdetail), status, jobtitle, new Date(startdate), new Date(enddate), namaperusahaan, personaldata, workingexperience);
+        return dAO.saveOrUpdate(experiencedetails);
+    }
     
-        public boolean saveOrUpdate2(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
+    public boolean saveOrUpdate3(String idedudetail, String status, String ipk, String angkatan, String tahunlulus, String jurusan, String ideducation, String idpersonal) {
         System.out.println(idedudetail+"-"+status+"-"+angkatan+"-"+tahunlulus+"-"+jurusan+"-"+ideducation+"-"+idpersonal);
         Education education = new Education(new BigDecimal(ideducation+""));
         Personaldata personaldata = new Personaldata(new BigDecimal(idpersonal+""));

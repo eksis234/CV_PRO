@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Experiencedetails.findByJobtitle", query = "SELECT e FROM Experiencedetails e WHERE e.jobtitle = :jobtitle")
     , @NamedQuery(name = "Experiencedetails.findByStartdate", query = "SELECT e FROM Experiencedetails e WHERE e.startdate = :startdate")
     , @NamedQuery(name = "Experiencedetails.findByEnddate", query = "SELECT e FROM Experiencedetails e WHERE e.enddate = :enddate")
-    , @NamedQuery(name = "Experiencedetails.findByDetails", query = "SELECT e FROM Experiencedetails e WHERE e.details = :details")})
+    , @NamedQuery(name = "Experiencedetails.findByNamaperusahaan", query = "SELECT e FROM Experiencedetails e WHERE e.namaperusahaan = :details")})
 public class Experiencedetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,8 +55,8 @@ public class Experiencedetails implements Serializable {
     @Column(name = "ENDDATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date enddate;
-    @Column(name = "DETAILS")
-    private String details;
+    @Column(name = "NAMAPERUSAHAAN")
+    private String namaperusahaan;
     @JoinColumn(name = "IDPERSONAL", referencedColumnName = "IDPERSONAL")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Personaldata idpersonal;
@@ -69,6 +69,17 @@ public class Experiencedetails implements Serializable {
 
     public Experiencedetails(BigDecimal idexpdetail) {
         this.idexpdetail = idexpdetail;
+    }
+
+    public Experiencedetails(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience) {
+        this.idexpdetail = idexpdetail;
+        this.status = status;
+        this.jobtitle = jobtitle;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.namaperusahaan = namaperusahaan;
+        this.idpersonal = idpersonal;
+        this.idworkingexperience = idworkingexperience;
     }
 
     public BigDecimal getIdexpdetail() {
@@ -111,12 +122,12 @@ public class Experiencedetails implements Serializable {
         this.enddate = enddate;
     }
 
-    public String getDetails() {
-        return details;
+    public String getNamaperusahaan() {
+        return namaperusahaan;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDetails(String namaperusahaan) {
+        this.namaperusahaan = namaperusahaan;
     }
 
     public Personaldata getIdpersonal() {

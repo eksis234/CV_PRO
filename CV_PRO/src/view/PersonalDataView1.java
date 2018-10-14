@@ -21,7 +21,7 @@ import model.*;
  */
 public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private final PersonalController controller;
-   private OrganizationController controller1;
+   private GetIdController controller1;
     private final SerbaGuna sg;
     /**
      * Creates new form PersonalDataView
@@ -30,7 +30,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
     public PersonalDataView1(SessionFactory factory) {
         initComponents();
         controller = new PersonalController(factory);
-        controller1 = new OrganizationController(factory);
+        controller1 = new GetIdController(factory);
         controller.loadCmbTools(cmbBahasa, "bahasa1");
         controller.loadCmbTools(cmbJabatan, "jbatn");
         controller.loadCmbTools(cmbNamaOraginsasi, "naOr");
@@ -85,8 +85,8 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         dateOrgAk = new org.jdesktop.swingx.JXDatePicker();
         cmbNmPerusahaan = new javax.swing.JComboBox<>();
         cmbJabatanPeru = new javax.swing.JComboBox<>();
-        jXDatePicker3 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker4 = new org.jdesktop.swingx.JXDatePicker();
+        DateAwKer = new org.jdesktop.swingx.JXDatePicker();
+        DateAkKer = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtNamaOrga = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -250,8 +250,8 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                             .addComponent(jLabel23))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jXDatePicker4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DateAwKer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DateAkKer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbJabatanPeru, 0, 265, Short.MAX_VALUE)
                             .addComponent(cmbNmPerusahaan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
@@ -422,10 +422,10 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel21))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DateAwKer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22))
                                 .addGap(7, 7, 7)
-                                .addComponent(jXDatePicker4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(DateAkKer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -522,15 +522,16 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
        String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();String emainya = mailnya.concat(cmbMael); 
-       String idOrgT = controller1.getAutoId1().toString();
-       String idOrg = controller1.getLastId().toString(); 
+       String idOrgT = controller1.getAutoId1().toString();String idOrg = controller1.getLastId().toString(); 
+       String idExp = controller1.getAutoId2().toString();String idExpW = controller1.getLastId2().toString();
 //            controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
 //                cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
 //                txtPhone.getText(), txtMail.getText(), txtPhone.getText());
 //Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
-            controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), 
-                    sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
-        JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
+         //controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
+         //(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience)
+         controller.saveOrUpdate2(idExp, "w", txtJabatanPrus.getText(), sg.getDateFormat(DateAwKer), sg.getDateFormat(DateAkKer), txtNamaPerus.getText(), txtIdPersonal.getText(), idExpW);
+         JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
         reset();
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -580,6 +581,8 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.jdesktop.swingx.JXDatePicker DateAkKer;
+    private org.jdesktop.swingx.JXDatePicker DateAwKer;
     private javax.swing.JButton btnPhoto;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSave;
@@ -621,8 +624,6 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker3;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker4;
     private javax.swing.JTextField txtIdPersonal;
     private javax.swing.JTextArea txtJabatanOrg;
     private javax.swing.JTextArea txtJabatanPrus;
