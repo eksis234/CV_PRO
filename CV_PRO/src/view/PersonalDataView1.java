@@ -23,8 +23,8 @@ import tools.HibernateUtil;
  */
 public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private final PersonalController controller;
-   private final GetIdController controller1;
-   private final SessionFactory factory;
+    private final GetIdController controller1;
+    private final SessionFactory factory;
     private final SerbaGuna sg;
     /**
      * Creates new form PersonalDataView
@@ -104,7 +104,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         txtbahsa = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         cmbStatusKwn = new javax.swing.JComboBox<>();
-        btnSave = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
         btnViewData = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         txtIdPersonal = new javax.swing.JTextField();
@@ -114,7 +114,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Form Personal Data Kandidat");
+        setTitle("Form Personal Data Kandidat Form 1");
 
         dpPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Personal Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -437,14 +437,14 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        btnSave.setText("CHECK");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnNext.setText("NEXT");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnNextActionPerformed(evt);
             }
         });
 
-        btnViewData.setText("NEXT");
+        btnViewData.setText("CHECK");
         btnViewData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewDataActionPerformed(evt);
@@ -474,14 +474,12 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(dpPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtIdPersonal, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnViewData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReset, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnViewData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -495,7 +493,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIdPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSave)
+                        .addComponent(btnNext)
                         .addGap(18, 18, 18)
                         .addComponent(btnViewData)
                         .addGap(18, 18, 18)
@@ -524,18 +522,16 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewDataActionPerformed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
        String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();String emainya = mailnya.concat(cmbMael); 
        String idOrgT = controller1.getAutoId1().toString();String idOrg = controller1.getLastId().toString(); 
        String idExp = controller1.getAutoId2().toString();String idExpW = controller1.getLastId2().toString();
-//            controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth), 
-//                cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",
-//                txtPhone.getText(), txtMail.getText(), txtPhone.getText());
-//Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
-         //controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
+        controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth),cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",txtPhone.getText(), txtMail.getText(), txtPhone.getText());
+        //Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
+        controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
          //(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience)
-         //controller.saveOrUpdate2(idExp, "w", txtJabatanPrus.getText(), sg.getDateFormat(DateAwKer), sg.getDateFormat(DateAkKer), txtNamaPerus.getText(), txtIdPersonal.getText(), idExpW);
+        controller.saveOrUpdate2(idExp, "w", txtJabatanPrus.getText(), sg.getDateFormat(DateAwKer), sg.getDateFormat(DateAkKer), txtNamaPerus.getText(), txtIdPersonal.getText(), idExpW);
        if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -543,7 +539,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
         }
         reset();
-    }//GEN-LAST:event_btnSaveActionPerformed
+    }//GEN-LAST:event_btnNextActionPerformed
 
     private void txtIdPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPersonalActionPerformed
         // TODO add your handling code here:
@@ -593,9 +589,9 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker DateAkKer;
     private org.jdesktop.swingx.JXDatePicker DateAwKer;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPhoto;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnViewData;
     private javax.swing.JComboBox<String> cmbBahasa;
     private javax.swing.JComboBox<String> cmbJabatan;
@@ -649,7 +645,7 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
     public  void reset(){
         txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(true);
-        txtJabatanPrus.setText("Jabatan anda di Perusahaan");
+        txtJabatanPrus.setText("Jabatan anda di Perusahaan");txtbahsa.setText("Bahasa Indonesia");
         txtJabatanOrg.setText("Jabatan anda di Organisasi");
         txtMail.setText("Email anda");txtNamaOrga.setText("Nama Organisasi yanga anda ikuti");
         txtNamaPerus.setText("Nama perusahaan");txtName.setText("Nama lengkap anda");

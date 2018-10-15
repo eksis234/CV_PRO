@@ -32,9 +32,9 @@ public class MainPage extends javax.swing.JFrame {
     private void initComponents() {
 
         btnLogin = new javax.swing.JButton();
-        btnSignUp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         dpMainPage = new javax.swing.JPanel();
+        cmbSignUp = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,14 +46,6 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        btnSignUp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSignUp.setText("SIGN UP");
-        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUpActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Welcome to CV Online");
 
@@ -61,12 +53,19 @@ public class MainPage extends javax.swing.JFrame {
         dpMainPage.setLayout(dpMainPageLayout);
         dpMainPageLayout.setHorizontalGroup(
             dpMainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1053, Short.MAX_VALUE)
         );
         dpMainPageLayout.setVerticalGroup(
             dpMainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 473, Short.MAX_VALUE)
+            .addGap(0, 477, Short.MAX_VALUE)
         );
+
+        cmbSignUp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CREATE  PASSWORD", "ISI FORM 1", "ISI FROM 2", "LIHAT CV SAYA" }));
+        cmbSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSignUpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,26 +74,28 @@ public class MainPage extends javax.swing.JFrame {
             .addComponent(dpMainPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                .addGap(26, 26, 26))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(cmbSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(cmbSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
                 .addComponent(dpMainPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -108,16 +109,24 @@ public class MainPage extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-         // TODO add your handling code here:
-//        PersonalDataView1 personalDataView1 = new PersonalDataView1(sf);
-//        personalDataView1.show();
-//        dpMainPage.add(personalDataView1);
-        
-        PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
-        personalDataView2.show();
-        dpMainPage.add(personalDataView2);
-    }//GEN-LAST:event_btnSignUpActionPerformed
+    private void cmbSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSignUpActionPerformed
+        // TODO add your handling code here:
+        if (cmbSignUp.getSelectedIndex()==0) {
+            LoginView login = new LoginView();
+            login.setVisible(true);
+            this.setVisible(false);
+        } else if(cmbSignUp.getSelectedIndex()==1){
+            PersonalDataView1 personalDataView1 = new PersonalDataView1(sf);
+            personalDataView1.setVisible(true);
+            dpMainPage.add(personalDataView1);
+        }else if(cmbSignUp.getSelectedIndex()==2){
+            PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
+            personalDataView2.setVisible(true);
+            dpMainPage.add(personalDataView2);
+        }else{
+
+        }
+    }//GEN-LAST:event_cmbSignUpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,8 +168,9 @@ public class MainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnSignUp;
+    private javax.swing.JComboBox<String> cmbSignUp;
     private javax.swing.JPanel dpMainPage;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
 }

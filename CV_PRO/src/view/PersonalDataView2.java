@@ -119,7 +119,7 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Form Personal Data Kandidat");
+        setTitle("Form Personal Data Kandidat Form 2");
 
         btnSave.setText("SAVE");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -347,16 +347,15 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbEduLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
+                        .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
                                 .addComponent(jLabel15))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
                                 .addComponent(txtGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtYearIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,15 +512,15 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
         String idTraiT = controller1.getAutoId6().toString();String idTrai = controller1.getLastId6().toString(); 
         String idProgT = controller1.getAutoId7().toString();String idProg = controller1.getLastId7().toString(); 
         String idNetT = controller1.getAutoId8().toString();String idNet = controller1.getLastId8().toString(); 
-        //controller.saveOrUpdate3(txtInstansi.getText(), txtEduLevel.getText(), idEduT, "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(), txtMajor.getText(), idedu, idPer);
+        controller.saveOrUpdate3(txtInstansi.getText(), txtEduLevel.getText(), idEduT, "w", txtGPA.getText(), txtYearIn.getText(), txtGraduation.getText(), txtMajor.getText(), idedu, idPer);
         //(String namaachievement, String nameevant, BigInteger year, BigDecimal idachdetail, String status, Achievement idachievement, Personaldata idpersonal)
-       //controller.saveOrUpdate4(txtNamaPerhar.getText(), txtEventPenghar.getText(), txtTahunAchiv.getText(), idAchiT, "w", idAchi, idPer);
+        controller.saveOrUpdate4(txtNamaPerhar.getText(), txtEventPenghar.getText(), txtTahunAchiv.getText(), idAchiT, "w", idAchi, idPer);
       //(String nametraining, String lembagatraining, BigDecimal idtrainingdetail, String status, Date startdate, Date enddate, Personaldata idpersonal, Training idtraining) 
-       //controller.saveOrUpdate5(txtNamaTrain.getText(), txtLbgTrain.getText(), idTraiT, "w", sg.getDateFormat(DateAwTrain), sg.getDateFormat(DateAkTrain), idPer, idTrai);
+        controller.saveOrUpdate5(txtNamaTrain.getText(), txtLbgTrain.getText(), idTraiT, "w", sg.getDateFormat(DateAwTrain), sg.getDateFormat(DateAkTrain), idPer, idTrai);
        //(String bhsaprog, BigDecimal idprogdetail, String status, Personaldata idpersonal, Programming idprogramming)
-       controller.saveOrUpdate6(txtBhsaProg.getText(), idProgT, "w", idPer, idProg);
+        controller.saveOrUpdate6(txtBhsaProg.getText(), idProgT, "w", idPer, idProg);
        //(String networkskill, BigDecimal idnetdetail, String status, Networking idnetworking, Personaldata idpersonal) 
-       controller.saveOrUpdate7(txtNetworking.getText(), idNetT, "w", idNet, idPer);
+        controller.saveOrUpdate7(txtNetworking.getText(), idNetT, "w", idNet, idPer);
        if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }
