@@ -41,7 +41,7 @@ public class HrView extends javax.swing.JFrame {
      * Creates new form HRView
      */
     public HrView(boolean a, String nama) {
-        if(a){
+        if (a) {
             initComponents();
         }
         this.sf = HibernateUtil.getSessionFactory();
@@ -57,6 +57,8 @@ public class HrView extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         dpUtamaHr = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmRegion = new javax.swing.JMenu();
@@ -77,8 +79,15 @@ public class HrView extends javax.swing.JFrame {
         mniReportTabelTools = new javax.swing.JMenuItem();
         OsReport = new javax.swing.JMenuItem();
         BahasaReport = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        viewKandidat = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
+
+        jMenu1.setText("jMenu1");
+
+        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HR VIEW .ORM");
@@ -237,6 +246,26 @@ public class HrView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("View");
+
+        jMenuItem1.setText("cv kandidat");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        viewKandidat.setText("menuKandidatView");
+        viewKandidat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewKandidatActionPerformed(evt);
+            }
+        });
+        jMenu4.add(viewKandidat);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,7 +311,7 @@ public class HrView extends javax.swing.JFrame {
     }//GEN-LAST:event_jmTrainingActionPerformed
 
     private void jmWorkingExperienceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmWorkingExperienceActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         PengalamanKerjaView pengalamanKerjaView = new PengalamanKerjaView(sf);
         pengalamanKerjaView.show();
         dpUtamaHr.add(pengalamanKerjaView);
@@ -308,56 +337,74 @@ public class HrView extends javax.swing.JFrame {
     }//GEN-LAST:event_jmCountryIdActionPerformed
 
     private void jmEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEducationActionPerformed
-         // TODO add your handling code here:
-         EducationView educationView = new EducationView(sf);
-         educationView.show();
-         dpUtamaHr.add(educationView);
+        // TODO add your handling code here:
+        EducationView educationView = new EducationView(sf);
+        educationView.show();
+        dpUtamaHr.add(educationView);
     }//GEN-LAST:event_jmEducationActionPerformed
 
     private void jmOperatingSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmOperatingSystemActionPerformed
-         // TODO add your handling code here:
-         OperatingSystemView operatingSystemView = new OperatingSystemView(sf);
-         operatingSystemView.show();
-         dpUtamaHr.add(operatingSystemView);
+        // TODO add your handling code here:
+        OperatingSystemView operatingSystemView = new OperatingSystemView(sf);
+        operatingSystemView.show();
+        dpUtamaHr.add(operatingSystemView);
     }//GEN-LAST:event_jmOperatingSystemActionPerformed
 
     private void jmProgrammingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProgrammingActionPerformed
-         // TODO add your handling code here:
-         ProgrammingView programmingView = new ProgrammingView(sf);
-         programmingView.show();
-         dpUtamaHr.add(programmingView);
+        // TODO add your handling code here:
+        ProgrammingView programmingView = new ProgrammingView(sf);
+        programmingView.show();
+        dpUtamaHr.add(programmingView);
     }//GEN-LAST:event_jmProgrammingActionPerformed
 
     private void jmToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmToolsActionPerformed
-         // TODO add your handling code here:
-         ToolsView toolsView = new ToolsView(sf);
-         toolsView.show();
-         dpUtamaHr.add(toolsView);
+        // TODO add your handling code here:
+        ToolsView toolsView = new ToolsView(sf);
+        toolsView.show();
+        dpUtamaHr.add(toolsView);
     }//GEN-LAST:event_jmToolsActionPerformed
 
     private void OsReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OsReportActionPerformed
         // TODO add your handling code here:
-         this.showReport("OSReport.jrxml");
+        this.showReport("OSReport.jrxml");
     }//GEN-LAST:event_OsReportActionPerformed
 
     private void BahasaReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BahasaReportActionPerformed
         // TODO add your handling code here:
-         this.showReport("BahasaReport.jrxml");
+        this.showReport("BahasaReport.jrxml");
     }//GEN-LAST:event_BahasaReportActionPerformed
 
     private void miPersonalDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPersonalDataActionPerformed
         // TODO add your handling code here:
         PersonalDataView personalDataView = new PersonalDataView(sf);
-         personalDataView.show();
-         dpUtamaHr.add(personalDataView);
+        personalDataView.show();
+        dpUtamaHr.add(personalDataView);
     }//GEN-LAST:event_miPersonalDataActionPerformed
 
-    private void showReport(String path){
-        ReportView reportView = new ReportView(sf, "src\\report\\"+path+"");
+    private void viewKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewKandidatActionPerformed
+        // TODO add your handling code here:
+        try {
+            KandidatView kandidatView = new KandidatView(sf);
+            kandidatView.show();
+            dpUtamaHr.add(kandidatView);
+        } catch (SQLException ex) {
+            Logger.getLogger(HrView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_viewKandidatActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        cv_kandidat cv = new cv_kandidat();
+        cv.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void showReport(String path) {
+        ReportView reportView = new ReportView(sf, "src\\report\\" + path + "");
         reportView.show();
         dpUtamaHr.add(reportView);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -412,8 +459,12 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem BahasaReport;
     private javax.swing.JMenuItem OsReport;
     private javax.swing.JDesktopPane dpUtamaHr;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jmAchievement;
     private javax.swing.JMenuItem jmBahasaAsing;
@@ -430,5 +481,6 @@ public class HrView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmWorkingExperience;
     private javax.swing.JMenuItem miPersonalData;
     private javax.swing.JMenuItem mniReportTabelTools;
+    private javax.swing.JMenuItem viewKandidat;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,8 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="HELLO "/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -98,11 +99,12 @@
     <Component class="javax.swing.JComboBox" name="cmbSignUp">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="CREATE  PASSWORD"/>
+          <StringArray count="5">
+            <StringItem index="0" value="UPDATE  PASSWORD"/>
             <StringItem index="1" value="ISI FORM 1"/>
             <StringItem index="2" value="ISI FROM 2"/>
             <StringItem index="3" value="LIHAT CV SAYA"/>
+            <StringItem index="4" value="LOGOUT"/>
           </StringArray>
         </Property>
       </Properties>

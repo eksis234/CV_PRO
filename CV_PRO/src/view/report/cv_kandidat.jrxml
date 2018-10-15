@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="96af3005-d692-43ab-90ad-d6adf0f8a775">
+	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="idPersonal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     PERSONALDATA."NAME" AS PERSONALDATA_NAME,
+     PERSONALDATA."DATEOFBIRTH" AS PERSONALDATA_DATEOFBIRTH,
+     PERSONALDATA."NATIONALITY" AS PERSONALDATA_NATIONALITY,
+     PERSONALDATA."MARITALSTATUS" AS PERSONALDATA_MARITALSTATUS,
+     PERSONALDATA."GENDER" AS PERSONALDATA_GENDER,
+     PERSONALDATA."PHONENUMBER" AS PERSONALDATA_PHONENUMBER,
+     PERSONALDATA."EMAIL" AS PERSONALDATA_EMAIL,
+     PERSONALDATA."FOTO" AS PERSONALDATA_FOTO,
+     PROGRAMMINGDETAILS."IDPROGDETAIL" AS PROGRAMMINGDETAILS_IDPROGDETAI,
+     PROGRAMMINGDETAILS."IDPROGRAMMING" AS PROGRAMMINGDETAILS_IDPROGRAMMI,
+     PROGRAMMINGDETAILS."STATUS" AS PROGRAMMINGDETAILS_STATUS,
+     PROGRAMMING."IDPROGRAMMING" AS PROGRAMMING_IDPROGRAMMING,
+     PROGRAMMING."PROGRAMMINGLANGUAGE" AS PROGRAMMING_PROGRAMMINGLANGUAG,
+     TOOLDETAILS."IDTOOLDETAIL" AS TOOLDETAILS_IDTOOLDETAIL,
+     TOOLDETAILS."IDPERSONAL" AS TOOLDETAILS_IDPERSONAL,
+     TOOLDETAILS."IDTOOL" AS TOOLDETAILS_IDTOOL,
+     TOOLS."IDTOOL" AS TOOLS_IDTOOL,
+     TOOLS."TOOLNAME" AS TOOLS_TOOLNAME,
+     EDUCATIONDETAILS."IDEDUDETAIL" AS EDUCATIONDETAILS_IDEDUDETAIL,
+     EDUCATIONDETAILS."IDPERSONAL" AS EDUCATIONDETAILS_IDPERSONAL,
+     EDUCATIONDETAILS."IDEDUCATION" AS EDUCATIONDETAILS_IDEDUCATION,
+     EDUCATIONDETAILS."STATUS" AS EDUCATIONDETAILS_STATUS,
+     EDUCATIONDETAILS."IPK" AS EDUCATIONDETAILS_IPK,
+     EDUCATIONDETAILS."ANGKATAN" AS EDUCATIONDETAILS_ANGKATAN,
+     EDUCATIONDETAILS."TAHUNLULUS" AS EDUCATIONDETAILS_TAHUNLULUS,
+     EDUCATION."IDEDUCATION" AS EDUCATION_IDEDUCATION,
+     EDUCATION."INSTANSI" AS EDUCATION_INSTANSI,
+     EDUCATION."LEVELEDUCATION" AS EDUCATION_LEVELEDUCATION,
+     EDUCATIONDETAILS."JURUSAN" AS EDUCATIONDETAILS_JURUSAN,
+     EXPERIENCEDETAILS."IDEXPDETAIL" AS EXPERIENCEDETAILS_IDEXPDETAIL,
+     EXPERIENCEDETAILS."IDPERSONAL" AS EXPERIENCEDETAILS_IDPERSONAL,
+     EXPERIENCEDETAILS."IDWORKINGEXPERIENCE" AS EXPERIENCEDETAILS_IDWORKINGEXP,
+     EXPERIENCEDETAILS."STATUS" AS EXPERIENCEDETAILS_STATUS,
+     EXPERIENCEDETAILS."JOBTITLE" AS EXPERIENCEDETAILS_JOBTITLE,
+     EXPERIENCEDETAILS."STARTDATE" AS EXPERIENCEDETAILS_STARTDATE,
+     EXPERIENCEDETAILS."ENDDATE" AS EXPERIENCEDETAILS_ENDDATE,
+     EXPERIENCEDETAILS."NAMAPERUSAHAAN" AS EXPERIENCEDETAILS_NAMAPERUSAHA,
+     WORKINGEXPERIENCE."IDWORKINGEXPERIENCE" AS WORKINGEXPERIENCE_IDWORKINGEXP,
+     WORKINGEXPERIENCE."NAMAPERUSAHAAN" AS WORKINGEXPERIENCE_NAMAPERUSAHA,
+     TRAININGDETAILS."IDTRAININGDETAIL" AS TRAININGDETAILS_IDTRAININGDETA,
+     TRAININGDETAILS."IDPERSONAL" AS TRAININGDETAILS_IDPERSONAL,
+     TRAININGDETAILS."STATUS" AS TRAININGDETAILS_STATUS,
+     TRAININGDETAILS."STARTDATE" AS TRAININGDETAILS_STARTDATE,
+     TRAININGDETAILS."ENDDATE" AS TRAININGDETAILS_ENDDATE,
+     TRAININGDETAILS."NAMETRAINING" AS TRAININGDETAILS_NAMETRAINING,
+     TRAININGDETAILS."LEMBAGATRAINING" AS TRAININGDETAILS_LEMBAGATRAININ,
+     TRAINING."TRAININGNAME" AS TRAINING_TRAININGNAME,
+     TRAINING."TRAININGORGANIZATION" AS TRAINING_TRAININGORGANIZATION,
+     PROGRAMMINGDETAILS."IDPERSONAL" AS PROGRAMMINGDETAILS_IDPERSONAL,
+     PERSONALDATA."IDPERSONAL" AS PERSONALDATA_IDPERSONAL,
+     ORGANIZATIONDETAILS."IDORGDETAIL" AS ORGANIZATIONDETAILS_IDORGDETAI,
+     ORGANIZATIONDETAILS."IDPERSONAL" AS ORGANIZATIONDETAILS_IDPERSONAL,
+     ORGANIZATIONDETAILS."IDORGANIZATION" AS ORGANIZATIONDETAILS_IDORGANIZA,
+     ORGANIZATIONDETAILS."POSITION" AS ORGANIZATIONDETAILS_POSITION,
+     ORGANIZATIONDETAILS."STARTDATE" AS ORGANIZATIONDETAILS_STARTDATE,
+     ORGANIZATIONDETAILS."ENDDATE" AS ORGANIZATIONDETAILS_ENDDATE,
+     ORGANIZATIONDETAILS."STATUS" AS ORGANIZATIONDETAILS_STATUS,
+     ORGANIZATIONDETAILS."ORGANIZATIONNAME" AS ORGANIZATIONDETAILS_ORGANIZATI,
+     ORGANIZATION."IDORGANIZATION" AS ORGANIZATION_IDORGANIZATION,
+     ORGANIZATION."ORGANIZATIONNAME" AS ORGANIZATION_ORGANIZATIONNAME,
+     ORGANIZATION."POSITION" AS ORGANIZATION_POSITION,
+     ACHIEVEMENTDETAILS."IDPERSONAL" AS ACHIEVEMENTDETAILS_IDPERSONAL,
+     ACHIEVEMENTDETAILS."IDACHIEVEMENT" AS ACHIEVEMENTDETAILS_IDACHIEVEME,
+     ACHIEVEMENTDETAILS."STATUS" AS ACHIEVEMENTDETAILS_STATUS,
+     ACHIEVEMENTDETAILS."NAMAACHIEVEMENT" AS ACHIEVEMENTDETAILS_NAMAACHIEVE,
+     ACHIEVEMENTDETAILS."NAMEEVANT" AS ACHIEVEMENTDETAILS_NAMEEVANT,
+     ACHIEVEMENTDETAILS."YEAR" AS ACHIEVEMENTDETAILS_YEAR,
+     ACHIEVEMENT."IDACHIEVEMENT" AS ACHIEVEMENT_IDACHIEVEMENT,
+     ACHIEVEMENT."ACHIEVEMENTNAME" AS ACHIEVEMENT_ACHIEVEMENTNAME,
+     ACHIEVEMENT."EVENTNAME" AS ACHIEVEMENT_EVENTNAME,
+     ACHIEVEMENT."YEAR" AS ACHIEVEMENT_YEAR
+FROM
+     "CV_ONLINE"."PERSONALDATA" PERSONALDATA INNER JOIN "CV_ONLINE"."PROGRAMMINGDETAILS" PROGRAMMINGDETAILS ON PERSONALDATA."IDPERSONAL" = PROGRAMMINGDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."PROGRAMMING" PROGRAMMING ON PROGRAMMINGDETAILS."IDPROGRAMMING" = PROGRAMMING."IDPROGRAMMING"
+     INNER JOIN "CV_ONLINE"."TOOLDETAILS" TOOLDETAILS ON PERSONALDATA."IDPERSONAL" = TOOLDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."EDUCATIONDETAILS" EDUCATIONDETAILS ON PERSONALDATA."IDPERSONAL" = EDUCATIONDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."EXPERIENCEDETAILS" EXPERIENCEDETAILS ON PERSONALDATA."IDPERSONAL" = EXPERIENCEDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."TRAININGDETAILS" TRAININGDETAILS ON PERSONALDATA."IDPERSONAL" = TRAININGDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."ORGANIZATIONDETAILS" ORGANIZATIONDETAILS ON PERSONALDATA."IDPERSONAL" = ORGANIZATIONDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."ACHIEVEMENTDETAILS" ACHIEVEMENTDETAILS ON PERSONALDATA."IDPERSONAL" = ACHIEVEMENTDETAILS."IDPERSONAL"
+     INNER JOIN "CV_ONLINE"."ACHIEVEMENT" ACHIEVEMENT ON ACHIEVEMENTDETAILS."IDACHIEVEMENT" = ACHIEVEMENT."IDACHIEVEMENT"
+     INNER JOIN "CV_ONLINE"."ORGANIZATION" ORGANIZATION ON ORGANIZATIONDETAILS."IDORGANIZATION" = ORGANIZATION."IDORGANIZATION"
+     INNER JOIN "CV_ONLINE"."TRAINING" TRAINING ON TRAININGDETAILS."IDTRAINING" = TRAINING."IDTRAINING"
+     INNER JOIN "CV_ONLINE"."WORKINGEXPERIENCE" WORKINGEXPERIENCE ON EXPERIENCEDETAILS."IDWORKINGEXPERIENCE" = WORKINGEXPERIENCE."IDWORKINGEXPERIENCE"
+     INNER JOIN "CV_ONLINE"."EDUCATION" EDUCATION ON EDUCATIONDETAILS."IDEDUCATION" = EDUCATION."IDEDUCATION"
+     INNER JOIN "CV_ONLINE"."TOOLS" TOOLS ON TOOLDETAILS."IDTOOL" = TOOLS."IDTOOL"
+WHERE
+     PERSONALDATA."IDPERSONAL" = $P{idPersonal}]]>
+	</queryString>
+	<field name="PERSONALDATA_NAME" class="java.lang.String"/>
+	<field name="PERSONALDATA_DATEOFBIRTH" class="java.sql.Timestamp"/>
+	<field name="PERSONALDATA_NATIONALITY" class="java.lang.String"/>
+	<field name="PERSONALDATA_MARITALSTATUS" class="java.lang.String"/>
+	<field name="PERSONALDATA_GENDER" class="java.lang.String"/>
+	<field name="PERSONALDATA_PHONENUMBER" class="java.lang.String"/>
+	<field name="PERSONALDATA_EMAIL" class="java.lang.String"/>
+	<field name="PERSONALDATA_FOTO" class="java.lang.String"/>
+	<field name="PROGRAMMINGDETAILS_IDPROGDETAI" class="java.math.BigDecimal"/>
+	<field name="PROGRAMMINGDETAILS_IDPROGRAMMI" class="java.math.BigDecimal"/>
+	<field name="PROGRAMMINGDETAILS_STATUS" class="java.lang.String"/>
+	<field name="PROGRAMMING_IDPROGRAMMING" class="java.math.BigDecimal"/>
+	<field name="PROGRAMMING_PROGRAMMINGLANGUAG" class="java.lang.String"/>
+	<field name="TOOLDETAILS_IDTOOLDETAIL" class="java.math.BigDecimal"/>
+	<field name="TOOLDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="TOOLDETAILS_IDTOOL" class="java.math.BigDecimal"/>
+	<field name="TOOLS_IDTOOL" class="java.math.BigDecimal"/>
+	<field name="TOOLS_TOOLNAME" class="java.lang.String"/>
+	<field name="EDUCATIONDETAILS_IDEDUDETAIL" class="java.math.BigDecimal"/>
+	<field name="EDUCATIONDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="EDUCATIONDETAILS_IDEDUCATION" class="java.math.BigDecimal"/>
+	<field name="EDUCATIONDETAILS_STATUS" class="java.lang.String"/>
+	<field name="EDUCATIONDETAILS_IPK" class="java.lang.Double"/>
+	<field name="EDUCATIONDETAILS_ANGKATAN" class="java.math.BigDecimal"/>
+	<field name="EDUCATIONDETAILS_TAHUNLULUS" class="java.math.BigDecimal"/>
+	<field name="EDUCATION_IDEDUCATION" class="java.math.BigDecimal"/>
+	<field name="EDUCATION_INSTANSI" class="java.lang.String"/>
+	<field name="EDUCATION_LEVELEDUCATION" class="java.lang.String"/>
+	<field name="EDUCATIONDETAILS_JURUSAN" class="java.lang.String"/>
+	<field name="EXPERIENCEDETAILS_IDEXPDETAIL" class="java.math.BigDecimal"/>
+	<field name="EXPERIENCEDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="EXPERIENCEDETAILS_IDWORKINGEXP" class="java.math.BigDecimal"/>
+	<field name="EXPERIENCEDETAILS_STATUS" class="java.lang.String"/>
+	<field name="EXPERIENCEDETAILS_JOBTITLE" class="java.lang.String"/>
+	<field name="EXPERIENCEDETAILS_STARTDATE" class="java.sql.Timestamp"/>
+	<field name="EXPERIENCEDETAILS_ENDDATE" class="java.sql.Timestamp"/>
+	<field name="EXPERIENCEDETAILS_NAMAPERUSAHA" class="java.lang.String"/>
+	<field name="WORKINGEXPERIENCE_IDWORKINGEXP" class="java.math.BigDecimal"/>
+	<field name="WORKINGEXPERIENCE_NAMAPERUSAHA" class="java.lang.String"/>
+	<field name="TRAININGDETAILS_IDTRAININGDETA" class="java.math.BigDecimal"/>
+	<field name="TRAININGDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="TRAININGDETAILS_STATUS" class="java.lang.String"/>
+	<field name="TRAININGDETAILS_STARTDATE" class="java.sql.Timestamp"/>
+	<field name="TRAININGDETAILS_ENDDATE" class="java.sql.Timestamp"/>
+	<field name="TRAININGDETAILS_NAMETRAINING" class="java.lang.String"/>
+	<field name="TRAININGDETAILS_LEMBAGATRAININ" class="java.lang.String"/>
+	<field name="TRAINING_TRAININGNAME" class="java.lang.String"/>
+	<field name="TRAINING_TRAININGORGANIZATION" class="java.lang.String"/>
+	<field name="PROGRAMMINGDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="PERSONALDATA_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="ORGANIZATIONDETAILS_IDORGDETAI" class="java.math.BigDecimal"/>
+	<field name="ORGANIZATIONDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="ORGANIZATIONDETAILS_IDORGANIZA" class="java.math.BigDecimal"/>
+	<field name="ORGANIZATIONDETAILS_POSITION" class="java.lang.String"/>
+	<field name="ORGANIZATIONDETAILS_STARTDATE" class="java.sql.Timestamp"/>
+	<field name="ORGANIZATIONDETAILS_ENDDATE" class="java.sql.Timestamp"/>
+	<field name="ORGANIZATIONDETAILS_STATUS" class="java.lang.String"/>
+	<field name="ORGANIZATIONDETAILS_ORGANIZATI" class="java.lang.String"/>
+	<field name="ORGANIZATION_IDORGANIZATION" class="java.math.BigDecimal"/>
+	<field name="ORGANIZATION_ORGANIZATIONNAME" class="java.lang.String"/>
+	<field name="ORGANIZATION_POSITION" class="java.lang.String"/>
+	<field name="ACHIEVEMENTDETAILS_IDPERSONAL" class="java.math.BigDecimal"/>
+	<field name="ACHIEVEMENTDETAILS_IDACHIEVEME" class="java.math.BigDecimal"/>
+	<field name="ACHIEVEMENTDETAILS_STATUS" class="java.lang.String"/>
+	<field name="ACHIEVEMENTDETAILS_NAMAACHIEVE" class="java.lang.String"/>
+	<field name="ACHIEVEMENTDETAILS_NAMEEVANT" class="java.lang.String"/>
+	<field name="ACHIEVEMENTDETAILS_YEAR" class="java.math.BigDecimal"/>
+	<field name="ACHIEVEMENT_IDACHIEVEMENT" class="java.math.BigDecimal"/>
+	<field name="ACHIEVEMENT_ACHIEVEMENTNAME" class="java.lang.String"/>
+	<field name="ACHIEVEMENT_EVENTNAME" class="java.lang.String"/>
+	<field name="ACHIEVEMENT_YEAR" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="52" y="40" width="279" height="30" uuid="13f6e10e-643f-4352-a6db-95da8d52e6dc"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_NAME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="69" width="555" height="1" uuid="6a19a234-1695-4631-8459-3c7b92fec26e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="417" y="10" width="72" height="60" uuid="0f1d598c-8a20-437b-b2bf-29ac35e24874"/>
+				<imageExpression><![CDATA["E:\\E\\MII\\Sayang\\CV_PRO\\CV_PRO\\src\\report\\mii.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="624" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="256" y="29" width="233" height="15" uuid="0b342ff5-e497-4fc1-bd45-8fa0b8e215fe"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_IDPERSONAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="44" width="233" height="15" uuid="872efe3c-5c81-4359-b5a2-54525dc27093"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="59" width="233" height="15" uuid="a7369baf-bb21-4aee-91f5-998687c16bed"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_DATEOFBIRTH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="74" width="233" height="15" uuid="b02381f3-4246-4666-ab6e-3e0e622a88d2"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_NATIONALITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="89" width="233" height="15" uuid="582246dd-b9f1-450b-ac0d-d5256783acd6"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_MARITALSTATUS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="104" width="233" height="15" uuid="5a1b2f6f-bd01-4ef4-b035-059a9e4aee23"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_GENDER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="119" width="233" height="15" uuid="a48616ee-f6d8-4cfc-8367-2169bf962998"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_PHONENUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="134" width="233" height="15" uuid="4ba33cfe-2540-48ba-9000-60557902142b"/>
+				<textFieldExpression><![CDATA[$F{PERSONALDATA_EMAIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="29" width="124" height="15" uuid="07694260-0ba2-4af0-a95e-a1d191a718ff"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="44" width="124" height="15" uuid="3f449bbe-9c36-4e2f-881a-3ad5f9fe7f15"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="59" width="124" height="15" uuid="b39d41c6-a38f-48ec-b81a-6edd7dbf5324"/>
+				<text><![CDATA[Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="74" width="124" height="15" uuid="542c4a86-c4eb-4847-ae69-f527f6a2ef62"/>
+				<text><![CDATA[Kewarganegaraan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="89" width="124" height="15" uuid="a0cebf6c-7aaa-497c-ad4b-02d81ae521a7"/>
+				<text><![CDATA[Status Pernikahan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="104" width="124" height="15" uuid="afcc4732-2a6e-4df4-ae61-e3d2ec4a002f"/>
+				<text><![CDATA[Jenis Kelamin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="119" width="124" height="15" uuid="fb3a05e4-c1aa-4975-ba20-5d6a9b1ff50f"/>
+				<text><![CDATA[Nomor Telepon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="134" width="124" height="15" uuid="45c1e36b-45d4-4019-bf5b-09bc9d6f673e"/>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="53" y="10" width="135" height="19" uuid="306b9d9a-c392-4d3e-a941-9bb51cc56ddb"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Personal Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="53" y="290" width="155" height="18" uuid="2f47312f-daf6-4602-8d78-d67ded6a97b7"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Technical Qualification ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="105" y="308" width="134" height="15" uuid="052bc3e9-057a-4bcc-a104-63105d4a907a"/>
+				<text><![CDATA[Bahasa Pemrograman]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="257" y="308" width="288" height="15" uuid="92c68793-cdc3-4653-98de-75fc38956af4"/>
+				<textFieldExpression><![CDATA[$F{PROGRAMMING_PROGRAMMINGLANGUAG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="105" y="323" width="134" height="15" uuid="738f9674-26bf-402d-9039-768854e59272"/>
+				<text><![CDATA[Tools]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="257" y="323" width="288" height="15" uuid="7a8385bd-44bd-48bc-b794-e7adb2308fc5"/>
+				<textFieldExpression><![CDATA[$F{TOOLS_TOOLNAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="53" y="168" width="169" height="18" uuid="e9da6c92-2d75-461b-b213-d1403a03c52a"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Educational Qualification]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="257" y="186" width="232" height="15" uuid="1f178b3d-8639-4809-b95b-a55c2c951053"/>
+				<textFieldExpression><![CDATA[$F{EDUCATION_INSTANSI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="53" y="370" width="155" height="18" uuid="aa8909cd-061b-4888-83bd-ac7996275b17"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Work Assignments]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="105" y="388" width="304" height="15" uuid="c26aa08c-3d36-4fdb-9ede-5ef6302bee66"/>
+				<textFieldExpression><![CDATA[$F{WORKINGEXPERIENCE_NAMAPERUSAHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="257" y="403" width="152" height="15" uuid="5d9b7fda-34be-4974-8db2-1edfedfeae08"/>
+				<textFieldExpression><![CDATA[$F{EXPERIENCEDETAILS_STARTDATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="257" y="418" width="152" height="15" uuid="8e084508-4ecb-4a45-a929-ac1ca87670c0"/>
+				<textFieldExpression><![CDATA[$F{EXPERIENCEDETAILS_ENDDATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="105" y="403" width="134" height="15" uuid="eb03a313-71e2-4d7e-9b3f-0337188473f3"/>
+				<text><![CDATA[Start Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="105" y="418" width="134" height="15" uuid="66a15a93-ac57-49b1-89d6-91e3206f0dc6"/>
+				<text><![CDATA[End Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="54" y="454" width="155" height="18" uuid="b74a977c-27b4-47ec-aa73-979e83d282c5"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Training]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="105" y="472" width="304" height="15" uuid="e270242f-e98d-4935-9167-6d08cd6d5862"/>
+				<textFieldExpression><![CDATA[$F{TRAINING_TRAININGNAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="105" y="487" width="304" height="15" uuid="5718764b-c363-4078-8b14-07a999a188b3"/>
+				<textFieldExpression><![CDATA[$F{TRAINING_TRAININGORGANIZATION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="53" y="521" width="155" height="18" uuid="d539dff2-2a0e-4076-930c-609b4b103fd7"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Organization]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="173" y="539" width="341" height="15" uuid="466ee003-4575-4ce5-98d6-2865df752f60"/>
+				<textFieldExpression><![CDATA[$F{ORGANIZATION_ORGANIZATIONNAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="53" y="574" width="155" height="18" uuid="af04fd12-cf33-4d11-a80e-99641158e421"/>
+				<textElement>
+					<font fontName="Cambria" size="14"/>
+				</textElement>
+				<text><![CDATA[Awards/Achievements]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="104" y="592" width="304" height="15" uuid="89cb888a-4651-48d2-9481-80e9455fb454"/>
+				<textFieldExpression><![CDATA[$F{ACHIEVEMENT_ACHIEVEMENTNAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="105" y="539" width="63" height="15" uuid="62157c54-77b3-4dfa-ba61-40ae237c660c"/>
+				<textFieldExpression><![CDATA[$F{ORGANIZATION_POSITION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="256" y="201" width="233" height="15" uuid="d46c8df4-543e-45c7-96ae-fd93fe904e5f"/>
+				<textFieldExpression><![CDATA[$F{EDUCATIONDETAILS_JURUSAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="257" y="216" width="44" height="15" uuid="bf6a2301-1847-42a4-ba68-0512e4f839cd"/>
+				<textFieldExpression><![CDATA[$F{EDUCATIONDETAILS_IPK}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="98" y="186" width="124" height="15" uuid="eeed0dce-edbb-4d50-9618-933e47fe56ad"/>
+				<text><![CDATA[Nama Universitas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="201" width="124" height="15" uuid="71bb6a23-ead3-4161-8e2f-2cb6981ab995"/>
+				<text><![CDATA[Jurusan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="216" width="124" height="15" uuid="3afcd806-4fd1-44c1-a4ec-3bcbf9671f0a"/>
+				<text><![CDATA[IPK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="231" width="124" height="15" uuid="1724c97e-16e8-4e06-9085-3c284a745ac7"/>
+				<text><![CDATA[Tahun Masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="98" y="246" width="124" height="15" uuid="a6f04c10-d5c8-43ee-8f96-f6e985c46dbe"/>
+				<text><![CDATA[Tahun Lulus]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="257" y="231" width="90" height="15" uuid="bef3cede-ae96-446f-a3cd-534183b9e66f"/>
+				<textFieldExpression><![CDATA[$F{EDUCATIONDETAILS_ANGKATAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="257" y="246" width="90" height="15" uuid="4c8ba593-4934-41e1-9a78-b9b6aa9962f6"/>
+				<textFieldExpression><![CDATA[$F{EDUCATIONDETAILS_TAHUNLULUS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="87121c0e-7ab5-49e9-89dc-5b3b5c45a470"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="68c5c7bb-eb73-4c5d-a02e-88cd2d27c689"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="6d1e661b-6be3-4b68-9dc5-5527ece59920"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="6061669c-030c-4645-9c46-8986a1c9ed09"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

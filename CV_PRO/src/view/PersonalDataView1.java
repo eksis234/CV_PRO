@@ -532,6 +532,9 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
          //(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience)
         controller.saveOrUpdate2(idExp, "w", txtJabatanPrus.getText(), sg.getDateFormat(DateAwKer), sg.getDateFormat(DateAkKer), txtNamaPerus.getText(), txtIdPersonal.getText(), idExpW);
+        Personaldata p = controller.getIdPersonal(idExpW);
+        UserManagementController umc = new UserManagementController(factory);
+        umc.saveOrUpdate(txtIdPersonal.getText(), sg.generateUsername(p), sg.generateUsername(p), "kandidat");
        if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }

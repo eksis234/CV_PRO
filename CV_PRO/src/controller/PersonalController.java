@@ -19,6 +19,7 @@ import model.Personaldata;
 import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
+import tools.HibernateUtil;
 
 /**
  *
@@ -138,6 +139,10 @@ public class PersonalController {
         return (Personaldata) dAO.getById(idPersonal);
     }
     
+    public Personaldata getIdPersonal (String idPersonal){
+        return (Personaldata) dAO.getIdPersonal(idPersonal);
+    }
+    
     /**
      * Method untuk mengambil semua data yang ada pada tabel Region
      * @return iDAO mengembalikan nilai List
@@ -162,6 +167,11 @@ public class PersonalController {
         Personaldata pdata =  (Personaldata) dAO.getLastId();
         BigDecimal one = new BigDecimal("1");
         return pdata.getIdpersonal().add(one);
+    }
+    
+    public List<Object> getStatusWaiting() throws SQLException{
+        GeneralDAO gdao = new GeneralDAO(HibernateUtil.getSessionFactory(), Personaldata.class);
+        return gdao.getStatus2();
     }
     
     public void loadCmbTools(JComboBox cmb, String model){

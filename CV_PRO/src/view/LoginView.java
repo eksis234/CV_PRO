@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import model.UserManagement;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
-
+import view.*;
 /**
  *
  * @author X453MA
@@ -22,6 +22,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     private SessionFactory factory;
     private UserManagementController controller;
+    
     public LoginView() {
         initComponents();
         this.factory = HibernateUtil.getSessionFactory();
@@ -107,7 +108,9 @@ public class LoginView extends javax.swing.JFrame {
                 hr.setVisible(true);
                 this.setVisible(false);
             } else if (user.getRole().equalsIgnoreCase("kandidat")) {
-                
+                MainPage mainPage = new MainPage();
+                mainPage.setVisible(true);
+                this.setVisible(false);
             } else {
 
             }

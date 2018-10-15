@@ -5,6 +5,7 @@
  */
 package daos;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 import org.hibernate.*;
@@ -51,6 +52,11 @@ public class GeneralDAO implements InterfaceDAO {
     public Object getById(Object id) {
         return gdao.execute(2, null, type, type.getSimpleName().toLowerCase() + "Id", id);
     }
+    
+    @Override
+    public Object getIdPersonal(Object id){
+        return gdao.execute(2, null, type, "idpersonal", new BigDecimal(id+""));
+    }
 
     @Override
     public Object getLastId() {
@@ -65,6 +71,26 @@ public class GeneralDAO implements InterfaceDAO {
     @Override
     public List<Object> getDataNonExpired(String category) {
         return (List<Object>) gdao.execute(7, null, type, category, null);
+    }
+    
+     public List<Object> getStatus2() throws SQLException {
+        List<Object> list = new ArrayList<>();
+
+        this.c = sf.getSessionFactoryOptions()
+                .getServiceRegistry().getService(ConnectionProvider.class)
+                .getConnection();
+        CallableStatement cs = c.prepareCall("{call cv_online.getStatus2(?,?,?,?)}");
+        cs.registerOutParameter(1, Types.INTEGER);
+        cs.registerOutParameter(2, Types.VARCHAR);
+        cs.registerOutParameter(3, Types.CHAR);
+        cs.registerOutParameter(4, Types.INTEGER);
+        cs.execute();
+        list.add(cs.getInt(1));
+        list.add(cs.getString(2));
+        list.add(cs.getString(3));
+        list.add(cs.getInt(4));
+        //return cs.getString(1);
+        return list;
     }
 
     public int addRegion1(String regionName) throws SQLException {

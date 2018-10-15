@@ -36,7 +36,8 @@ public class MainPage extends javax.swing.JFrame {
         dpMainPage = new javax.swing.JPanel();
         cmbSignUp = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("HELLO ");
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLogin.setText("LOGIN");
@@ -60,7 +61,7 @@ public class MainPage extends javax.swing.JFrame {
             .addGap(0, 477, Short.MAX_VALUE)
         );
 
-        cmbSignUp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CREATE  PASSWORD", "ISI FORM 1", "ISI FROM 2", "LIHAT CV SAYA" }));
+        cmbSignUp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UPDATE  PASSWORD", "ISI FORM 1", "ISI FROM 2", "LIHAT CV SAYA", "LOGOUT" }));
         cmbSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbSignUpActionPerformed(evt);
@@ -112,9 +113,9 @@ public class MainPage extends javax.swing.JFrame {
     private void cmbSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSignUpActionPerformed
         // TODO add your handling code here:
         if (cmbSignUp.getSelectedIndex()==0) {
-            LoginView login = new LoginView();
-            login.setVisible(true);
-            this.setVisible(false);
+            LoginKandidatView loginKandidatView = new LoginKandidatView(sf);
+            loginKandidatView.setVisible(true);
+            dpMainPage.add(loginKandidatView);
         } else if(cmbSignUp.getSelectedIndex()==1){
             PersonalDataView1 personalDataView1 = new PersonalDataView1(sf);
             personalDataView1.setVisible(true);
@@ -123,8 +124,12 @@ public class MainPage extends javax.swing.JFrame {
             PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
             personalDataView2.setVisible(true);
             dpMainPage.add(personalDataView2);
+        }else if(cmbSignUp.getSelectedIndex()==3){
+            PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
+            personalDataView2.setVisible(true);
+            dpMainPage.add(personalDataView2);
         }else{
-
+            dispose();
         }
     }//GEN-LAST:event_cmbSignUpActionPerformed
 

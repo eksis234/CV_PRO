@@ -1,11 +1,13 @@
 
 import controller.EducationController;
 import controller.PengalamankerjaController;
+import controller.PersonalController;
 import controller.UserManagementController;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
 import model.*;
 import tools.HibernateUtil;
+import view.SerbaGuna;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,7 +42,13 @@ public class MainTest {
 //            System.out.println(w.getIdworkingexperience()+" - "+w.getNamaperusahaan());
 //        }
 //        System.out.println(w.getIdworkingexperience()+" - "+w.getEmployer());
-        System.out.println(controller.saveOrUpdate("2", "user2", "E23sis,.", "admin"));
+//        System.out.println(controller.saveOrUpdate("2", "user2", "E23sis,.", "admin"));
+        
+//        SerbaGuna sg = new SerbaGuna();
+//        PersonalController personalController = new PersonalController(HibernateUtil.getSessionFactory());
+//        Personaldata personalData = personalController.getIdPersonal("1");
+//        System.out.println(sg.sendMessage(personalData));
+        
     }
     
 }

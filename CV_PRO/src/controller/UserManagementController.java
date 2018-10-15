@@ -73,6 +73,7 @@ public class UserManagementController {
      */
     public boolean login(String username, String password) {
         UserManagement login = (UserManagement) getByName(username);
+        System.out.println(BCrypt.checkpw(password, login.getPassword()));
         return BCrypt.checkpw(password, login.getPassword());
     }
 
