@@ -101,7 +101,7 @@ public class FunctionDAO {
                         .getSimpleName() + " ORDER BY 1").list();
             default:
                 return session.createQuery("FROM " + type
-                        .getSimpleName() + "WHERE SYSDATE < :" + category + " ORDER BY 1").list();
+                        .getSimpleName() + " WHERE SYSDATE < " + category + " ORDER BY 1").list();
         }
     }
 }

@@ -42,7 +42,8 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
         controller.loadCmbTools(cmbNameTrain, "nmTrain");
         controller.loadCmbTools(cmbLembgTraining, "lgTrain");
         sg = new SerbaGuna();
-        txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(true);
+        txtIdPersonal.setText(controller1.getLastId3().toString());txtIdPersonal.setEnabled(false);
+        txtIdPersonal.setEditable(false);
         reset();
     }
 
@@ -638,7 +639,7 @@ public class PersonalDataView2 extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public  void reset(){
-        txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(true);
+        txtIdPersonal.setText(controller1.getLastId3().toString());txtIdPersonal.setEnabled(false);
         txtEduLevel.setText("Jenjang Pendidikan");
         txtEventPenghar.setText("Event Pengahargaan");
         txtInstansi.setText("Nama Instansi/Kampus/Sekolahan");

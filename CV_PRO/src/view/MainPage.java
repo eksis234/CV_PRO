@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
 
@@ -125,10 +128,13 @@ public class MainPage extends javax.swing.JFrame {
             personalDataView2.setVisible(true);
             dpMainPage.add(personalDataView2);
         }else if(cmbSignUp.getSelectedIndex()==3){
-            PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
-            personalDataView2.setVisible(true);
-            dpMainPage.add(personalDataView2);
+            cv_kandidat_1 cv1 = new cv_kandidat_1(sf);
+            cv1.setVisible(true);
+            cv1.id="1";
         }else{
+            LoginView login = new LoginView();
+            login.setVisible(true);
+            this.setVisible(false);
             dispose();
         }
     }//GEN-LAST:event_cmbSignUpActionPerformed

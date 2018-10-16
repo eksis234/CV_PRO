@@ -72,9 +72,12 @@ public class HrView extends javax.swing.JFrame {
         jmOperatingSystem = new javax.swing.JMenuItem();
         jmProgramming = new javax.swing.JMenuItem();
         jmTools = new javax.swing.JMenuItem();
-        jmPersonalData = new javax.swing.JMenuItem();
-        jmCountryId = new javax.swing.JMenuItem();
-        miPersonalData = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        MiLoginView = new javax.swing.JMenuItem();
+        MiInsertForm1 = new javax.swing.JMenuItem();
+        MiInsertForm2 = new javax.swing.JMenuItem();
+        MiUpdatePassword = new javax.swing.JMenuItem();
+        MiLogOut = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mniReportTabelTools = new javax.swing.JMenuItem();
         OsReport = new javax.swing.JMenuItem();
@@ -142,7 +145,7 @@ public class HrView extends javax.swing.JFrame {
         jmRegion.add(jmTraining);
 
         jmWorkingExperience.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
-        jmWorkingExperience.setText("Pengalaman Kerja");
+        jmWorkingExperience.setText("Experience Working");
         jmWorkingExperience.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmWorkingExperienceActionPerformed(evt);
@@ -151,7 +154,7 @@ public class HrView extends javax.swing.JFrame {
         jmRegion.add(jmWorkingExperience);
 
         jmBahasaAsing.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        jmBahasaAsing.setText("Bahasa Asing");
+        jmBahasaAsing.setText("Language");
         jmBahasaAsing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmBahasaAsingActionPerformed(evt);
@@ -195,26 +198,49 @@ public class HrView extends javax.swing.JFrame {
         });
         jmRegion.add(jmTools);
 
-        jmPersonalData.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jmPersonalData.setText("Personal Data");
-        jmRegion.add(jmPersonalData);
+        jMenu5.setText("Main Page");
 
-        jmCountryId.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jmCountryId.setText("Country Id");
-        jmCountryId.addActionListener(new java.awt.event.ActionListener() {
+        MiLoginView.setText("Login View");
+        MiLoginView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmCountryIdActionPerformed(evt);
+                MiLoginViewActionPerformed(evt);
             }
         });
-        jmRegion.add(jmCountryId);
+        jMenu5.add(MiLoginView);
 
-        miPersonalData.setText("Personal Data");
-        miPersonalData.addActionListener(new java.awt.event.ActionListener() {
+        MiInsertForm1.setText("Insert Form 1");
+        MiInsertForm1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miPersonalDataActionPerformed(evt);
+                MiInsertForm1ActionPerformed(evt);
             }
         });
-        jmRegion.add(miPersonalData);
+        jMenu5.add(MiInsertForm1);
+
+        MiInsertForm2.setText("Insert form 2");
+        MiInsertForm2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MiInsertForm2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MiInsertForm2);
+
+        MiUpdatePassword.setText("Update Password");
+        MiUpdatePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MiUpdatePasswordActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MiUpdatePassword);
+
+        MiLogOut.setText("Log Out");
+        MiLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MiLogOutActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MiLogOut);
+
+        jmRegion.add(jMenu5);
 
         jMenuBar1.add(jmRegion);
 
@@ -329,13 +355,6 @@ public class HrView extends javax.swing.JFrame {
         this.showReport("ToolsReport.jrxml");
     }//GEN-LAST:event_mniReportTabelToolsActionPerformed
 
-    private void jmCountryIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCountryIdActionPerformed
-        // TODO add your handling code here:
-        CountryView countryView = new CountryView(sf);
-        countryView.show();
-        dpUtamaHr.add(countryView);
-    }//GEN-LAST:event_jmCountryIdActionPerformed
-
     private void jmEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEducationActionPerformed
         // TODO add your handling code here:
         EducationView educationView = new EducationView(sf);
@@ -374,13 +393,6 @@ public class HrView extends javax.swing.JFrame {
         this.showReport("BahasaReport.jrxml");
     }//GEN-LAST:event_BahasaReportActionPerformed
 
-    private void miPersonalDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPersonalDataActionPerformed
-        // TODO add your handling code here:
-        PersonalDataView personalDataView = new PersonalDataView(sf);
-        personalDataView.show();
-        dpUtamaHr.add(personalDataView);
-    }//GEN-LAST:event_miPersonalDataActionPerformed
-
     private void viewKandidatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewKandidatActionPerformed
         // TODO add your handling code here:
         try {
@@ -398,6 +410,39 @@ public class HrView extends javax.swing.JFrame {
         cv.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void MiLoginViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiLoginViewActionPerformed
+        // TODO add your handling code here:
+        LoginView login = new LoginView(sf);
+        login.setVisible(true);
+        dpUtamaHr.add(login);
+    }//GEN-LAST:event_MiLoginViewActionPerformed
+
+    private void MiInsertForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiInsertForm1ActionPerformed
+        // TODO add your handling code here:
+        PersonalDataView1 personalDataView1 = new PersonalDataView1(sf);
+            personalDataView1.setVisible(true);
+            dpUtamaHr.add(personalDataView1);
+    }//GEN-LAST:event_MiInsertForm1ActionPerformed
+
+    private void MiInsertForm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiInsertForm2ActionPerformed
+        // TODO add your handling code here:
+        PersonalDataView2 personalDataView2 = new PersonalDataView2(sf);
+            personalDataView2.setVisible(true);
+            dpUtamaHr.add(personalDataView2);
+    }//GEN-LAST:event_MiInsertForm2ActionPerformed
+
+    private void MiUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiUpdatePasswordActionPerformed
+        // TODO add your handling code here:
+        LoginKandidatView loginKandidatView = new LoginKandidatView(sf);
+            loginKandidatView.setVisible(true);
+            dpUtamaHr.add(loginKandidatView);
+    }//GEN-LAST:event_MiUpdatePasswordActionPerformed
+
+    private void MiLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MiLogOutActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_MiLogOutActionPerformed
 
     private void showReport(String path) {
         ReportView reportView = new ReportView(sf, "src\\report\\" + path + "");
@@ -457,29 +502,32 @@ public class HrView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BahasaReport;
+    private javax.swing.JMenuItem MiInsertForm1;
+    private javax.swing.JMenuItem MiInsertForm2;
+    private javax.swing.JMenuItem MiLogOut;
+    private javax.swing.JMenuItem MiLoginView;
+    private javax.swing.JMenuItem MiUpdatePassword;
     private javax.swing.JMenuItem OsReport;
     private javax.swing.JDesktopPane dpUtamaHr;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jmAchievement;
     private javax.swing.JMenuItem jmBahasaAsing;
-    private javax.swing.JMenuItem jmCountryId;
     private javax.swing.JMenuItem jmEducation;
     private javax.swing.JMenuItem jmNetworking;
     private javax.swing.JMenuItem jmOperatingSystem;
     private javax.swing.JMenuItem jmOrganization;
-    private javax.swing.JMenuItem jmPersonalData;
     private javax.swing.JMenuItem jmProgramming;
     private javax.swing.JMenu jmRegion;
     private javax.swing.JMenuItem jmTools;
     private javax.swing.JMenuItem jmTraining;
     private javax.swing.JMenuItem jmWorkingExperience;
-    private javax.swing.JMenuItem miPersonalData;
     private javax.swing.JMenuItem mniReportTabelTools;
     private javax.swing.JMenuItem viewKandidat;
     // End of variables declaration//GEN-END:variables

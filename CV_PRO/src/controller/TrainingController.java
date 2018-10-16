@@ -19,7 +19,7 @@ import org.hibernate.SessionFactory;
  */
 public class TrainingController {
 
-    private final InterfaceDAO idao;
+    private InterfaceDAO idao;
     private final SessionFactory factory;
     
     /**
@@ -36,6 +36,7 @@ public class TrainingController {
      * @return semua data Education
      */
     public List<Object> getDatas() {
+        idao = new GeneralDAO(factory, Trainingdetails.class);
         return idao.getDataNonExpired("enddate");
     }
     

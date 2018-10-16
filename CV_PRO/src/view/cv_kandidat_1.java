@@ -16,7 +16,7 @@ import model.Model_Laporan;
 import model.Personaldata;
 import org.hibernate.SessionFactory;
 import tools.HibernateUtil;
-public class cv_kandidat extends javax.swing.JFrame {
+public class cv_kandidat_1 extends javax.swing.JFrame {
     SessionFactory sf;
     private TableRowSorter<TableModel> rowSorter;
     private final PersonalController controller;
@@ -24,10 +24,10 @@ public class cv_kandidat extends javax.swing.JFrame {
     Model_Laporan model = new Model_Laporan(sf);
     public String id;
     
-    public cv_kandidat() {
+    public cv_kandidat_1(SessionFactory factory) {
         initComponents();
-        controller = new PersonalController(HibernateUtil.getSessionFactory());
-        bindingOrganization(controller.getAll());
+        controller = new PersonalController(factory);
+        bindingOrganization((List<Object>) controller.getIdPersonal(id));
         txtIdKandidat.setEnabled(false);txtIdKandidat.setEditable(false);
     }
 
@@ -127,9 +127,13 @@ public class cv_kandidat extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            // try {
             model.Tampilkan(this);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(cv_kandidat.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         } catch (SQLException ex) {
-            Logger.getLogger(cv_kandidat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cv_kandidat_1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -144,7 +148,7 @@ public class cv_kandidat extends javax.swing.JFrame {
          // TODO add your handling code here:
          int row = tblDataKandidat.getSelectedRow();
          txtIdKandidat.setText(tblDataKandidat.getValueAt(row, 1)+" ");
-         id = (String) tblDataKandidat.getValueAt(row, 1);
+         id = (String) tblDataKandidat.getValueAt(1, 1);
     }//GEN-LAST:event_tblDataKandidatMouseClicked
 
     /**
@@ -172,6 +176,8 @@ public class cv_kandidat extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(cv_kandidat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

@@ -42,7 +42,9 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         controller.loadCmbTools(cmbJabatanPeru, "city");
         controller.loadCmbTools(cmbStatusKwn, "kawin");
         sg = new SerbaGuna();
-        txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(true);
+        txtIdPersonal.setText(controller.getAutoId().toString());
+        txtIdPersonal.setEditable(false);
+        txtIdPersonal.setEnabled(false);
         reset();
     }
 
@@ -66,7 +68,6 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtStatus = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
         txtPhoto = new javax.swing.JTextField();
@@ -304,13 +305,10 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                                 .addGap(48, 48, 48)
                                 .addGroup(dpPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(dpPersonalLayout.createSequentialGroup()
-                                        .addGroup(dpPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtStatus, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbNegara, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(dateBirth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmbStatusKwn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(dpPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cmbNegara, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dateBirth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                    .addComponent(cmbStatusKwn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(dpPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(dpPersonalLayout.createSequentialGroup()
@@ -354,7 +352,6 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(dpPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbStatusKwn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(dpPersonalLayout.createSequentialGroup()
                         .addGroup(dpPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -527,21 +524,25 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
        String mailnya = txtMail.getText(); String cmbMael = (String) cmbMail.getSelectedItem();String emainya = mailnya.concat(cmbMael); 
        String idOrgT = controller1.getAutoId1().toString();String idOrg = controller1.getLastId().toString(); 
        String idExp = controller1.getAutoId2().toString();String idExpW = controller1.getLastId2().toString();
-        controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth),cmbNegara.getSelectedItem()+"", txtStatus.getText(), cmbSex.getSelectedItem()+"",txtPhone.getText(), txtMail.getText(), txtPhone.getText());
+        controller.saveOrUpdate(txtIdPersonal.getText(), txtName.getText(), sg.getDateFormat(dateBirth),cmbNegara.getSelectedItem()+"", cmbStatusKwn.getSelectedItem()+"", cmbSex.getSelectedItem()+"",txtPhone.getText(), txtMail.getText(), txtPhone.getText());
         //Organizationdetails(new BigDecimal(idorgdetail), organizationname, position, new Date(startdate), new Date(enddate), status, organization, personaldata);
         controller.saveOrUpdate1(idOrgT, txtNamaOrga.getText(), txtJabatanOrg.getText(), sg.getDateFormat(dateOrgAw), sg.getDateFormat(dateOrgAk), "w", idOrg, txtIdPersonal.getText());
          //(BigDecimal idexpdetail, String status, String jobtitle, Date startdate, Date enddate, String namaperusahaan, Personaldata idpersonal, Workingexperience idworkingexperience)
         controller.saveOrUpdate2(idExp, "w", txtJabatanPrus.getText(), sg.getDateFormat(DateAwKer), sg.getDateFormat(DateAkKer), txtNamaPerus.getText(), txtIdPersonal.getText(), idExpW);
-        Personaldata p = controller.getIdPersonal(idExpW);
+        Personaldata p = controller.getIdPersonal(txtIdPersonal.getText());
         UserManagementController umc = new UserManagementController(factory);
-        umc.saveOrUpdate(txtIdPersonal.getText(), sg.generateUsername(p), sg.generateUsername(p), "kandidat");
+        umc.saveOrUpdate(txtIdPersonal.getText(), sg.generateUsername(p), sg.generatePassword(p), "kandidat");
        if(!txtIdPersonal.isEnabled()){
             JOptionPane.showMessageDialog(this, pesan.update.getPesan(), "Update", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             JOptionPane.showMessageDialog(this, pesan.save.getPesan(), "Save", JOptionPane.INFORMATION_MESSAGE);
         }
-        reset();
+        
+        PersonalDataView2 personalDataView2 = new PersonalDataView2(factory);
+        this.getParent().add(personalDataView2);
+        personalDataView2.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void txtIdPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPersonalActionPerformed
@@ -555,7 +556,6 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
 
     private void cmbStatusKwnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbStatusKwnMouseEntered
         // TODO add your handling code here:
-        txtStatus.setText((String) cmbStatusKwn.getSelectedItem());
     }//GEN-LAST:event_cmbStatusKwnMouseEntered
 
     private void cmbMailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMailMouseEntered
@@ -642,16 +642,15 @@ public class PersonalDataView1 extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtPhoto;
-    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtbahsa;
     // End of variables declaration//GEN-END:variables
 
     public  void reset(){
-        txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(true);
+        txtIdPersonal.setText(controller.getAutoId().toString());txtIdPersonal.setEnabled(false);
         txtJabatanPrus.setText("Jabatan anda di Perusahaan");txtbahsa.setText("Bahasa Indonesia");
         txtJabatanOrg.setText("Jabatan anda di Organisasi");
         txtMail.setText("Email anda");txtNamaOrga.setText("Nama Organisasi yanga anda ikuti");
         txtNamaPerus.setText("Nama perusahaan");txtName.setText("Nama lengkap anda");
-        txtPhone.setText("No Hp anda");txtPhoto.setText("photo ukuran max 500kb");txtStatus.setText("Status Kawin");
+        txtPhone.setText("No Hp anda");txtPhoto.setText("photo ukuran max 500kb");
     }
 }

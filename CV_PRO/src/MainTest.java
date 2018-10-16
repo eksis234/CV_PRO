@@ -2,9 +2,11 @@
 import controller.EducationController;
 import controller.PengalamankerjaController;
 import controller.PersonalController;
+import controller.TrainingController;
 import controller.UserManagementController;
 import daos.GeneralDAO;
 import daos.InterfaceDAO;
+import java.util.List;
 import model.*;
 import tools.HibernateUtil;
 import view.SerbaGuna;
@@ -48,7 +50,13 @@ public class MainTest {
 //        PersonalController personalController = new PersonalController(HibernateUtil.getSessionFactory());
 //        Personaldata personalData = personalController.getIdPersonal("1");
 //        System.out.println(sg.sendMessage(personalData));
-        
+    //List<Object> list = iDAO.getDataNonExpired("enddate");
+        //System.out.println("dari DAO "+list.size());
+        TrainingController tc = new TrainingController(HibernateUtil.getSessionFactory());
+        List<Object> lis = tc.getDatas();
+        List<Object> lis2 = tc.getAll();
+        System.out.println("dari controller"+lis.size());
+        System.out.println("getAll "+lis2.size());
     }
     
 }

@@ -22,6 +22,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 import tools.HibernateUtil;
 import view.cv_kandidat;
+import view.cv_kandidat_1;
 
 public class Model_Laporan implements controller_laporan {
 
@@ -38,6 +39,23 @@ public class Model_Laporan implements controller_laporan {
 
     @Override
     public void Tampilkan(cv_kandidat lp) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = sf.getSessionFactoryOptions().getServiceRegistry().getService(ConnectionProvider.class).getConnection();
+            parameter.put("idPersonal", lp.id);
+            File file = new File("src\\view\\report\\cv_kandidat.jrxml");
+            jasperDesign = JRXmlLoader.load(file);
+            jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            jasperPrint = JasperFillManager.fillReport(jasperReport, parameter, connection);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e);
+        }
+
+    }
+
+    public void Tampilkan(cv_kandidat_1 lp) throws SQLException {
         Connection connection = null;
         try {
             connection = sf.getSessionFactoryOptions().getServiceRegistry().getService(ConnectionProvider.class).getConnection();
